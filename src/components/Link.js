@@ -47,7 +47,7 @@ const LinkStyles = styled(NavLink)`
         }
 
     &.active-link::after {
-    transition: ease .3s;
+            transition: ease .3s;
             width: 100%;
         }
     }

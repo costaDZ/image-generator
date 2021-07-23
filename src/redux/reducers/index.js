@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { nav } from './nav.reducer';
-
+import { nav } from './reducers';
 
 const reducers = {
     nav,

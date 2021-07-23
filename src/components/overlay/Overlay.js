@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 const Overlay = ({ section }) => {
 
-    let data = section.main || section;
+    let data = section || section.main;
 
     return (
         <SearchHolder img={data.back}>
@@ -34,7 +34,7 @@ const Overlay = ({ section }) => {
                 <button className="search-btn" type="submit" aria-label="search">
                     <SerachIcon />
                 </button>
-                <input className="search-input" placeholder="Search Images ..." />
+                <input className="search-input" placeholder={`Search ${data.category} ...`} />
             </form>
 
             <div className="populair-images">
@@ -87,7 +87,6 @@ export default connect(mapStateToProps)(Overlay);
 
 
 const SerachIcon = styled(Search)`
-                    color: black;
                     height : 2em;
                     `
 
@@ -126,11 +125,17 @@ const SearchHolder = styled.section`
                     position: relative;
                     left: 5px;
                     cursor: pointer;
+                    padding: 1em;
+                    color: var(--grey-text);
+                    transition: var(--transition);
+                        &:hover {
+                            color: black;
+                        }
                     }
 
                     .search-input {
                     font-size: 1em;
-                    padding: .5em;
+                    padding: 13px;
                     border-radius: 4px;
                     outline: none;
                     border: none;
@@ -155,7 +160,7 @@ const SearchHolder = styled.section`
                     padding: .2em .4em;
                     margin: 0 .1em;
                     font-weight: 700;
-
+                    
                     }
     }
                     `
