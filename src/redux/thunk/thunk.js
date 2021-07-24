@@ -1,24 +1,63 @@
-// import {
-//     loadImagesSuccess,
-//     loadImagesInProgress
-// } from '../actions/actions.js';
+import {
+    loadImagesSuccess,
+    loadImagesInProgress,
+    loadPhotosSuccess,
+    loadVectorSuccess,
+    loadIlistratorSuccess
+} from '../actions/actions.js';
+
+
+const key = process.env.REACT_APP_KEY;
+const url = 'https://pixabay.com/api/?key='
 
 
 
-// export const loadImages = () => async (dispatch, images) => {
+export const loadImages = () => async (dispatch, images) => {
 
-//     try {
-//         console.log('----------------------------Thunk');
-//         //  dispatch(loadImagesInProgress());
-//         const key = '21671638-6421320cf24dcaf0da0369488';
-//         const url = 'https://pixabay.com/api/'
+    try {
+        dispatch(loadImagesInProgress());
+        const response = await fetch(url + key + '&q=fog');
+        const images = await response.json();
+        dispatch(loadImagesSuccess(images));
 
-//         const response = await fetch(url + '?key=' + key);
-//         const images = await response.json();
-//         //  dispatch(loadImagesSuccess(images));
+    } catch (error) {
+        console.log(error);
+    }
 
-//     } catch (error) {
-//         console.log(error);
-//     }
+}
 
-// }
+export const loadPhotos = () => async (dispatch, photos) => {
+    try {
+        dispatch(loadImagesInProgress());
+        const response = await fetch(url + key + '&image_type=photo');
+        const photos = await response.json();
+        dispatch(loadPhotosSuccess(photos));
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const loadVectors = () => async (dispatch, vectors) => {
+
+    try {
+        dispatch(loadImagesInProgress());
+        const response = await fetch(url + key + '&image_type=vector');
+        const vectors = await response.json();
+        dispatch(loadVectorSuccess(vectors));
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+export const loadIllistrator = () => async (dispatch, illistrators) => {
+    try {
+        dispatch(loadImagesInProgress());
+        const response = await fetch(url + key + '&image_type=illustration');
+        const illistrators = await response.json();
+        dispatch(loadIlistratorSuccess(illistrators));
+    } catch (error) {
+        console.log(error);
+    }
+}

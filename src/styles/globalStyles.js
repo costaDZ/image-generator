@@ -5,7 +5,7 @@ const GlobaleStyle = createGlobalStyle`
     :root {
         --green-color : #02be6e;
         --grey-text : #787878;
-
+        --white-color : #fff;
         --transition : ease .3s;
     }
 

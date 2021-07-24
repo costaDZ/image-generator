@@ -1,5 +1,5 @@
-import main from '../images/photos.jpg';
-import photos from '../images/back.jpg';
+import main from '../images/back.jpg';
+import photos from '../images/photos.jpg';
 import illistrator from '../images/illistrator.jpg';
 import vector from '../images/vector.png';
 import vedio from '../images/vedios.mp4';
@@ -25,21 +25,21 @@ const data = {
         title: "Free illustrations for download & inspiration",
         dec: "Over 310,000+ beautiful free illustrations shared by our talented community.",
         back: illistrator,
-        populair: ["nature", "wallpaper", "background", "summer", "food", "beach", "sky", "money", "dog", "love", "cat", "flower", "car", "coronavirus"]
+        populair: ["background", "flower", "flowers", "nature", "cat", "money", "love", "heart", "sun", "dog", "music", "people", "coronavirus"]
     },
     vectors: {
         category: "vectors",
         title: "Stunning free vector art stock images",
         dec: "Over 110,000+ free vector art images shared by our talented community.",
         back: vector,
-        populair: ["nature", "wallpaper", "background", "summer", "food", "beach", "sky", "money", "dog", "love", "cat", "flower", "car", "coronavirus"]
+        populair: ["background", "flower", "heart", "car", "cat", "dog", "tree", "flowers", "arrow", "book", "sun", "money", "coronavirus"]
     },
     videos: {
         category: "videos",
         title: "Stunning free stock video footage & clips",
         dec: "Thousands of free stock video clips & footage shared by our talented community.",
         video: vedio,
-        populair: ["nature", "wallpaper", "background", "summer", "food", "beach", "sky", "money", "dog", "love", "cat", "flower", "car", "coronavirus"]
+        populair: ["nature", "wallpaper", "rain", "love", "meditation", "money", "forest", "water", "animals", "people", "earth", "beach"]
     },
 
 }

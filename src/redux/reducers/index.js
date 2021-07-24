@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
 
-import { nav } from './reducers';
+import { nav, images, photos, vectors, illistrator } from './reducers';
 
 const reducers = {
     nav,
+    images,
+    photos,
+    vectors,
+    illistrator,
 };
 
 

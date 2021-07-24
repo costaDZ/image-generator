@@ -17,12 +17,12 @@ const Overlay = ({ section }) => {
             <h1 className="main-title">
                 {data.title}
             </h1>
+
             <p className="desc">
                 {data.dec}
             </p>
 
             {data.video &&
-
                 <video className="video" autoPlay muted loop >
                     <source src={data.video} type="video/mp4" />
                     <source src={data.video} type="video/ogg" />
@@ -39,11 +39,11 @@ const Overlay = ({ section }) => {
 
             <div className="populair-images">
                 <h4>Populair Images : </h4>
-                <button >Nature</button>
-                <button >background</button>
-                <button >summer</button>
-                <button >food</button>
+                {data.populair?.map((item, i) => {
+                    return <button key={i}>{item}</button>
+                })}
             </div>
+
         </SearchHolder>
     )
 }
@@ -53,31 +53,6 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(Overlay);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -97,9 +72,13 @@ const SearchHolder = styled.section`
                     flex-direction: column;
                     justify-content: space-evenly;
                     align-items: center;
-                    min-height: 80vh;
+                    min-height: 50vh;
                     color: white;
                     background : url(${props => props.img}) center/cover no-repeat;
+
+                    .main-title {
+                        font-size: 2.5em;
+                    }
 
                     video {
                         left: 50%;
@@ -114,8 +93,8 @@ const SearchHolder = styled.section`
 
                     .search-form {
                     display: flex;
-                    padding: 2px 4px;
-                    align-items: center;
+                    /* padding: 2px 4px;
+                    align-items: center; */
                     width: 40%;
 
 
@@ -134,6 +113,7 @@ const SearchHolder = styled.section`
                     }
 
                     .search-input {
+                    font-weight: 700;
                     font-size: 1em;
                     padding: 13px;
                     border-radius: 4px;

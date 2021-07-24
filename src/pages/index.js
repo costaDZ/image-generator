@@ -1,8 +1,9 @@
 import Main from './main/Main';
-export { Illistrations } from './illistration/Illistrations';
-export { Photos } from './photos/Photos';
-export { Vectors } from './vectors/Vectors';
+import Photos from './photos/Photos';
+import Vectors from './vectors/Vectors';
+import Illistrations from './illistration/Illistrations';
+
 export { Videos } from './videos/Videos';
 
 
-export { Main };
+export { Main, Photos, Vectors, Illistrations };

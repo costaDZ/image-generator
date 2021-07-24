@@ -41,7 +41,7 @@ export default Navbar;
 
 
 const NavbarStyles = styled.header`
-    height: 3em;
+    height: 4em;
     border-bottom: 1px solid var(--green-color);
     display: flex;
     flex-direction: column;
