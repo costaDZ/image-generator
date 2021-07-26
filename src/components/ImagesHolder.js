@@ -8,10 +8,7 @@ function ImagesHolder({ data, kind, video_img, id }) {
     if (kind === 'videos') {
         return (
             <ImagesContainerStyles>
-
-
-
-                {data.pic.hits.map((v, i) => {
+                {data.pic?.hits.map((v, i) => {
                     const { picture_id, id, duration, tags, videos } = v
                     let src = `https://i.vimeocdn.com/video/${picture_id}_640x360.jpg`;
 
