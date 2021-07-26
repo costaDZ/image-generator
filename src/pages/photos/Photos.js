@@ -12,7 +12,6 @@ function Photos({ getPhotos, startLoadingPhotos }) {
 
     useEffect(() => {
         startLoadingPhotos();
-        console.log(getPhotos);
     }, [])
 
 

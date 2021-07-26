@@ -91,3 +91,19 @@ export const illistrator = (state = { isLoading: false }, actions) => {
     }
 
 }
+
+export const videos = (state = { isLoading: false }, actions) => {
+
+    const { type, payload } = actions;
+
+    switch (type) {
+        case LOAD_IMAGES_IN_PROGRESS:
+            return { ...state, isLoading: true }
+        case LOAD_VIDEOS_SUCCESS:
+            const { videos } = payload;
+            return { pic: videos, isLoading: false }
+        default:
+            return state;
+    }
+
+}

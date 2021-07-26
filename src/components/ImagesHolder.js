@@ -3,45 +3,75 @@ import styled from 'styled-components';
 import ImageContainer from './ImageContainer';
 
 
-function ImagesHolder({ data, kind }) {
-    return (
-        <ImagesContainerStyles>
+function ImagesHolder({ data, kind, video_img, id }) {
 
-            {console.log(data)}
-            {!data.isLoading ?
-                data.pic.hits.map(img => {
-                    const {
-                        id,
-                        likes,
-                        comments,
-                        largeImageURL,
-                        tags,
-                        webformatURL,
-                        webformatWidth,
-                        webformatHeight,
-                        downloads,
-                    } = img;
+    if (kind === 'videos') {
+        return (
+            <ImagesContainerStyles>
+
+
+
+                {data.pic.hits.map((v, i) => {
+                    const { picture_id, id, duration, tags, videos } = v
+                    let src = `https://i.vimeocdn.com/video/${picture_id}_640x360.jpg`;
+
                     return (
                         <ImageContainer
                             id={id}
-                            likes={likes}
+                            webformatURL={src}
+                            kind={kind}
+                            duration={duration}
                             tags={tags}
-                            comments={comments}
-                            webformatURL={webformatURL}
+                            videos={videos}
+                            key={i}
                         />
                     )
-                }) :
-                <h1>Loading ...</h1>}
-        </ImagesContainerStyles>
-    )
+                })}
+            </ImagesContainerStyles>
+        )
+    } else {
+        return (
+            <ImagesContainerStyles>
+                {console.log(data)}
+                {!data.isLoading ?
+                    data.pic.hits.map(img => {
+                        const {
+                            id,
+                            likes,
+                            comments,
+                            largeImageURL,
+                            tags,
+                            webformatURL,
+                            webformatWidth,
+                            webformatHeight,
+                            downloads,
+                        } = img;
+                        return (
+                            <ImageContainer
+                                id={id}
+                                likes={likes}
+                                tags={tags}
+                                comments={comments}
+                                webformatURL={webformatURL}
+                            />
+                        )
+                    }) :
+                    <h1>Loading ...</h1>}
+            </ImagesContainerStyles>
+        )
+    }
+
 }
 
 const ImagesContainerStyles = styled.section`
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     margin: 10px 15px 0 10px;
+
+
 `
 
 export default ImagesHolder;

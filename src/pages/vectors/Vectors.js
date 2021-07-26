@@ -11,7 +11,6 @@ function Vectors({ startLoadingVectors, getVectors }) {
 
     useEffect(() => {
         startLoadingVectors();
-        console.log(getVectors);
     }, [])
 
     return (

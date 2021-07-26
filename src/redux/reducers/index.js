@@ -1,6 +1,14 @@
 import { combineReducers } from 'redux';
 
-import { nav, images, photos, vectors, illistrator } from './reducers';
+import {
+    nav,
+    images,
+    photos,
+    vectors,
+    illistrator,
+    videos
+} from './reducers';
+
 
 const reducers = {
     nav,
@@ -8,6 +16,7 @@ const reducers = {
     photos,
     vectors,
     illistrator,
+    videos
 };
 
 

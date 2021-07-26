@@ -12,7 +12,6 @@ function Illistrations({ startLoadingIllistrators, getIllistrators }) {
 
     useEffect(() => {
         startLoadingIllistrators();
-        console.log(getIllistrators);
     }, [])
 
 
