@@ -5,15 +5,11 @@ import styled from 'styled-components';
 function ImageContainer({ id, webformatURL, tags, likes, comments, kind, duration, videos }) {
 
     const [play, setPlay] = useState(false);
-
     let location = useLocation();
 
-    console.log(location.pathname);
-
-
+    let timer;
     function playVideo(v) {
         if (location.pathname === ("/Videos")) {
-            let timer;
             if (v === "set") {
                 clearTimeout(timer);
                 timer = setTimeout(() => {
