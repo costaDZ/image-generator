@@ -1,69 +1,34 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 function ImageContainer({ id, webformatURL, tags, likes, comments, kind, duration, videos }) {
 
     const [play, setPlay] = useState(false);
 
+    let location = useLocation();
 
-    // <video className="video" autoPlay muted loop >
-    //     <source src={data.video} type="video/mp4" />
-    //     <source src={data.video} type="video/ogg" />
-    //     Your browser does not support the video tag.
-    // </video>
-
-
-    // useEffect(() => {
-    //     console.log(containerRef.current);
-    // }, [])
-
+    console.log(location.pathname);
 
 
     function playVideo(v) {
-        console.log(v)
-        let timer;
-
-        if (v === "set") {
-            // setPlay(false);
-            timer = setTimeout(() => {
-                console.log("-******play*******");
-                setPlay(true);
-            }, 1000);
-
-        } else {
-            console.log("==== clear =====>");
-
-            clearTimeout(timer);
-
+        if (location.pathname === ("/Videos")) {
+            let timer;
+            if (v === "set") {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    setPlay(true);
+                }, 1000);
+            } else {
+                setPlay(false);
+                clearTimeout(timer);
+            }
         }
-
-
-        //console.log(e.target.parentElement);
-        // let target = e.target.parentElement;
-        // let url = e.target.dataset.url;
-
-        // let video = document.createElement("video");
-        // let src1 = document.createElement("source");
-        // src1.setAttribute("src", url);
-        // src1.setAttribute("type", "video/mp4");
-        // let src2 = document.createElement("source");
-        // src2.setAttribute("src", url);
-        // src2.setAttribute("type", "video/ogg");
-
-        // video.appendChild(src1);
-        // video.appendChild(src2);
-
-        // target.appendChild(video);
-        // console.log(video);
-
-        // target.firstElementChild.remove();
     }
 
-    function stopVideo(e) {
-    }
 
     return (
-        <ImageContainerStyles key={id} onMouseOver={() => playVideo("set")} onMouseLeave={() => playVideo("clear")}>
+        <ImageContainerStyles key={id} onMouseOver={() => playVideo("set")} onMouseLeave={() => playVideo("t")}>
 
             {kind === 'videos' &&
                 <video
@@ -131,28 +96,6 @@ function ImageContainer({ id, webformatURL, tags, likes, comments, kind, duratio
 }
 
 export default ImageContainer;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

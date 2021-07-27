@@ -12,7 +12,6 @@ import { ImagesHolder } from '../../components';
 function Videos({ startLoadVideos, getVideos }) {
     useEffect(() => {
         startLoadVideos();
-        console.log(getVideos);
     }, [])
 
     return (
