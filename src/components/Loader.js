@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 function Loader() {
     return (
-        <LoaderStyle class="loader-bg">
-            <div class="loader-p">
+        <LoaderStyle >
+            <div className="loader-p">
             </div>
         </LoaderStyle>
     )

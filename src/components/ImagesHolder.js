@@ -30,7 +30,7 @@ function ImagesHolder({ data, kind }) {
         return (
             <ImagesContainerStyles>
                 {
-                    data.pic?.hits.map(img => {
+                    data.pic?.hits.map((img, i) => {
                         const {
                             id,
                             likes,
@@ -44,6 +44,7 @@ function ImagesHolder({ data, kind }) {
                         } = img;
                         return (
                             <ImageContainer
+                                key={i}
                                 id={id}
                                 likes={likes}
                                 tags={tags}
@@ -61,12 +62,24 @@ function ImagesHolder({ data, kind }) {
 
 const ImagesContainerStyles = styled.section`
     position: relative;
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 10px 15px 0 10px;
+    margin: 10px 15px 0 10px; */
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-content: center;
+    justify-content: center;
+    grid-gap: .2em;
+    margin: 0.2em;
 
+        @media (max-width: 1200px) {
+        grid-template-columns: repeat(2,1fr);
+        }
+        @media (max-width: 750px) {
+        grid-template-columns: repeat(1,1fr);
+        }
 
 `
 

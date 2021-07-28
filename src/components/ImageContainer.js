@@ -138,17 +138,18 @@ export default ImageContainer;
 
 const ImageContainerStyles = styled.div`
         position: relative;
-        height: 16em;
+        height: 20em;
        // flex-grow: 1;
-        margin: 0.2em;
        // max-width: 50%;
-        width: 24em;
+        width: 100%;
         overflow: hidden;
         @media (max-width: 850px) {
             min-width: 80%;
+
         }
         @media (max-width: 650px) {
             min-width: 100%;
+
         }
 
     .hovering_video {
@@ -157,7 +158,7 @@ const ImageContainerStyles = styled.div`
         top: 0;
         left: 0;
         right: 0;
-        width: 100%;
+        width: 38em;
         display: none;
         &:hover {
         cursor:pointer;
