@@ -8,10 +8,7 @@ import { connect } from 'react-redux';
 
 
 const Overlay = ({ section }) => {
-    console.log("------------", section);
-
     let data = section.main || section;
-    console.log(data);
     return (
         <SearchHolder img={data.back}>
 
@@ -73,7 +70,7 @@ const SearchHolder = styled.section`
                     flex-direction: column;
                     justify-content: space-evenly;
                     align-items: center;
-                    min-height: 50vh;
+                    min-height: 70vh;
                     color: white;
                     background : url(${props => props.img}) center/cover no-repeat;
 
