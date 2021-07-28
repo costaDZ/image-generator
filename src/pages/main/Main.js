@@ -16,8 +16,6 @@ function Main({ startLoadingImages, getImages }) {
 
 
     return (
-        // <h1>test</h1>
-
         <ImagesHolder data={getImages} />
     )
 }

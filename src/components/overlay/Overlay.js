@@ -8,9 +8,10 @@ import { connect } from 'react-redux';
 
 
 const Overlay = ({ section }) => {
+    console.log("------------", section);
 
-    let data = section || section.main;
-
+    let data = section.main || section;
+    console.log(data);
     return (
         <SearchHolder img={data.back}>
 
