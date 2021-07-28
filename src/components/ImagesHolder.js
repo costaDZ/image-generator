@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import ImageContainer from './ImageContainer';
 
 
-function ImagesHolder({ data, kind, video_img, id }) {
+function ImagesHolder({ data, kind }) {
 
     if (kind === 'videos') {
         return (
             <ImagesContainerStyles>
                 {data.pic?.hits.map((v, i) => {
-                    const { picture_id, id, duration, tags, videos } = v
+                    const { picture_id, id, duration, tags, videos } = v;
                     let src = `https://i.vimeocdn.com/video/${picture_id}_640x360.jpg`;
 
                     return (
@@ -29,9 +29,8 @@ function ImagesHolder({ data, kind, video_img, id }) {
     } else {
         return (
             <ImagesContainerStyles>
-                {console.log(data)}
-                {!data.isLoading ?
-                    data.pic.hits.map(img => {
+                {
+                    data.pic?.hits.map(img => {
                         const {
                             id,
                             likes,
@@ -50,10 +49,10 @@ function ImagesHolder({ data, kind, video_img, id }) {
                                 tags={tags}
                                 comments={comments}
                                 webformatURL={webformatURL}
+                                isLoading={data.isLoading}
                             />
                         )
-                    }) :
-                    <h1>Loading ...</h1>}
+                    })}
             </ImagesContainerStyles>
         )
     }
@@ -72,3 +71,32 @@ const ImagesContainerStyles = styled.section`
 `
 
 export default ImagesHolder;
+
+
+// {
+//     !data.isLoading ?
+//     data.pic.hits.map(img => {
+//         const {
+//             id,
+//             likes,
+//             comments,
+//             largeImageURL,
+//             tags,
+//             webformatURL,
+//             webformatWidth,
+//             webformatHeight,
+//             downloads,
+//         } = img;
+//         return (
+//             <ImageContainer
+//                 id={id}
+//                 likes={likes}
+//                 tags={tags}
+//                 comments={comments}
+//                 webformatURL={webformatURL}
+//                 isLoading={data.isLoading}
+//             />
+//         )
+//     }) :
+//     <h1>Loading ...</h1>
+// }
