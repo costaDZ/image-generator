@@ -9,14 +9,14 @@ import {
 
 
 const key = process.env.REACT_APP_KEY;
-const url = 'https://pixabay.com/api/?key=';
+const url = 'https://pixabay.com/api/?key=' + key;
 
 
 
 export const loadImages = () => async (dispatch, images) => {
     try {
         dispatch(loadImagesInProgress());
-        const response = await fetch(url + key + '&q=fog');
+        const response = await fetch(url + '&q=' + '&image_type=all');
         const images = await response.json();
         dispatch(loadImagesSuccess(images));
     } catch (error) {
@@ -24,10 +24,11 @@ export const loadImages = () => async (dispatch, images) => {
     }
 }
 
-export const loadPhotos = () => async (dispatch, photos) => {
+export const loadPhotos = (searchKey) => async (dispatch, photos) => {
+    console.log(searchKey);
     try {
         dispatch(loadImagesInProgress());
-        const response = await fetch(url + key + '&image_type=photo');
+        const response = await fetch(url + `&q=${searchKey || "all"}&image_type=photo&per_page=50&order=latest&page=1&category=all&min_width=0&min_height=0&safesearch=true`);
         const photos = await response.json();
         dispatch(loadPhotosSuccess(photos));
     } catch (error) {
@@ -35,11 +36,26 @@ export const loadPhotos = () => async (dispatch, photos) => {
     }
 }
 
+//&q=all
+//&image_type=photo
+//&colors=green
+//&safesearch="true" pr "false"
+//&page=1
+//&per_page=50
+//&category=background
+//&orientation="all" or "vertical" or "Horizontal"
+
+//&order= "popular", "latest"
+
+//&min_width =100
+//&min_height =100
+
+
 export const loadVectors = () => async (dispatch, vectors) => {
 
     try {
         dispatch(loadImagesInProgress());
-        const response = await fetch(url + key + '&image_type=vector');
+        const response = await fetch(url + '&image_type=vector');
         const vectors = await response.json();
         dispatch(loadVectorSuccess(vectors));
     } catch (error) {
@@ -51,7 +67,7 @@ export const loadVectors = () => async (dispatch, vectors) => {
 export const loadIllistrator = () => async (dispatch, illistrators) => {
     try {
         dispatch(loadImagesInProgress());
-        const response = await fetch(url + key + '&image_type=illustration');
+        const response = await fetch(url + '&image_type=illustration');
         const illistrators = await response.json();
         dispatch(loadIlistratorSuccess(illistrators));
     } catch (error) {
@@ -63,7 +79,7 @@ export const loadIllistrator = () => async (dispatch, illistrators) => {
 export const loadVideos = () => async (dispatch, videos) => {
     try {
         dispatch(loadImagesInProgress());
-        const response = await fetch('https://pixabay.com/api/videos/?key=' + key + '&q=yellow');
+        const response = await fetch('https://pixabay.com/api/videos/?key=' + key + '&q=all');
         const videos = await response.json();
         dispatch(loadVideosSuccess(videos))
     } catch (error) {

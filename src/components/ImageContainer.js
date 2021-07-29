@@ -3,8 +3,10 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Loader from './Loader';
 
+import { connect } from 'react-redux';
+import { loadPhotos } from '../redux/thunk/thunk';
 
-function ImageContainer({ id, webformatURL, tags, likes, comments, kind, duration, videos, isLoading }) {
+function ImageContainer({ startSeraching, id, webformatURL, tags, likes, comments, kind, duration, videos, isLoading }) {
 
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
@@ -32,6 +34,11 @@ function ImageContainer({ id, webformatURL, tags, likes, comments, kind, duratio
                 clearTimeout(timer);
             }
         }
+    }
+
+    function startSearch(e) {
+        console.log(e.target.textContent);
+        startSeraching(e.target.textContent);
     }
 
 
@@ -80,7 +87,10 @@ function ImageContainer({ id, webformatURL, tags, likes, comments, kind, duratio
                                     <div className="tags">
                                         {tags.split(',').map((tag, i) => {
                                             return (
-                                                <button key={i}>{tag}</button>
+                                                <button
+                                                    onClick={(e) => startSearch(e)}
+                                                    key={i}
+                                                >{tag}</button>
                                             )
                                         })
                                         }
@@ -114,7 +124,11 @@ function ImageContainer({ id, webformatURL, tags, likes, comments, kind, duratio
     )
 }
 
-export default ImageContainer;
+const mapDispatchToProps = dispatch => ({
+    startSeraching: (searchKey) => dispatch(loadPhotos(searchKey))
+})
+
+export default connect(null, mapDispatchToProps)(ImageContainer);
 
 
 
