@@ -6,11 +6,16 @@ https://cdn.pixabay.com/index/2021/05/17/04-14-33-319_1920x550.jpg
 
 /*********************************************/
 
+
+
 /** accept search keys from : 
     * search bar
     * images tags
     * search bar
     * pagination
+
+
+// add file for solve netlify problem
 
 // add search bar filter appear after the user click search btn
 

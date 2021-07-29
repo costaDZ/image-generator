@@ -32,7 +32,6 @@ export const nav = (state = initialState, actions) => {
 export const images = (state = { isLoading: true }, actions) => {
 
     const { type, payload } = actions;
-
     switch (type) {
         case LOAD_IMAGES_IN_PROGRESS:
             return { ...state, isLoading: true }

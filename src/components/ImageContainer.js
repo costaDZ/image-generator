@@ -1,16 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Loader from './Loader';
 
 import { connect } from 'react-redux';
-import { loadPhotos } from '../redux/thunk/thunk';
+import {
+    loadPhotos,
+    loadVectors,
+    loadIllistrator,
+    loadImages,
+    loadVideos
+} from '../redux/thunk/thunk';
 
-function ImageContainer({ startSeraching, id, webformatURL, tags, likes, comments, kind, duration, videos, isLoading }) {
+function ImageContainer({
+    startSearchingImages,
+    startSearchingPhotos,
+    startSearchingVectors,
+    startSearchingIllistrator,
+    startSearchingVideos,
+    currentLocation,
+    id,
+    webformatURL,
+    tags,
+    likes,
+    comments,
+    kind,
+    duration,
+    videos,
+    isLoading
+}) {
 
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
-    let location = useLocation();
 
     useEffect(() => {
         let loaderTrigger = setTimeout(() => {
@@ -19,11 +39,9 @@ function ImageContainer({ startSeraching, id, webformatURL, tags, likes, comment
         return () => clearTimeout(loaderTrigger);
     }, []);
 
-
-
     let timer;
     function playVideo(v) {
-        if (location.pathname === ("/Videos")) {
+        if (currentLocation === ("videos")) {
             if (v === "set") {
                 clearTimeout(timer);
                 timer = setTimeout(() => {
@@ -37,8 +55,25 @@ function ImageContainer({ startSeraching, id, webformatURL, tags, likes, comment
     }
 
     function startSearch(e) {
-        console.log(e.target.textContent);
-        startSeraching(e.target.textContent);
+        let valueKeySearch = e.target.textContent;
+        switch (currentLocation) {
+            case "photos":
+                startSearchingPhotos(valueKeySearch);
+                break;
+            case "vectors":
+                startSearchingVectors(valueKeySearch);
+                break;
+            case "illistrations":
+                startSearchingIllistrator(valueKeySearch);
+                break;
+            case "videos":
+                console.log(valueKeySearch);
+                startSearchingVideos(valueKeySearch);
+                break;
+            default:
+                startSearchingImages(valueKeySearch);
+                break;
+        }
     }
 
 
@@ -58,14 +93,17 @@ function ImageContainer({ startSeraching, id, webformatURL, tags, likes, comment
                                     style={{ display: play ? "block" : "none" }}
                                 >
                                     <source src={videos.tiny.url} type="video/mp4" />
-                                    <source src={videos.tiny.url} type="video/ogg" />
+                                    {/* <source src={videos.tiny.url} type="video/ogg" /> */}
                                     Your browser does not support the video tag.
                                 </video>
                                 <InfoBoxVideos data-url={videos.medium.url} >
                                     <div className="tags">
                                         {tags.split(',').map((tag, i) => {
                                             return (
-                                                <button key={i}>{tag}</button>
+                                                <button
+                                                    key={i}
+                                                    onClick={(e) => startSearch(e)}
+                                                >{tag}</button>
                                             )
                                         })
                                         }
@@ -90,7 +128,8 @@ function ImageContainer({ startSeraching, id, webformatURL, tags, likes, comment
                                                 <button
                                                     onClick={(e) => startSearch(e)}
                                                     key={i}
-                                                >{tag}</button>
+                                                >{tag}
+                                                </button>
                                             )
                                         })
                                         }
@@ -120,15 +159,23 @@ function ImageContainer({ startSeraching, id, webformatURL, tags, likes, comment
                 })()
             }
 
-        </ImageContainerStyles>
+        </ImageContainerStyles >
     )
 }
 
-const mapDispatchToProps = dispatch => ({
-    startSeraching: (searchKey) => dispatch(loadPhotos(searchKey))
+const mapStateToProps = state => ({
+    currentLocation: state.nav.category
 })
 
-export default connect(null, mapDispatchToProps)(ImageContainer);
+const mapDispatchToProps = dispatch => ({
+    startSearchingImages: (searchKey) => dispatch(loadImages(searchKey)),
+    startSearchingPhotos: (searchKey) => dispatch(loadPhotos(searchKey)),
+    startSearchingVectors: (searchKey) => dispatch(loadVectors(searchKey)),
+    startSearchingIllistrator: (searchKey) => dispatch(loadIllistrator(searchKey)),
+    startSearchingVideos: (searchKey) => dispatch(loadVideos(searchKey)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageContainer);
 
 
 
@@ -259,7 +306,7 @@ const InfoBoxVideos = styled(InfoBox)`
             top: 0;
             left: 0;
             background-color: var(--green-color);
-            transition: ease .8s;
+            transition: ease 1s;
         }
 
     &:hover {

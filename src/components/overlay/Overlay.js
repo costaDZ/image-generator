@@ -1,26 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { Search } from '@styled-icons/bootstrap/Search';
 
 import { connect } from 'react-redux';
-import { loadPhotos } from '../../redux/thunk/thunk';
+import {
+    loadPhotos,
+    loadVectors,
+    loadIllistrator,
+    loadImages,
+    loadVideos
+} from '../../redux/thunk/thunk';
 
 
-const Overlay = ({ startSearchingPhotos, section }) => {
+const Overlay = ({
+    startSearchingImages,
+    startSearchingPhotos,
+    startSearchingVectors,
+    startSearchingIllistrator,
+    startSearchingVideos,
+    section,
+    currentLocation
+}) => {
 
-    const [searchKey, setSearchKey] = useState('');
-
-
-    function startSearch(e) {
+    function startSearch(e, val, check) {
         e.preventDefault();
-        startSearchingPhotos(e.target.lastElementChild.value);
-        e.target.lastElementChild.value = "";
+        if (check === "search") e.target.lastElementChild.value = "";
+        switch (currentLocation) {
+            case "photos":
+                startSearchingPhotos(val);
+                break;
+            case "vectors":
+                startSearchingVectors(val);
+                break;
+            case "illistrations":
+                startSearchingIllistrator(val);
+                break;
+            case "videos":
+                startSearchingVideos(val);
+                break;
+            default:
+                startSearchingImages(val);
+                break;
+        }
     }
-
-    useEffect(() => {
-        startSearchingPhotos(searchKey);
-    }, [searchKey, startSearchingPhotos])
 
     let data = section.main || section;
     return (
@@ -42,19 +65,18 @@ const Overlay = ({ startSearchingPhotos, section }) => {
                 </video>
             }
 
-            <form className="search-form" onSubmit={(e) => startSearch(e)}>
+            <form className="search-form" onSubmit={(e) => startSearch(e, e.target.lastElementChild.value, "search")}>
                 <button
                     className="search-btn"
                     type="submit"
                     aria-label="search"
-                //onClick={}
                 >
                     <SerachIcon />
                 </button>
                 <input
                     className="search-input"
                     placeholder={`Search ${data.category} ...`}
-                //  onChange={(e) => setSearchKey(e.target.value)}
+                    required
                 />
             </form>
 
@@ -63,7 +85,7 @@ const Overlay = ({ startSearchingPhotos, section }) => {
                 {data.populair?.map((item, i) => {
                     return <button
                         key={i}
-                        onClick={(e) => setSearchKey(e.target.textContent)}
+                        onClick={(e) => startSearch(e, e.target.textContent, "btn")}
                     >{item}</button>
                 })}
             </div>
@@ -74,11 +96,17 @@ const Overlay = ({ startSearchingPhotos, section }) => {
 
 const mapStateToProps = state => ({
     section: state.nav,
+    currentLocation: state.nav.category
 })
 
 const mapDispatchToProps = dispatch => ({
-    startSearchingPhotos: (searchKey) => dispatch(loadPhotos(searchKey))
+    startSearchingImages: (searchKey) => dispatch(loadImages(searchKey)),
+    startSearchingPhotos: (searchKey) => dispatch(loadPhotos(searchKey)),
+    startSearchingVectors: (searchKey) => dispatch(loadVectors(searchKey)),
+    startSearchingIllistrator: (searchKey) => dispatch(loadIllistrator(searchKey)),
+    startSearchingVideos: (searchKey) => dispatch(loadVideos(searchKey)),
 })
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Overlay);
 
