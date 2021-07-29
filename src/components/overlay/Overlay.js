@@ -4,25 +4,60 @@ import styled from 'styled-components';
 import { Search } from '@styled-icons/bootstrap/Search';
 
 import { connect } from 'react-redux';
+import {
+    loadPhotos,
+    loadVectors,
+    loadIllistrator,
+    loadImages,
+    loadVideos
+} from '../../redux/thunk/thunk';
 
 
+const Overlay = ({
+    startSearchingImages,
+    startSearchingPhotos,
+    startSearchingVectors,
+    startSearchingIllistrator,
+    startSearchingVideos,
+    section,
+    currentLocation
+}) => {
 
-const Overlay = ({ section }) => {
+    function startSearch(e, val, check) {
+        e.preventDefault();
+        if (check === "search") e.target.lastElementChild.value = "";
+        switch (currentLocation) {
+            case "photos":
+                startSearchingPhotos(val);
+                break;
+            case "vectors":
+                startSearchingVectors(val);
+                break;
+            case "illistrations":
+                startSearchingIllistrator(val);
+                break;
+            case "videos":
+                startSearchingVideos(val);
+                break;
+            default:
+                startSearchingImages(val);
+                break;
+        }
+    }
 
-    let data = section || section.main;
-
+    let data = section.main || section;
     return (
         <SearchHolder img={data.back}>
 
             <h1 className="main-title">
                 {data.title}
             </h1>
+
             <p className="desc">
                 {data.dec}
             </p>
 
             {data.video &&
-
                 <video className="video" autoPlay muted loop >
                     <source src={data.video} type="video/mp4" />
                     <source src={data.video} type="video/ogg" />
@@ -30,54 +65,50 @@ const Overlay = ({ section }) => {
                 </video>
             }
 
-            <form className="search-form">
-                <button className="search-btn" type="submit" aria-label="search">
+            <form className="search-form" onSubmit={(e) => startSearch(e, e.target.lastElementChild.value, "search")}>
+                <button
+                    className="search-btn"
+                    type="submit"
+                    aria-label="search"
+                >
                     <SerachIcon />
                 </button>
-                <input className="search-input" placeholder={`Search ${data.category} ...`} />
+                <input
+                    className="search-input"
+                    placeholder={`Search ${data.category} ...`}
+                    required
+                />
             </form>
 
             <div className="populair-images">
                 <h4>Populair Images : </h4>
-                <button >Nature</button>
-                <button >background</button>
-                <button >summer</button>
-                <button >food</button>
+                {data.populair?.map((item, i) => {
+                    return <button
+                        key={i}
+                        onClick={(e) => startSearch(e, e.target.textContent, "btn")}
+                    >{item}</button>
+                })}
             </div>
+
         </SearchHolder>
     )
 }
 
 const mapStateToProps = state => ({
     section: state.nav,
+    currentLocation: state.nav.category
 })
 
-export default connect(mapStateToProps)(Overlay);
+const mapDispatchToProps = dispatch => ({
+    startSearchingImages: (searchKey) => dispatch(loadImages(searchKey)),
+    startSearchingPhotos: (searchKey) => dispatch(loadPhotos(searchKey)),
+    startSearchingVectors: (searchKey) => dispatch(loadVectors(searchKey)),
+    startSearchingIllistrator: (searchKey) => dispatch(loadIllistrator(searchKey)),
+    startSearchingVideos: (searchKey) => dispatch(loadVideos(searchKey)),
+})
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(Overlay);
 
 
 
@@ -97,9 +128,13 @@ const SearchHolder = styled.section`
                     flex-direction: column;
                     justify-content: space-evenly;
                     align-items: center;
-                    min-height: 80vh;
+                    min-height: 70vh;
                     color: white;
                     background : url(${props => props.img}) center/cover no-repeat;
+
+                    .main-title {
+                        font-size: 2.5em;
+                    }
 
                     video {
                         left: 50%;
@@ -114,8 +149,8 @@ const SearchHolder = styled.section`
 
                     .search-form {
                     display: flex;
-                    padding: 2px 4px;
-                    align-items: center;
+                    /* padding: 2px 4px;
+                    align-items: center; */
                     width: 40%;
 
 
@@ -134,6 +169,7 @@ const SearchHolder = styled.section`
                     }
 
                     .search-input {
+                    font-weight: 700;
                     font-size: 1em;
                     padding: 13px;
                     border-radius: 4px;

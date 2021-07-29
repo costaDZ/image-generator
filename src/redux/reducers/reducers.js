@@ -2,7 +2,11 @@
 import {
     CHANGE_PAGE,
     LOAD_IMAGES_SUCCESS,
-    LOAD_IMAGES_IN_PROGRESS
+    LOAD_IMAGES_IN_PROGRESS,
+    LOAD_PHOTOS_SUCCESS,
+    LOAD_VECTOR_SUCCESS,
+    LOAD_ILISTRATOR_SUCCESS,
+    LOAD_VIDEOS_SUCCESS,
 } from "../actions/actions";
 
 import data from '../../data/data.js';
@@ -24,24 +28,81 @@ export const nav = (state = initialState, actions) => {
 
 }
 
-// const ImagesState = { isLoading: true }
 
-// export const images = (state = ImagesState, actions) => {
+export const images = (state = { isLoading: true }, actions) => {
 
-//     const { type, payload } = actions;
+    const { type, payload } = actions;
+    switch (type) {
+        case LOAD_IMAGES_IN_PROGRESS:
+            return { ...state, isLoading: true }
+        case LOAD_IMAGES_SUCCESS:
+            const { images } = payload;
+            return { pic: images, isLoading: false }
+        default:
+            return state;
+    }
+}
 
-//     switch (type) {
-//         case LOAD_IMAGES_IN_PROGRESS:
-//             console.log(LOAD_IMAGES_IN_PROGRESS, state);
 
-//             return { state }
+export const photos = (state = { isLoading: false }, actions) => {
 
-//         case LOAD_IMAGES_SUCCESS:
-//             console.log(LOAD_IMAGES_SUCCESS);
-//             const { images } = payload;
-//             return { images, isLoading: false }
-//         default:
-//             return state;
-//     }
+    const { type, payload } = actions;
 
-// }
+    switch (type) {
+        case LOAD_IMAGES_IN_PROGRESS:
+            return { ...state, isLoading: true }
+        case LOAD_PHOTOS_SUCCESS:
+            const { photos } = payload;
+            return { pic: photos, isLoading: false }
+        default:
+            return state;
+    }
+}
+
+export const vectors = (state = { isLoading: false }, actions) => {
+
+    const { type, payload } = actions;
+
+    switch (type) {
+        case LOAD_IMAGES_IN_PROGRESS:
+            return { ...state, isLoading: true }
+        case LOAD_VECTOR_SUCCESS:
+            const { vectors } = payload;
+            return { pic: vectors, isLoading: false }
+        default:
+            return state;
+    }
+
+}
+
+export const illistrator = (state = { isLoading: false }, actions) => {
+
+    const { type, payload } = actions;
+
+    switch (type) {
+        case LOAD_IMAGES_IN_PROGRESS:
+            return { ...state, isLoading: true }
+        case LOAD_ILISTRATOR_SUCCESS:
+            const { illistrators } = payload;
+            return { pic: illistrators, isLoading: false }
+        default:
+            return state;
+    }
+
+}
+
+export const videos = (state = { isLoading: false }, actions) => {
+
+    const { type, payload } = actions;
+
+    switch (type) {
+        case LOAD_IMAGES_IN_PROGRESS:
+            return { ...state, isLoading: true }
+        case LOAD_VIDEOS_SUCCESS:
+            const { videos } = payload;
+            return { pic: videos, isLoading: false }
+        default:
+            return state;
+    }
+
+}
