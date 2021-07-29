@@ -1,0 +1,21 @@
+
+
+
+/** accept search keys from : 
+    * search bar
+    * images tags
+    * search bar
+    * pagination
+
+
+
+
+/==========Tasks==========/
+// add loader to the hole app
+// add search bar filter appear after the user click search btn
+// add pagination pages
+//add like click event
+
+
+
+/==========bugs==========/

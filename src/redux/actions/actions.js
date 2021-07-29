@@ -4,12 +4,6 @@ export const changePage = (page) => ({
     payload: page,
 })
 
-
-// export const FETCH_IMAGES = 'FETCH_IMAGES';
-// export const fetchImages = () => ({
-//     type: FETCH_IMAGES,
-// });
-
 export const LOAD_IMAGES_IN_PROGRESS = 'LOAD_IMAGES_IN_PROGRESS';
 export const loadImagesInProgress = () => ({
     type: LOAD_IMAGES_IN_PROGRESS,
@@ -40,7 +34,6 @@ export const loadIlistratorSuccess = illistrators => ({
     type: LOAD_ILISTRATOR_SUCCESS,
     payload: { illistrators }
 });
-
 
 export const LOAD_VIDEOS_SUCCESS = 'LOAD_VIDEOS_SUCCESS';
 export const loadVideosSuccess = videos => ({
