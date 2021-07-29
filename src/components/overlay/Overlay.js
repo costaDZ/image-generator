@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Search } from '@styled-icons/bootstrap/Search';
 
 import { connect } from 'react-redux';
+import { loadPhotos } from '../../redux/thunk/thunk';
 
 
+const Overlay = ({ startSearchingPhotos, section }) => {
 
-const Overlay = ({ section }) => {
+    const [searchKey, setSearchKey] = useState('');
+
+
+    function startSearch(e) {
+        e.preventDefault();
+        startSearchingPhotos(e.target.lastElementChild.value);
+        e.target.lastElementChild.value = "";
+    }
+
+    useEffect(() => {
+        startSearchingPhotos(searchKey);
+    }, [searchKey, startSearchingPhotos])
+
     let data = section.main || section;
     return (
         <SearchHolder img={data.back}>
@@ -28,17 +42,29 @@ const Overlay = ({ section }) => {
                 </video>
             }
 
-            <form className="search-form">
-                <button className="search-btn" type="submit" aria-label="search">
+            <form className="search-form" onSubmit={(e) => startSearch(e)}>
+                <button
+                    className="search-btn"
+                    type="submit"
+                    aria-label="search"
+                //onClick={}
+                >
                     <SerachIcon />
                 </button>
-                <input className="search-input" placeholder={`Search ${data.category} ...`} />
+                <input
+                    className="search-input"
+                    placeholder={`Search ${data.category} ...`}
+                //  onChange={(e) => setSearchKey(e.target.value)}
+                />
             </form>
 
             <div className="populair-images">
                 <h4>Populair Images : </h4>
                 {data.populair?.map((item, i) => {
-                    return <button key={i}>{item}</button>
+                    return <button
+                        key={i}
+                        onClick={(e) => setSearchKey(e.target.textContent)}
+                    >{item}</button>
                 })}
             </div>
 
@@ -50,7 +76,11 @@ const mapStateToProps = state => ({
     section: state.nav,
 })
 
-export default connect(mapStateToProps)(Overlay);
+const mapDispatchToProps = dispatch => ({
+    startSearchingPhotos: (searchKey) => dispatch(loadPhotos(searchKey))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Overlay);
 
 
 
