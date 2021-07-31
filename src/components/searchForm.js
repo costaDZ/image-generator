@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-function searchForm() {
-    return (
-        <div>
-
-        </div>
-    )
-}
-
-export default searchForm;
-=======
 import React from 'react';
 import styled from 'styled-components';
 import { Search } from '@styled-icons/bootstrap/Search';
@@ -154,4 +141,3 @@ const PopulairImagesStyle = styled.div`
         font-weight: 700;
         }
 `;
->>>>>>> solve-bugs
