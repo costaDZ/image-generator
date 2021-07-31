@@ -6,50 +6,9 @@ import SearchForm from '../SearchForm';
 import { connect } from 'react-redux';
 
 
-<<<<<<< HEAD
-const Overlay = ({
-    startSearchingImages,
-    startSearchingPhotos,
-    startSearchingVectors,
-    startSearchingIllistrator,
-    startSearchingVideos,
-    section,
-    currentLocation
-}) => {
-
-    function startSearch(e, val, check) {
-        e.preventDefault();
-        if (check === "search") e.target.lastElementChild.value = "";
-        switch (currentLocation) {
-            case "main":
-                startSearchingImages(val);
-                break;
-            case "photos":
-                startSearchingPhotos(val);
-                break;
-            case "vectors":
-                startSearchingVectors(val);
-                break;
-            case "illistrations":
-                startSearchingIllistrator(val);
-                break;
-            case "videos":
-                startSearchingVideos(val);
-                break;
-            default:
-                break;
-        }
-    }
-
-
-    return (
-        <SearchHolder img={section.back}>
-
-=======
 const Overlay = ({ section }) => {
     return (
         <SearchHolder img={section.back}>
->>>>>>> solve-bugs
             <h1 className="main-title">
                 {section.title}
             </h1>
@@ -57,11 +16,8 @@ const Overlay = ({ section }) => {
                 {section.dec}
             </p>
 
-<<<<<<< HEAD
-=======
             <SearchForm section={section} />
 
->>>>>>> solve-bugs
             {section.video &&
                 <video className="video" autoPlay muted loop >
                     <source src={section.video} type="video/mp4" />
@@ -69,36 +25,7 @@ const Overlay = ({ section }) => {
                     Your browser does not support the video tag.
                 </video>
             }
-<<<<<<< HEAD
-
-            <form className="search-form" onSubmit={(e) => startSearch(e, e.target.lastElementChild.value, "search")}>
-                <button
-                    className="search-btn"
-                    type="submit"
-                    aria-label="search"
-                >
-                    <SerachIcon />
-                </button>
-                <input
-                    className="search-input"
-                    placeholder={`Search ${section.category} ...`}
-                    required
-                />
-            </form>
-
-            <div className="populair-images">
-                <h4>Populair Images : </h4>
-                {section.populair?.map((item, i) => {
-                    return <button
-                        key={i}
-                        onClick={(e) => startSearch(e, e.target.textContent, "btn")}
-                    >{item}</button>
-                })}
-            </div>
-
-=======
->>>>>>> solve-bugs
-        </SearchHolder>
+        </SearchHolder >
     )
 }
 
