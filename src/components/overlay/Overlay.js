@@ -44,8 +44,12 @@ const Overlay = ({
                 break;
         }
     }
+    console.log(section);
 
     let data = section.main || section;
+
+    console.log(data);
+
     return (
         <SearchHolder img={data.back}>
 

@@ -8,15 +8,27 @@
     * pagination
 
 
+/==========features plan==========/
 
+*// add advanced search page
+// add search bar filter appear after the user click search btn
+
+*// add collection page
+// add liked images
+// added images
 
 /==========Tasks==========/
-// add loader to the hole app
-// add search bar filter appear after the user click search btn
 // add pagination pages
-//add like click event
+// add like click event
+// add loader to the hole app
+
+
 
 
 
 /==========bugs==========/
-//test 05
+// when reload the page the overlay background changes
+
+//video section : 
+videos dosn't play in the time expected when we hover
+
