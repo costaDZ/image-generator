@@ -46,16 +46,11 @@ const Overlay = ({
                 break;
         }
     }
-    console.log(section);
 
-<<<<<<< HEAD
     let data = section.main || section;
 
-    console.log(data);
 
-=======
-    let data = section;
->>>>>>> solve-bugs
+
     return (
         <SearchHolder img={data.back}>
 
