@@ -47,25 +47,22 @@ const Overlay = ({
         }
     }
 
-    let data = section.main || section;
-
-
 
     return (
-        <SearchHolder img={data.back}>
+        <SearchHolder img={section.back}>
 
             <h1 className="main-title">
-                {data.title}
+                {section.title}
             </h1>
 
             <p className="desc">
-                {data.dec}
+                {section.dec}
             </p>
 
-            {data.video &&
+            {section.video &&
                 <video className="video" autoPlay muted loop >
-                    <source src={data.video} type="video/mp4" />
-                    <source src={data.video} type="video/ogg" />
+                    <source src={section.video} type="video/mp4" />
+                    <source src={section.video} type="video/ogg" />
                     Your browser does not support the video tag.
                 </video>
             }
@@ -80,14 +77,14 @@ const Overlay = ({
                 </button>
                 <input
                     className="search-input"
-                    placeholder={`Search ${data.category} ...`}
+                    placeholder={`Search ${section.category} ...`}
                     required
                 />
             </form>
 
             <div className="populair-images">
                 <h4>Populair Images : </h4>
-                {data.populair?.map((item, i) => {
+                {section.populair?.map((item, i) => {
                     return <button
                         key={i}
                         onClick={(e) => startSearch(e, e.target.textContent, "btn")}
