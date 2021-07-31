@@ -17,6 +17,12 @@
 // add liked images
 // added images
 
+*// add download page 
+    // relevant images
+    // image informations
+    // comments 
+    // tags
+
 /==========Tasks==========/
 // add pagination pages
 // add like click event
@@ -27,8 +33,12 @@
 
 
 /==========bugs==========/
-// when reload the page the overlay background changes
+// when enter the site it loads from local storage not the main section
+
+// the images loader should wait intil the images is load
 
 //video section : 
 videos dosn't play in the time expected when we hover
+
+// 
 
