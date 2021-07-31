@@ -80,7 +80,12 @@ function ImageContainer({
 
 
     return (
-        <ImageContainerStyles key={id} onMouseOver={() => playVideo("set")} onMouseLeave={() => playVideo("t")}>
+        <ImageContainerStyles
+            key={id}
+            onMouseOver={() => playVideo("set")}
+            onMouseLeave={() => playVideo("t")}
+            video={kind}
+        >
 
             {
                 (() => {
@@ -201,10 +206,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(ImageContainer);
 
 const ImageContainerStyles = styled.div`
         position: relative;
+        margin: 1em;
         height: 20em;
-       // flex-grow: 1;
-       // max-width: 50%;
-        width: 100%;
+        flex-grow: 1;
+        max-width:  ${props => props.video ? "32em" : "50%"};
         overflow: hidden;
         @media (max-width: 850px) {
             min-width: 80%;
