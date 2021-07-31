@@ -20,7 +20,7 @@ export const nav = (state = initialState, actions) => {
 
     switch (type) {
         case CHANGE_PAGE:
-            const targetData = initialState[payload] || initialState["main"];
+            const targetData = initialState[payload];
             return targetData;
         default:
             return state;

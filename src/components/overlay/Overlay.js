@@ -27,6 +27,9 @@ const Overlay = ({
         e.preventDefault();
         if (check === "search") e.target.lastElementChild.value = "";
         switch (currentLocation) {
+            case "main":
+                startSearchingImages(val);
+                break;
             case "photos":
                 startSearchingPhotos(val);
                 break;
@@ -40,16 +43,19 @@ const Overlay = ({
                 startSearchingVideos(val);
                 break;
             default:
-                startSearchingImages(val);
                 break;
         }
     }
     console.log(section);
 
+<<<<<<< HEAD
     let data = section.main || section;
 
     console.log(data);
 
+=======
+    let data = section;
+>>>>>>> solve-bugs
     return (
         <SearchHolder img={data.back}>
 

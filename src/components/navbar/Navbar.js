@@ -23,7 +23,7 @@ const Navbar = () => {
             <WideContainer>
                 <nav className="nav-section" >
                     <div aria-label="home">
-                        <Link path={"/"} />
+                        <Link path={"/"} content={"main"} />
                     </div>
                     <div className="nav-list">
                         <Link path={"/Photos"} content={"photos"} />

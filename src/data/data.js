@@ -7,7 +7,7 @@ import vedio from '../images/vedios.mp4';
 
 const data = {
     main: {
-        category: "",
+        category: "main",
         title: "Stunning free images & royalty free stock",
         dec: "Over 2.3 million+ high quality stock images, videos and music shared by our talented community.",
         back: main,
