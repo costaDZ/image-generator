@@ -12,8 +12,6 @@ import {
 import data from '../../data/data.js';
 
 const initialState = data;
-
-
 export const nav = (state = initialState, actions) => {
 
     const { type, payload } = actions;
