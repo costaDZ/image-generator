@@ -57,6 +57,9 @@ function ImageContainer({
     function startSearch(e) {
         let valueKeySearch = e.target.textContent;
         switch (currentLocation) {
+            case "main":
+                startSearchingImages(valueKeySearch);
+                break;
             case "photos":
                 startSearchingPhotos(valueKeySearch);
                 break;
@@ -71,7 +74,6 @@ function ImageContainer({
                 startSearchingVideos(valueKeySearch);
                 break;
             default:
-                startSearchingImages(valueKeySearch);
                 break;
         }
     }

@@ -11,10 +11,11 @@ import { changePage } from '../redux/actions/actions';
 
 function Link({ path, content, changingPage }) {
     return (
-        <LinkStyles to={path} activeClassName="active-link" onClick={(e) => changingPage(e.target.innerHTML)}>
+        <LinkStyles to={path} activeClassName="active-link" data-section={content} onClick={(e) => changingPage(e.target.dataset.section)}>
             {
-                content ||
-                <img src={logo} alt="logo" width='90px' />
+                content === "main" ?
+                    <img src={logo} data-section={content} alt="logo" width='90px' /> :
+                    content
             }
         </LinkStyles>
     )
