@@ -5,7 +5,6 @@ import SearchForm from '../SearchForm';
 
 import { connect } from 'react-redux';
 
-
 const Overlay = ({ section }) => {
     return (
         <SearchHolder img={section.back}>
