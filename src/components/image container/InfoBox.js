@@ -181,7 +181,7 @@ const InfoBox = styled.div`
             top: 0;
             left: 0;
             background-color: var(--green-color);
-            transition: ease 1s;
+            transition: ease 1.5s;
         }
 
     &:hover {

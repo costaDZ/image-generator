@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 
 import Loader from '../Loader';
@@ -21,6 +21,7 @@ function ImageContainer({
 
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
+    const containerRef = useRef(null);
 
     useEffect(() => {
         let loaderTrigger = setTimeout(() => {
@@ -44,12 +45,40 @@ function ImageContainer({
         }
     }
 
+    // <video
+    //     className="hovering_video" autoPlay muted loop
+    //     style={{ display: play ? "block" : "none" }}
+    // >
+    //     <source src={videos.tiny.url} type="video/mp4" />
+    //     {/* <source src={videos.tiny.url} type="video/ogg" /> */}
+    //     Your browser does not support the video tag.
+    // </video>
+
+    useEffect(() => {
+        let video = document.createElement("video");
+        let firstChild = containerRef.current.firstElementChild;
+        if (videos && play) {
+            video.classList.add("hovering_video");
+            video.setAttribute("autoPlay", true);
+            video.setAttribute("muted", true);
+            video.setAttribute("loop", true);
+            let source = document.createElement("source");
+            source.setAttribute("src", `${videos.tiny.url}`);
+            source.setAttribute("type", "video/ogg");
+            video.appendChild(source);
+            containerRef.current.prepend(video);
+        }
+        else if (videos && !play && firstChild.tagName === 'VIDEO') {
+            containerRef.current.removeChild(firstChild);
+        }
+    }, [play]);
     return (
         <ImageContainerStyles
             key={id}
             onMouseOver={() => playVideo("set")}
             onMouseLeave={() => playVideo("t")}
             video={kind}
+            ref={containerRef}
         >
 
             {
@@ -59,17 +88,8 @@ function ImageContainer({
                     :
                     <>
                         <img src={webformatURL} height="100%" width="100%" alt={tags} />
-                        {videos &&
-                            <video
-                                className="hovering_video" autoPlay muted loop
-                                style={{ display: play ? "block" : "none" }}
-                            >
-                                <source src={videos.tiny.url} type="video/mp4" />
-                                {/* <source src={videos.tiny.url} type="video/ogg" /> */}
-                                Your browser does not support the video tag.
-                            </video>
-                        }
-                        <InfoBox videos={videos}
+                        <InfoBox
+                            videos={videos}
                             tags={tags}
                             kind={kind}
                             duration={duration}
@@ -114,7 +134,7 @@ const ImageContainerStyles = styled.div`
         left: 0;
         right: 0;
         width: 38em;
-        display: none;
+        display: block;
         &:hover {
         cursor:pointer;
         }

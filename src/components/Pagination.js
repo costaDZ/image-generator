@@ -51,7 +51,6 @@ function Pagination({
         }
     }
 
-
     return (
         <PaginationStyles>
             <div className="left_box_info">

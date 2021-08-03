@@ -81,7 +81,7 @@ export const loadIllistrator = (searchKey = "", page = 1) => async (dispatch, il
 let videosUrl = 'https://pixabay.com/api/videos/?key=' + key;
 
 export const loadVideos = (searchKey = "", page = 1) => async (dispatch, videos) => {
-    let perPage = 12;
+    let perPage = 30;
     try {
         dispatch(loadImagesInProgress());
         const response = await fetch(videosUrl + `&q=${searchKey}&video_type=all&category=all&min_width=0&min_height=0&safesearch=true&order=popular&page=${page}&per_page=${perPage}`);
