@@ -16,7 +16,6 @@ const Overlay = ({ section }) => {
             </p>
 
             <SearchForm section={section} />
-
             {section.video &&
                 <video className="video" autoPlay muted loop >
                     <source src={section.video} type="video/mp4" />

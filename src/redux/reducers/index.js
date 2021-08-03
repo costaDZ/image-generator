@@ -2,20 +2,20 @@ import { combineReducers } from 'redux';
 
 import {
     nav,
-    images,
+    main,
     photos,
     vectors,
-    illistrator,
+    illistrations,
     videos
 } from './reducers';
 
 
 const reducers = {
     nav,
-    images,
+    main,
     photos,
     vectors,
-    illistrator,
+    illistrations,
     videos
 };
 

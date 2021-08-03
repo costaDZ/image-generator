@@ -11,9 +11,9 @@ export const loadImagesInProgress = () => ({
 
 
 export const LOAD_IMAGES_SUCCESS = 'LOAD_IMAGES_SUCCESS';
-export const loadImagesSuccess = images => ({
+export const loadImagesSuccess = (images, searchKey, page) => ({
     type: LOAD_IMAGES_SUCCESS,
-    payload: { images },
+    payload: { images, searchKey, page },
 });
 
 

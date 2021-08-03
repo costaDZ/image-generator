@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import Loader from './Loader';
+import Loader from '../Loader';
 import InfoBox from './InfoBox';
 
 import { connect } from 'react-redux';
-
 
 function ImageContainer({
     currentLocation,
@@ -44,8 +43,6 @@ function ImageContainer({
             }
         }
     }
-
-
 
     return (
         <ImageContainerStyles

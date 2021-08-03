@@ -28,7 +28,7 @@ function SearchForm({
         if (check === "search") e.target.lastElementChild.value = "";
         switch (currentLocation) {
             case "main":
-                startSearchingImages(val);
+                startSearchingImages(val, 1);
                 break;
             case "photos":
                 startSearchingPhotos(val);
@@ -82,7 +82,7 @@ const mapStateToProps = state => ({
     currentLocation: state.nav.category,
 })
 const mapDispatchToProps = dispatch => ({
-    startSearchingImages: searchKey => dispatch(loadImages(searchKey)),
+    startSearchingImages: (searchKey, page) => dispatch(loadImages(searchKey, page)),
     startSearchingPhotos: searchKey => dispatch(loadPhotos(searchKey)),
     startSearchingVectors: searchKey => dispatch(loadVectors(searchKey)),
     startSearchingIllistrator: searchKey => dispatch(loadIllistrator(searchKey)),

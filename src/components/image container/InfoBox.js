@@ -7,7 +7,7 @@ import {
     loadIllistrator,
     loadImages,
     loadVideos
-} from '../redux/thunk/thunk';
+} from '../../redux/thunk/thunk.js';
 
 function InfoBoxContainer({
     videos,
@@ -29,7 +29,7 @@ function InfoBoxContainer({
         let valueKeySearch = e.target.textContent;
         switch (currentLocation) {
             case "main":
-                startSearchingImages(valueKeySearch);
+                startSearchingImages(valueKeySearch, 1);
                 break;
             case "photos":
                 startSearchingPhotos(valueKeySearch);
@@ -51,7 +51,7 @@ function InfoBoxContainer({
     return (
         <InfoBox data-url={videos && videos.medium.url} k={kind}>
             <div className="tags">
-                {tags.split(',').map((tag, i) => {
+                {tags.replace(/\s/g, "").split(',').map((tag, i) => {
                     return (
                         <button
                             key={i}
@@ -96,7 +96,7 @@ function InfoBoxContainer({
 }
 
 const mapDispatchToProps = dispatch => ({
-    startSearchingImages: (searchKey) => dispatch(loadImages(searchKey)),
+    startSearchingImages: (searchKey, page) => dispatch(loadImages(searchKey, page)),
     startSearchingPhotos: (searchKey) => dispatch(loadPhotos(searchKey)),
     startSearchingVectors: (searchKey) => dispatch(loadVectors(searchKey)),
     startSearchingIllistrator: (searchKey) => dispatch(loadIllistrator(searchKey)),

@@ -21,11 +21,11 @@ function Main({ startLoadingImages, getImages }) {
 }
 
 const mapStateToProps = (state) => ({
-    getImages: state.images,
+    getImages: state.main,
 })
 
 const mapDispatchToProps = dispatch => ({
-    startLoadingImages: () => dispatch(loadImages()),
+    startLoadingImages: () => dispatch(loadImages("", 1)),
 })
 
 

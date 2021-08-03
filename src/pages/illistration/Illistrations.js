@@ -24,7 +24,7 @@ function Illistrations({ startLoadingIllistrators, getIllistrators }) {
 
 
 const mapStateToProps = (state) => ({
-    getIllistrators: state.illistrator,
+    getIllistrators: state.illistrations,
 })
 
 const mapDispatchToProps = dispatch => ({

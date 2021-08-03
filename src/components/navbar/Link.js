@@ -1,17 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import logo from '../images/logo.png';
+import logo from '../../images/logo.png';
 
 import { connect } from 'react-redux';
-import { changePage } from '../redux/actions/actions';
+import { changePage } from '../../redux/actions/actions';
+import { loadImages } from '../../redux/thunk/thunk';
 
 
 
 
-function Link({ path, content, changingPage }) {
+function Link({ path, content, changingPage, startLoadTheMainImages }) {
     return (
-        <LinkStyles to={path} activeClassName="active-link" data-section={content} onClick={(e) => changingPage(e.target.dataset.section)}>
+        <LinkStyles to={path} activeClassName="active-link" data-section={content} onClick={(e) => {
+            changingPage(e.target.dataset.section)
+            startLoadTheMainImages("", 1);
+        }
+        }>
             {
                 content === "main" ?
                     <img src={logo} data-section={content} alt="logo" width='90px' /> :
@@ -23,7 +28,8 @@ function Link({ path, content, changingPage }) {
 
 
 const mapDispatchToProps = dispatch => ({
-    changingPage: page => dispatch(changePage(page))
+    changingPage: page => dispatch(changePage(page)),
+    startLoadTheMainImages: (key, page) => dispatch(loadImages(key, page)),
 })
 
 export default connect(null, mapDispatchToProps)(Link);

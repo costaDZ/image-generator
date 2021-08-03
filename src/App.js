@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Main, Illistrations, Photos, Vectors, Videos } from './pages';
 
-import { Navbar, Overlay } from './components';
+import { Navbar, Overlay, Pagination } from './components';
 
 
 
@@ -32,6 +32,7 @@ function App() {
             <Videos />
           </Route>
         </Switch>
+        <Pagination />
       </Router>
 
 

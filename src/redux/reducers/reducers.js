@@ -27,15 +27,15 @@ export const nav = (state = initialState, actions) => {
 }
 
 
-export const images = (state = { isLoading: true }, actions) => {
+export const main = (state = { isLoading: true }, actions) => {
 
     const { type, payload } = actions;
     switch (type) {
         case LOAD_IMAGES_IN_PROGRESS:
             return { ...state, isLoading: true }
         case LOAD_IMAGES_SUCCESS:
-            const { images } = payload;
-            return { pic: images, isLoading: false }
+            const { images, searchKey, page } = payload;
+            return { pic: images, searchKey, page, isLoading: false }
         default:
             return state;
     }
@@ -45,12 +45,13 @@ export const images = (state = { isLoading: true }, actions) => {
 export const photos = (state = { isLoading: false }, actions) => {
 
     const { type, payload } = actions;
-
     switch (type) {
         case LOAD_IMAGES_IN_PROGRESS:
             return { ...state, isLoading: true }
         case LOAD_PHOTOS_SUCCESS:
             const { photos } = payload;
+            console.log(photos);
+
             return { pic: photos, isLoading: false }
         default:
             return state;
@@ -73,7 +74,7 @@ export const vectors = (state = { isLoading: false }, actions) => {
 
 }
 
-export const illistrator = (state = { isLoading: false }, actions) => {
+export const illistrations = (state = { isLoading: false }, actions) => {
 
     const { type, payload } = actions;
 
