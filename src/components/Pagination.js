@@ -17,15 +17,12 @@ function Pagination({ allHits, currentLocation, startLoadTargetPage }) {
     let key = currentHites.searchKey || "";
     let reminderImages = totalImagesColection % countity;
 
-    const [currentPage, setCurrentPage] = useState(Targetpage);
 
-
-    useEffect(() => {
-        console.log("test", currentPage);
-        if (currentPage > 0 && currentPage <= lastPage) {
-            startLoadTargetPage(key, currentPage);
+    function changeThePage(val) {
+        if (val > 0 && val <= lastPage) {
+            startLoadTargetPage(key, val);
         }
-    }, [currentPage, setCurrentPage])
+    }
 
 
     return (
@@ -45,18 +42,13 @@ function Pagination({ allHits, currentLocation, startLoadTargetPage }) {
 
                 <button
                     className={`left-row ${Targetpage === 1 ? "desactive-btn" : "active-btn"}`}
-                    onClick={() => setCurrentPage(Targetpage - 1)}
+                    onClick={() => changeThePage(Targetpage - 1)}
                 >
                     <i className="bi bi-chevron-left"></i>
                 </button>
                 <button
                     className={`right-row ${Targetpage === lastPage ? "desactive-btn" : "active-btn"}`}
-                    onClick={() => {
-                        setCurrentPage(Targetpage + 1)
-                        console.log(currentPage);
-
-                        console.log("workiiiiing");
-                    }}>
+                    onClick={() => changeThePage(Targetpage + 1)}>
                     <i className="bi bi-chevron-right"></i>
                 </button>
             </div>
@@ -111,7 +103,7 @@ const PaginationStyles = styled.div`
             padding: 0.2em .5em;
         }
         .left-row, .right-row {
-                background: #d4d4d4;
+                background-color: #00d07769;
                 border-radius: 12px;
                 font-size: 1em;
                 border: none;
@@ -129,7 +121,7 @@ const PaginationStyles = styled.div`
         }
 
         .desactive-btn {
-            background-color: #00d07769;
+                background: #d4d4d4;
         }
 
         .total_passed_pages , .total_pages {

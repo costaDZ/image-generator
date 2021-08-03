@@ -34,8 +34,6 @@ function App() {
         </Switch>
         <Pagination />
       </Router>
-
-
     </div>
   );
 }
