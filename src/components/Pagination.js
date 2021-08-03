@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
-import { loadImages } from '../redux/thunk/thunk';
+import { loadImages, loadPhotos, loadVectors, loadIllistrator, loadVideos } from '../redux/thunk/thunk';
 
 
 //@styled-icons/bootstrap/ArrowLeftCircle
-function Pagination({ allHits, currentLocation, startLoadTargetPage }) {
+function Pagination({
+    allHits,
+    currentLocation,
+    startLoadPageImages,
+    startLoadPagePhotos,
+    startLoadPageVectors,
+    startLoadPageIllistrator,
+    startLoadPageVideos
+}) {
 
-    let countity = 50;
     let currentHites = allHits[currentLocation];
+    let countity = currentHites.perPage || 50;
     let totalImagesColection = currentHites.pic?.totalHits;
     let totaleImages = currentHites.pic?.total;
     let lastPage = Math.floor(totalImagesColection / countity) + 1;
@@ -20,7 +28,26 @@ function Pagination({ allHits, currentLocation, startLoadTargetPage }) {
 
     function changeThePage(val) {
         if (val > 0 && val <= lastPage) {
-            startLoadTargetPage(key, val);
+            switch (currentLocation) {
+                case "main":
+                    startLoadPageImages(key, val);
+                    break;
+                case "photos":
+                    startLoadPagePhotos(key, val);
+                    break;
+                case "vectors":
+                    startLoadPageVectors(key, val);
+                    break;
+                case "illistrations":
+                    startLoadPageIllistrator(key, val);
+                    break;
+                case "videos":
+                    startLoadPageVideos(key, val);
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 
@@ -63,7 +90,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    startLoadTargetPage: (key, page) => dispatch(loadImages(key, page)),
+    startLoadPageImages: (key, page) => dispatch(loadImages(key, page)),
+    startLoadPagePhotos: (key, page) => dispatch(loadPhotos(key, page)),
+    startLoadPageVectors: (key, page) => dispatch(loadVectors(key, page)),
+    startLoadPageIllistrator: (key, page) => dispatch(loadIllistrator(key, page)),
+    startLoadPageVideos: (key, page) => dispatch(loadVideos(key, page)),
 })
 
 

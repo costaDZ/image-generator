@@ -32,16 +32,16 @@ function InfoBoxContainer({
                 startSearchingImages(valueKeySearch, 1);
                 break;
             case "photos":
-                startSearchingPhotos(valueKeySearch);
+                startSearchingPhotos(valueKeySearch, 1);
                 break;
             case "vectors":
-                startSearchingVectors(valueKeySearch);
+                startSearchingVectors(valueKeySearch, 1);
                 break;
             case "illistrations":
-                startSearchingIllistrator(valueKeySearch);
+                startSearchingIllistrator(valueKeySearch, 1);
                 break;
             case "videos":
-                startSearchingVideos(valueKeySearch);
+                startSearchingVideos(valueKeySearch, 1);
                 break;
             default:
                 break;
@@ -97,7 +97,7 @@ function InfoBoxContainer({
 
 const mapDispatchToProps = dispatch => ({
     startSearchingImages: (searchKey, page) => dispatch(loadImages(searchKey, page)),
-    startSearchingPhotos: (searchKey) => dispatch(loadPhotos(searchKey)),
+    startSearchingPhotos: (searchKey, page) => dispatch(loadPhotos(searchKey, page)),
     startSearchingVectors: (searchKey) => dispatch(loadVectors(searchKey)),
     startSearchingIllistrator: (searchKey) => dispatch(loadIllistrator(searchKey)),
     startSearchingVideos: (searchKey) => dispatch(loadVideos(searchKey)),

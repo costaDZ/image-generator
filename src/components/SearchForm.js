@@ -31,16 +31,16 @@ function SearchForm({
                 startSearchingImages(val, 1);
                 break;
             case "photos":
-                startSearchingPhotos(val);
+                startSearchingPhotos(val, 1);
                 break;
             case "vectors":
-                startSearchingVectors(val);
+                startSearchingVectors(val, 1);
                 break;
             case "illistrations":
-                startSearchingIllistrator(val);
+                startSearchingIllistrator(val, 1);
                 break;
             case "videos":
-                startSearchingVideos(val);
+                startSearchingVideos(val, 1);
                 break;
             default:
                 break;
@@ -65,7 +65,7 @@ function SearchForm({
                 />
 
             </SearchFormStyles>
-            <PopulairImagesStyle >
+            <PopulairImagesStyle>
                 <h4>Populair Images : </h4>
                 {section.populair?.map((item, i) => {
                     return <button

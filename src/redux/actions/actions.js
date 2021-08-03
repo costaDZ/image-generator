@@ -13,30 +13,30 @@ export const loadImagesInProgress = () => ({
 export const LOAD_IMAGES_SUCCESS = 'LOAD_IMAGES_SUCCESS';
 export const loadImagesSuccess = (images, searchKey, page) => ({
     type: LOAD_IMAGES_SUCCESS,
-    payload: { images, searchKey, page },
+    payload: { images, searchKey, page }
 });
 
 
 export const LOAD_PHOTOS_SUCCESS = 'LOAD_PHOTOS_SUCCESS';
-export const loadPhotosSuccess = photos => ({
+export const loadPhotosSuccess = (photos, searchKey, page) => ({
     type: LOAD_PHOTOS_SUCCESS,
-    payload: { photos }
+    payload: { photos, searchKey, page }
 });
 
 export const LOAD_VECTOR_SUCCESS = 'LOAD_VECTOR_SUCCESS';
-export const loadVectorSuccess = vectors => ({
+export const loadVectorSuccess = (vectors, searchKey, page) => ({
     type: LOAD_VECTOR_SUCCESS,
-    payload: { vectors }
+    payload: { vectors, searchKey, page }
 });
 
 export const LOAD_ILISTRATOR_SUCCESS = 'LOAD_ILISTRATOR_SUCCESS';
-export const loadIlistratorSuccess = illistrators => ({
+export const loadIlistratorSuccess = (illistrators, searchKey, page) => ({
     type: LOAD_ILISTRATOR_SUCCESS,
-    payload: { illistrators }
+    payload: { illistrators, searchKey, page }
 });
 
 export const LOAD_VIDEOS_SUCCESS = 'LOAD_VIDEOS_SUCCESS';
-export const loadVideosSuccess = videos => ({
+export const loadVideosSuccess = (videos, searchKey, page, perPage) => ({
     type: LOAD_VIDEOS_SUCCESS,
-    payload: { videos }
+    payload: { videos, searchKey, page, perPage }
 });

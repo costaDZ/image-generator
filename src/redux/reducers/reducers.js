@@ -49,10 +49,10 @@ export const photos = (state = { isLoading: false }, actions) => {
         case LOAD_IMAGES_IN_PROGRESS:
             return { ...state, isLoading: true }
         case LOAD_PHOTOS_SUCCESS:
-            const { photos } = payload;
+            const { photos, searchKey, page } = payload;
             console.log(photos);
 
-            return { pic: photos, isLoading: false }
+            return { pic: photos, searchKey, page, isLoading: false }
         default:
             return state;
     }
@@ -66,8 +66,8 @@ export const vectors = (state = { isLoading: false }, actions) => {
         case LOAD_IMAGES_IN_PROGRESS:
             return { ...state, isLoading: true }
         case LOAD_VECTOR_SUCCESS:
-            const { vectors } = payload;
-            return { pic: vectors, isLoading: false }
+            const { vectors, searchKey, page, } = payload;
+            return { pic: vectors, searchKey, page, isLoading: false }
         default:
             return state;
     }
@@ -82,8 +82,9 @@ export const illistrations = (state = { isLoading: false }, actions) => {
         case LOAD_IMAGES_IN_PROGRESS:
             return { ...state, isLoading: true }
         case LOAD_ILISTRATOR_SUCCESS:
-            const { illistrators } = payload;
-            return { pic: illistrators, isLoading: false }
+            const { illistrators, searchKey, page } = payload;
+            console.log(searchKey, page);
+            return { pic: illistrators, searchKey, page, isLoading: false }
         default:
             return state;
     }
@@ -98,8 +99,8 @@ export const videos = (state = { isLoading: false }, actions) => {
         case LOAD_IMAGES_IN_PROGRESS:
             return { ...state, isLoading: true }
         case LOAD_VIDEOS_SUCCESS:
-            const { videos } = payload;
-            return { pic: videos, isLoading: false }
+            const { videos, searchKey, page, perPage } = payload;
+            return { pic: videos, searchKey, page, perPage, isLoading: false }
         default:
             return state;
     }
