@@ -59,6 +59,10 @@ function ImagesHolder({ data, kind }) {
 
 }
 
+
+export default ImagesHolder;
+
+
 const ImagesContainerStyles = styled.section`
     display: flex;
     flex-wrap: wrap;
@@ -75,5 +79,3 @@ const ImagesContainerStyles = styled.section`
         } */
 
 `
-
-export default ImagesHolder;

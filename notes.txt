@@ -38,8 +38,7 @@
 // the images loader should wait intil the images is load
 
 //******* video section : 
-videos dosn't play in the time expected when we hover
-loader dosnèt work for video item
+loader dosn't work for video item
 
 // handel case when there is no images in all pages [component]
 

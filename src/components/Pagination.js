@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 import { loadImages, loadPhotos, loadVectors, loadIllistrator, loadVideos } from '../redux/thunk/thunk';
+
 
 
 //@styled-icons/bootstrap/ArrowLeftCircle
@@ -16,15 +17,58 @@ function Pagination({
     startLoadPageVideos
 }) {
 
-    let currentHites = allHits[currentLocation];
-    let countity = currentHites.perPage || 50;
-    let totalImagesColection = currentHites.pic?.totalHits;
-    let totaleImages = currentHites.pic?.total;
-    let lastPage = Math.floor(totalImagesColection / countity) + 1;
-    let Targetpage = currentHites.page;
-    let key = currentHites.searchKey || "";
-    let reminderImages = totalImagesColection % countity;
+    let currentHites;
+    let countity;
+    let totalImagesColection;
+    let totaleImages;
+    let lastPage;
+    let Targetpage;
+    let key;
+    let reminderImages;
 
+    // const [currentHites, setcurrentHites] = useState([]);
+    // const [countity, setcountity] = useState(500);
+    // const [totalImagesColection, settotalImagesColection] = useState(500);
+    // const [totaleImages, settotaleImages] = useState(500);
+    // const [lastPage, setlastPage] = useState(1);
+    // const [Targetpage, setTargetpage] = useState(1);
+    // const [key, setkey] = useState("");
+    // const [reminderImages, setreminderImages] = useState(1);
+
+
+    if (currentLocation) {
+        // setcurrentHites(allHits[currentLocation]);
+        // setcountity(currentHites.perPage || 50);
+        // settotalImagesColection(currentHites.pic?.totalHits);
+        // settotaleImages(currentHites.pic?.total);
+        // setlastPage(Math.floor(totalImagesColection / countity) + 1);
+        // setTargetpage(currentHites.page);
+        // setkey(currentHites.searchKey || "");
+        // setreminderImages(totalImagesColection % countity);
+
+        currentHites = allHits[currentLocation];
+        countity = currentHites.perPage || 50;
+        totalImagesColection = currentHites.pic?.totalHits;
+        totaleImages = currentHites.pic?.total;
+        lastPage = Math.floor(totalImagesColection / countity) + 1;
+        Targetpage = currentHites.page;
+        key = currentHites.searchKey || "";
+        reminderImages = totalImagesColection % countity;
+        console.log(currentHites);
+        console.log(totalImagesColection);
+    }
+
+
+
+
+    // const [infoLogique, setInfoLogique] = useState({
+    //     currentHites: allHits[currentLocation],
+    //     countity: allHits[currentLocation].perPage || 50,
+    //     totalImagesColection: allHits[currentLocation].pic.totalHits,
+    //     totaleImages: allHits[currentLocation].pic.total,
+    //     lastPage: Math.floor(allHits[currentLocation].pic.totalHits / allHits[currentLocation].perPage || 50) + 1,
+    //     Targetpage: allHits[currentLocation].page,
+    // });
 
     function changeThePage(val) {
         if (val > 0 && val <= lastPage) {
@@ -60,7 +104,7 @@ function Pagination({
             </div>
 
             <div className="right_box_info">
-                <span className="current_page">{Targetpage}</span>
+                <span className="current_page">{Targetpage || 1}</span>
                 <span className="total_passed_pages">
                     {Targetpage === lastPage ? (countity * Targetpage - countity) + reminderImages : (countity * Targetpage - countity)}
                 </span>/

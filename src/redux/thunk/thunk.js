@@ -14,15 +14,10 @@ const url = 'https://pixabay.com/api/?key=' + key;
 
 
 export const loadImages = (searchKey = "", page = 1) => async (dispatch, images) => {
-
-    console.log(page);
     try {
-
         dispatch(loadImagesInProgress());
         const response = await fetch(url + `&q=${searchKey}&image_type=all&per_page=50&order=latest&page=${page}&category=all&min_width=0&min_height=0&safesearch=true`);
         const images = await response.json();
-        console.log(response);
-
         dispatch(loadImagesSuccess(images, searchKey, page));
     } catch (error) {
         console.log(error);
