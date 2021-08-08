@@ -11,32 +11,32 @@ export const loadImagesInProgress = () => ({
 
 
 export const LOAD_IMAGES_SUCCESS = 'LOAD_IMAGES_SUCCESS';
-export const loadImagesSuccess = (images, searchKey, page) => ({
+export const loadImagesSuccess = (kind, images, searchKey, pageNumber, perPage) => ({
     type: LOAD_IMAGES_SUCCESS,
-    payload: { images, searchKey, page }
+    payload: { kind, images, searchKey, pageNumber, perPage }
 });
 
 
-export const LOAD_PHOTOS_SUCCESS = 'LOAD_PHOTOS_SUCCESS';
-export const loadPhotosSuccess = (photos, searchKey, page) => ({
-    type: LOAD_PHOTOS_SUCCESS,
-    payload: { photos, searchKey, page }
-});
+// export const LOAD_PHOTOS_SUCCESS = 'LOAD_PHOTOS_SUCCESS';
+// export const loadPhotosSuccess = (photos, searchKey, page) => ({
+//     type: LOAD_PHOTOS_SUCCESS,
+//     payload: { photos, searchKey, page }
+// });
 
-export const LOAD_VECTOR_SUCCESS = 'LOAD_VECTOR_SUCCESS';
-export const loadVectorSuccess = (vectors, searchKey, page) => ({
-    type: LOAD_VECTOR_SUCCESS,
-    payload: { vectors, searchKey, page }
-});
+// export const LOAD_VECTOR_SUCCESS = 'LOAD_VECTOR_SUCCESS';
+// export const loadVectorSuccess = (vectors, searchKey, page) => ({
+//     type: LOAD_VECTOR_SUCCESS,
+//     payload: { vectors, searchKey, page }
+// });
 
-export const LOAD_ILISTRATOR_SUCCESS = 'LOAD_ILISTRATOR_SUCCESS';
-export const loadIlistratorSuccess = (illistrators, searchKey, page) => ({
-    type: LOAD_ILISTRATOR_SUCCESS,
-    payload: { illistrators, searchKey, page }
-});
+// export const LOAD_ILISTRATOR_SUCCESS = 'LOAD_ILISTRATOR_SUCCESS';
+// export const loadIlistratorSuccess = (illistrators, searchKey, page) => ({
+//     type: LOAD_ILISTRATOR_SUCCESS,
+//     payload: { illistrators, searchKey, page }
+// });
 
 export const LOAD_VIDEOS_SUCCESS = 'LOAD_VIDEOS_SUCCESS';
-export const loadVideosSuccess = (videos, searchKey, page, perPage) => ({
+export const loadVideosSuccess = (videos, searchKey, pageNumber, perPage) => ({
     type: LOAD_VIDEOS_SUCCESS,
-    payload: { videos, searchKey, page, perPage }
+    payload: { videos, searchKey, pageNumber, perPage }
 });

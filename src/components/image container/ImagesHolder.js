@@ -2,20 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import ImageContainer from './ImageContainer';
 
+import { connect } from 'react-redux';
 
-function ImagesHolder({ data, kind }) {
+
+function ImagesHolder({ images, kind }) {
+
+    let data = images[kind];
 
     if (kind === 'videos') {
         return (
             <ImagesContainerStyles>
-                {data.pic?.hits.map((v, i) => {
+                {data.pic.hits.map((v, i) => {
                     const { picture_id, id, duration, tags, videos } = v;
                     let src = `https://i.vimeocdn.com/video/${picture_id}_640x360.jpg`;
                     return (
                         <ImageContainer
                             id={id}
                             webformatURL={src}
-                            kind={kind}
+                            kind={images[kind].kind}
                             duration={duration}
                             tags={tags}
                             videos={videos}
@@ -29,7 +33,7 @@ function ImagesHolder({ data, kind }) {
         return (
             <ImagesContainerStyles>
                 {
-                    data.pic?.hits.map(img => {
+                    data.pic.hits.map(img => {
                         const {
                             id,
                             likes,
@@ -50,17 +54,21 @@ function ImagesHolder({ data, kind }) {
                                 comments={comments}
                                 webformatURL={webformatURL}
                                 isLoading={data.isLoading}
+                                kind={images[kind].kind}
                             />
                         )
                     })}
             </ImagesContainerStyles>
         )
     }
-
 }
 
 
-export default ImagesHolder;
+const mapStateToProps = state => ({
+    images: state,
+});
+
+export default connect(mapStateToProps)(ImagesHolder);
 
 
 const ImagesContainerStyles = styled.section`

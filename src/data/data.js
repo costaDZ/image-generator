@@ -6,28 +6,28 @@ import vedio from '../images/vedios.mp4';
 
 
 const data = {
-    main: {
-        category: "main",
+    all: {
+        category: "all",
         title: "Stunning free images & royalty free stock",
         dec: "Over 2.3 million+ high quality stock images, videos and music shared by our talented community.",
         back: main,
         populair: ["nature", "wallpaper", "background", "summer", "food", "beach", "sky", "money", "dog", "love", "cat", "flower", "car", "coronavirus"]
     },
-    photos: {
-        category: "photos",
+    photo: {
+        category: "photo",
         title: "Stunning free stock photos for download",
         dec: "Over 2 million+ royalty free stock photos shared by our talented community.",
         back: photos,
         populair: ["nature", "wallpaper", "background", "summer", "food", "beach", "sky", "money", "dog", "love", "cat", "flower", "car", "coronavirus"]
     },
-    illistrations: {
-        category: "illistrations",
+    illustration: {
+        category: "illustration",
         title: "Free illustrations for download & inspiration",
         dec: "Over 310,000+ beautiful free illustrations shared by our talented community.",
         back: illistrator,
         populair: ["background", "flower", "flowers", "nature", "cat", "money", "love", "heart", "sun", "dog", "music", "people", "coronavirus"]
     },
-    vectors: {
+    vector: {
         category: "vectors",
         title: "Stunning free vector art stock images",
         dec: "Over 110,000+ free vector art images shared by our talented community.",

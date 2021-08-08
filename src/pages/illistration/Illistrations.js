@@ -1,35 +1,11 @@
 import React from 'react';
-
-import { loadIllistrator } from '../../redux/thunk/thunk';
-
-import { connect } from 'react-redux';
-
-import { useEffect } from 'react';
-
 import { ImagesHolder } from '../../components';
 
-function Illistrations({ startLoadingIllistrators, getIllistrators }) {
-
-    useEffect(() => {
-        startLoadingIllistrators();
-    }, [])
-
-
-
+function Illistrations() {
 
     return (
-        <ImagesHolder data={getIllistrators} />
+        <ImagesHolder kind={"images"} />
     )
 }
 
-
-const mapStateToProps = (state) => ({
-    getIllistrators: state.illistrations,
-})
-
-const mapDispatchToProps = dispatch => ({
-    startLoadingIllistrators: () => dispatch(loadIllistrator())
-})
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Illistrations);
+export default Illistrations;

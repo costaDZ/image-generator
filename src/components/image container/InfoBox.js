@@ -1,13 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import {
-    loadPhotos,
-    loadVectors,
-    loadIllistrator,
-    loadImages,
-    loadVideos
-} from '../../redux/thunk/thunk.js';
+import { loadImages, loadVideos } from '../../redux/thunk/thunk.js';
 
 function InfoBoxContainer({
     videos,
@@ -18,32 +12,17 @@ function InfoBoxContainer({
     comments,
     currentLocation,
     startSearchingImages,
-    startSearchingPhotos,
-    startSearchingVectors,
-    startSearchingIllistrator,
     startSearchingVideos,
 }) {
-    //  data - url={ videos.medium.url }
 
     function startSearch(e) {
         let valueKeySearch = e.target.textContent;
         switch (currentLocation) {
-            case "main":
-                startSearchingImages(valueKeySearch, 1);
-                break;
-            case "photos":
-                startSearchingPhotos(valueKeySearch, 1);
-                break;
-            case "vectors":
-                startSearchingVectors(valueKeySearch, 1);
-                break;
-            case "illistrations":
-                startSearchingIllistrator(valueKeySearch, 1);
-                break;
             case "videos":
                 startSearchingVideos(valueKeySearch, 1);
                 break;
             default:
+                startSearchingImages(currentLocation, valueKeySearch, 1);
                 break;
         }
     }
@@ -97,9 +76,6 @@ function InfoBoxContainer({
 
 const mapDispatchToProps = dispatch => ({
     startSearchingImages: (searchKey, page) => dispatch(loadImages(searchKey, page)),
-    startSearchingPhotos: (searchKey, page) => dispatch(loadPhotos(searchKey, page)),
-    startSearchingVectors: (searchKey) => dispatch(loadVectors(searchKey)),
-    startSearchingIllistrator: (searchKey) => dispatch(loadIllistrator(searchKey)),
     startSearchingVideos: (searchKey) => dispatch(loadVideos(searchKey)),
 })
 

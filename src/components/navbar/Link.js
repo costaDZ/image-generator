@@ -5,21 +5,35 @@ import logo from '../../images/logo.png';
 
 import { connect } from 'react-redux';
 import { changePage } from '../../redux/actions/actions';
-import { loadImages } from '../../redux/thunk/thunk';
+import { loadImages, loadVideos } from '../../redux/thunk/thunk';
 
 
 
 
-function Link({ path, content, changingPage, startLoadTheMainImages }) {
-    return (
-        <LinkStyles to={path} activeClassName="active-link" data-section={content} onClick={(e) => {
-            changingPage(e.target.dataset.section)
-            startLoadTheMainImages("", 1);
+
+function Link({ path, content, changingPage, startLoadImages, startLoadVideos }) {
+
+    function changeTargetPage(e) {
+        let currentSec = e.target.dataset.section;
+        changingPage(currentSec);
+        if (currentSec !== 'videos') {
+            startLoadImages(currentSec, "", 1);
+        } else if (currentSec === 'videos') {
+            startLoadVideos("", 1);
         }
-        }>
+    }
+
+    return (
+        <LinkStyles
+            to={path}
+            activeClassName="active-link"
+            data-section={content}
+            onClick={e => changeTargetPage(e)}
+        >
             {
-                content === "main" ?
-                    <img src={logo} data-section={content} alt="logo" width='90px' /> :
+                content === "all" ?
+                    <img src={logo} data-section={content} alt="logo" width='90px' />
+                    :
                     content
             }
         </LinkStyles>
@@ -29,7 +43,9 @@ function Link({ path, content, changingPage, startLoadTheMainImages }) {
 
 const mapDispatchToProps = dispatch => ({
     changingPage: page => dispatch(changePage(page)),
-    startLoadTheMainImages: (key, page) => dispatch(loadImages(key, page)),
+    startLoadImages: (key, page) => dispatch(loadImages(key, page)),
+    startLoadVideos: (key, page) => dispatch(loadVideos(key, page)),
+
 })
 
 export default connect(null, mapDispatchToProps)(Link);

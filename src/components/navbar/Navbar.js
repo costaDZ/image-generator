@@ -5,9 +5,6 @@ import Link from './Link';
 import { WideContainer } from '../../styles';
 
 
-
-
-
 const Navbar = () => {
 
     const [offset, setOffset] = useState(0);
@@ -19,16 +16,16 @@ const Navbar = () => {
     }, []);
 
     return (
-        <NavbarStyles style={{ opacity: offset > 20 && offset < 500 ? 0 : 1 }}>
+        <NavbarStyles style={{ opacity: offset > 50 && offset < 700 ? 0 : 1 }}>
             <WideContainer>
                 <nav className="nav-section" >
                     <div aria-label="home">
-                        <Link path={"/"} content={"main"} />
+                        <Link path={"/"} content={"all"} />
                     </div>
                     <div className="nav-list">
-                        <Link path={"/Photos"} content={"photos"} />
-                        <Link path={"/Vectors"} content={"vectors"} />
-                        <Link path={"/Illistrations"} content={"illistrations"} />
+                        <Link path={"/Photos"} content={"photo"} />
+                        <Link path={"/Vectors"} content={"vector"} />
+                        <Link path={"/Illistrations"} content={"illustration"} />
                         <Link path={"/Videos"} content={"videos"} />
                     </div>
                 </nav>

@@ -1,33 +1,12 @@
-import React, { useEffect } from 'react';
-//import styled from 'styled-components';
+import React from 'react';
 import { ImagesHolder } from '../../components';
 
-import { loadImages } from '../../redux/thunk/thunk';
 
-import { connect } from 'react-redux';
-
-
-
-function Main({ startLoadingImages, getImages }) {
-
-    useEffect(() => {
-        startLoadingImages();
-    }, []);
-
-
+function Main({ startLoadingImages }) {
     return (
-        <ImagesHolder data={getImages} />
+        <ImagesHolder kind={"images"} />
     )
 }
 
-const mapStateToProps = (state) => ({
-    getImages: state.main,
-})
-
-const mapDispatchToProps = dispatch => ({
-    startLoadingImages: () => dispatch(loadImages("", 1)),
-})
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default Main;
 

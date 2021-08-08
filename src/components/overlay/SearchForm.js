@@ -1,48 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Search } from '@styled-icons/bootstrap/Search';
-import { connect } from 'react-redux';
-
-
-import {
-    loadPhotos,
-    loadVectors,
-    loadIllistrator,
-    loadImages,
-    loadVideos
-} from '../redux/thunk/thunk.js';
 
 
 function SearchForm({
     startSearchingImages,
-    startSearchingPhotos,
-    startSearchingVectors,
-    startSearchingIllistrator,
     startSearchingVideos,
-    currentLocation,
     section
 }) {
-
+    console.log(section);
     function startSearch(e, val, check) {
         e.preventDefault();
         if (check === "search") e.target.lastElementChild.value = "";
-        switch (currentLocation) {
-            case "main":
-                startSearchingImages(val, 1);
-                break;
-            case "photos":
-                startSearchingPhotos(val, 1);
-                break;
-            case "vectors":
-                startSearchingVectors(val, 1);
-                break;
-            case "illistrations":
-                startSearchingIllistrator(val, 1);
-                break;
+        switch (section.category) {
             case "videos":
                 startSearchingVideos(val, 1);
                 break;
             default:
+                startSearchingImages(section.category, val, 1);
                 break;
         }
     }
@@ -60,14 +35,14 @@ function SearchForm({
                 </button>
                 <input
                     className="search-input"
-                    placeholder={`Search ${section.category} ...`}
+                    placeholder={`Search ${section.category || ""} ...`}
                     required
                 />
 
             </SearchFormStyles>
             <PopulairImagesStyle>
                 <h4>Populair Images : </h4>
-                {section.populair?.map((item, i) => {
+                {(section.populair || section.all.populair).map((item, i) => {
                     return <button
                         key={i}
                         onClick={(e) => startSearch(e, e.target.textContent, "btn")}
@@ -78,18 +53,8 @@ function SearchForm({
     )
 }
 
-const mapStateToProps = state => ({
-    currentLocation: state.nav.category,
-})
-const mapDispatchToProps = dispatch => ({
-    startSearchingImages: (searchKey, page) => dispatch(loadImages(searchKey, page)),
-    startSearchingPhotos: searchKey => dispatch(loadPhotos(searchKey)),
-    startSearchingVectors: searchKey => dispatch(loadVectors(searchKey)),
-    startSearchingIllistrator: searchKey => dispatch(loadIllistrator(searchKey)),
-    startSearchingVideos: searchKey => dispatch(loadVideos(searchKey)),
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
+export default SearchForm;
 
 
 const SerachIcon = styled(Search)`

@@ -13,6 +13,10 @@ function App() {
   return (
     <div className="App">
       <Router>
+        {/* <Navbar />
+        <Overlay />
+        <Main /> */}
+
         <Navbar />
         <Overlay />
         <Switch>

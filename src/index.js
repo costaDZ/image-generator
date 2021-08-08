@@ -22,16 +22,13 @@ const persistor = persistStore(store);
 ReactDOM.render(
   <React.StrictMode>
 
-    <PersistGate
-      persistor={persistor}>
-
-      <Provider store={store}>
+    <Provider store={store}>
+      <PersistGate
+        persistor={persistor}>
         <GlobalStyle />
         <App />
-      </Provider>
-
-    </PersistGate>
-
+      </PersistGate>
+    </Provider>
 
   </React.StrictMode>,
   document.getElementById('root')

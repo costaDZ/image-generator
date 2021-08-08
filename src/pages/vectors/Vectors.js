@@ -1,31 +1,10 @@
 import React from 'react';
-
-import { loadVectors } from '../../redux/thunk/thunk';
-
-import { connect } from 'react-redux';
-import { useEffect } from 'react';
-
 import { ImagesHolder } from '../../components';
 
 function Vectors({ startLoadingVectors, getVectors }) {
-
-    useEffect(() => {
-        startLoadingVectors();
-    }, [])
-
     return (
-        <ImagesHolder data={getVectors} />
+        <ImagesHolder kind={"images"} />
     )
 }
 
-
-const mapStateToProps = (state) => ({
-    getVectors: state.vectors,
-})
-
-const mapDispatchToProps = dispatch => ({
-    startLoadingVectors: () => dispatch(loadVectors())
-})
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Vectors);
+export default Vectors;

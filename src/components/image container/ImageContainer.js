@@ -4,16 +4,14 @@ import styled from 'styled-components';
 import Loader from '../Loader';
 import InfoBox from './InfoBox';
 
-import { connect } from 'react-redux';
 
 function ImageContainer({
-    currentLocation,
+    kind,
     id,
     webformatURL,
     tags,
     likes,
     comments,
-    kind,
     duration,
     videos,
     isLoading
@@ -32,7 +30,7 @@ function ImageContainer({
 
     let timer;
     function playVideo(v) {
-        if (currentLocation === ("videos")) {
+        if (kind === ("videos")) {
             if (v === "set") {
                 clearTimeout(timer);
                 timer = setTimeout(() => {
@@ -44,15 +42,6 @@ function ImageContainer({
             }
         }
     }
-
-    // <video
-    //     className="hovering_video" autoPlay muted loop
-    //     style={{ display: play ? "block" : "none" }}
-    // >
-    //     <source src={videos.tiny.url} type="video/mp4" />
-    //     {/* <source src={videos.tiny.url} type="video/ogg" /> */}
-    //     Your browser does not support the video tag.
-    // </video>
 
     useEffect(() => {
         let video = document.createElement("video");
@@ -72,6 +61,7 @@ function ImageContainer({
             containerRef.current.removeChild(firstChild);
         }
     }, [play]);
+
     return (
         <ImageContainerStyles
             key={id}
@@ -95,7 +85,7 @@ function ImageContainer({
                             duration={duration}
                             likes={likes}
                             comments={comments}
-                            currentLocation={currentLocation}
+                            currentLocation={kind}
                         />
                     </>
             }
@@ -104,11 +94,25 @@ function ImageContainer({
     )
 }
 
-const mapStateToProps = state => ({
-    currentLocation: state.nav.category
-})
 
-export default connect(mapStateToProps)(ImageContainer);
+export default ImageContainer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const ImageContainerStyles = styled.div`

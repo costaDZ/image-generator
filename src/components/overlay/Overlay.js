@@ -1,34 +1,39 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-import SearchForm from '../SearchForm';
+import SearchForm from './SearchForm';
 
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { loadImages } from '../../redux/thunk/thunk';
+import { loadImages, loadVideos } from '../../redux/thunk/thunk';
 import { changePage } from '../../redux/actions/actions';
 
-const Overlay = ({ section, LoadMainPage, LoadMainImages }) => {
+
+const Overlay = ({ section, LoadMainPage, LoadMainImages, startSearchingVideos }) => {
 
     let history = useHistory();
     useEffect(() => {
-        history.push("/");
-        //   if (!section.back && !section.video) {
-        LoadMainPage("main");
-        LoadMainImages("", 1)
-        //   }
+        if (!section.back && !section.video) {
+            history.push("/");
+            LoadMainPage("all");
+            LoadMainImages("all", "", 1);
+        }
     }, []);
 
     return (
         <SearchHolder img={section.back}>
             <h1 className="main-title">
-                {section.title}
+                {section.title || section.all.title}
             </h1>
             <p className="desc">
-                {section.dec}
+                {section.dec || section.all.dec}
             </p>
 
-            <SearchForm section={section} />
+            <SearchForm
+                section={section}
+                startSearchingImages={LoadMainImages}
+                startSearchingVideos={startSearchingVideos}
+            />
             {section.video &&
                 <video className="video" autoPlay muted loop >
                     <source src={section.video} type="video/mp4" />
@@ -45,12 +50,29 @@ const mapStateToProps = state => ({
 })
 const MapDispatchToProps = dispatch => ({
     LoadMainPage: (page) => dispatch(changePage(page)),
-    LoadMainImages: (key, page) => dispatch(loadImages(key, page)),
+    LoadMainImages: (kind, key, page) => dispatch(loadImages(kind, key, page)),
+    startSearchingVideos: searchKey => dispatch(loadVideos(searchKey)),
 
 })
 
-
 export default connect(mapStateToProps, MapDispatchToProps)(Overlay);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
