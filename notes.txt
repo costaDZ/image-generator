@@ -24,7 +24,7 @@
     // tags
 
 /==========Tasks==========/
-// add pagination pages
+// add push to top arrow
 // add like click event
 // add loader to the hole app
 
@@ -33,12 +33,11 @@
 
 
 /==========bugs==========/
-// when enter the site it loads from local storage not the main section
-
 // the images loader should wait intil the images is load
 
 //******* video section : 
-loader dosn't work for video item
+
+// video section : loader dosn't work for videos elements
 
 // handel case when there is no images in all pages [component]
 
