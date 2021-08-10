@@ -20,7 +20,7 @@ function PushArrow() {
             style={{ display: show ? "block" : "none" }}
             onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
         >
-            <i class="bi bi-arrow-up-circle"></i>
+            <i className="bi bi-arrow-up-circle"></i>
         </PushArrowStyles >
     )
 }
