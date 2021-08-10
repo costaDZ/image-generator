@@ -13,6 +13,7 @@ export const nav = (state = initialState, actions) => {
 
     const { type, payload } = actions;
 
+    console.log(payload)
     switch (type) {
         case CHANGE_PAGE:
             const targetData = initialState[payload];

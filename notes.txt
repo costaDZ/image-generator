@@ -24,7 +24,6 @@
     // tags
 
 /==========Tasks==========/
-// add push to top arrow
 // add like click event
 // add loader to the hole app
 
@@ -33,6 +32,7 @@
 
 
 /==========bugs==========/
+// ** loading problem 
 // the images loader should wait intil the images is load
 
 //******* video section : 

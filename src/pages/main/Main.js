@@ -2,7 +2,7 @@ import React from 'react';
 import { ImagesHolder } from '../../components';
 
 
-function Main({ startLoadingImages }) {
+function Main() {
     return (
         <ImagesHolder kind={"images"} />
     )

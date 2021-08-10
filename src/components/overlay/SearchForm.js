@@ -8,7 +8,6 @@ function SearchForm({
     startSearchingVideos,
     section
 }) {
-    console.log(section);
     function startSearch(e, val, check) {
         e.preventDefault();
         if (check === "search") e.target.lastElementChild.value = "";

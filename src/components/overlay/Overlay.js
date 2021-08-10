@@ -9,15 +9,27 @@ import { loadImages, loadVideos } from '../../redux/thunk/thunk';
 import { changePage } from '../../redux/actions/actions';
 
 
-const Overlay = ({ section, LoadMainPage, LoadMainImages, startSearchingVideos }) => {
+const Overlay = ({ section, LoadThePage, LoadMainImages, startSearchingVideos }) => {
 
     let history = useHistory();
     useEffect(() => {
+        console.log(section);
         if (!section.back && !section.video) {
             history.push("/");
-            LoadMainPage("all");
+            LoadThePage("all");
             LoadMainImages("all", "", 1);
+
+        } else if (section.category === "videos") {
+            LoadThePage(section.category);
+            startSearchingVideos("");
+        } else {
+            LoadThePage(section.category);
+            LoadMainImages(section.category, "", 1);
         }
+
+
+
+
     }, []);
 
     return (
@@ -49,7 +61,7 @@ const mapStateToProps = state => ({
     section: state.nav,
 })
 const MapDispatchToProps = dispatch => ({
-    LoadMainPage: (page) => dispatch(changePage(page)),
+    LoadThePage: (page) => dispatch(changePage(page)),
     LoadMainImages: (kind, key, page) => dispatch(loadImages(kind, key, page)),
     startSearchingVideos: searchKey => dispatch(loadVideos(searchKey)),
 

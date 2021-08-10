@@ -28,7 +28,7 @@ const data = {
         populair: ["background", "flower", "flowers", "nature", "cat", "money", "love", "heart", "sun", "dog", "music", "people", "coronavirus"]
     },
     vector: {
-        category: "vectors",
+        category: "vector",
         title: "Stunning free vector art stock images",
         dec: "Over 110,000+ free vector art images shared by our talented community.",
         back: vector,
