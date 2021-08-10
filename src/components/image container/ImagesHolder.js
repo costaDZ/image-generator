@@ -78,12 +78,4 @@ const ImagesContainerStyles = styled.section`
     align-items: center;
     margin: 10px 15px 0 10px;
     margin: 0.2em;
-        /* 
-        @media (max-width: 1200px) {
-        grid-template-columns: repeat(2,1fr);
-        }
-        @media (max-width: 750px) {
-        grid-template-columns: repeat(1,1fr);
-        } */
-
-`
+`;

@@ -120,15 +120,19 @@ const ImageContainerStyles = styled.div`
         margin: 1em;
         height: 20em;
         flex-grow: 1;
-        max-width:  ${props => props.video ? "28em" : "50%"};
+        max-width:  ${props => props.video ? "29em" : "50%"};
         overflow: hidden;
-        @media (max-width: 850px) {
+
+        ${props => props.video ? " @media (max-width: 1000px) {min-width: 40em;}" : ""}
+
+
+        
+        /* @media (max-width: 992px)  {
             min-width: 80%;
 
-        }
+        } */
         @media (max-width: 650px) {
             min-width: 100%;
-
         }
 
     .hovering_video {

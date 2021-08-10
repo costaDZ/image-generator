@@ -6,17 +6,10 @@ import { Main, Illistrations, Photos, Vectors, Videos } from './pages';
 import { Navbar, Overlay, Pagination, PushArrow } from './components';
 
 
-
-
-
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Navbar />
-        <Overlay />
-        <Main /> */}
-
         <Navbar />
         <Overlay />
         <Switch>

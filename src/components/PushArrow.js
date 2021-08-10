@@ -10,7 +10,7 @@ function PushArrow() {
     window.addEventListener("scroll", (e) => {
         let currentScroll = window.scrollY;
         let totalHeight = window.innerHeight;
-        currentScroll > totalHeight ? setShow(true) : setShow(false);
+        currentScroll > (totalHeight * 2) ? setShow(true) : setShow(false);
     })
 
 
@@ -30,10 +30,9 @@ export default PushArrow;
 
 
 const PushArrowStyles = styled.div`
-
     position: fixed;
-    right: 1em;
-    font-size: 2.5em;
+    right: .5em;
+    font-size: 2em;
     z-index: 100;
     bottom: 1em;
     background-color: var(--light-green-color);

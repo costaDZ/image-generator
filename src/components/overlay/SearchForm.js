@@ -64,6 +64,10 @@ const SearchFormStyles = styled.form`
         display: flex;
         width: 40%;
 
+        @media(max-width: 768px) {
+            width: 80%;
+        }
+
         .search-btn {
         border: none;
         border-radius: 4px;
@@ -93,6 +97,7 @@ const SearchFormStyles = styled.form`
 const PopulairImagesStyle = styled.div`
     h4 {
         display : inline-block;
+        margin: 0;
         }
         button {
         font-size: .8em;
@@ -101,7 +106,7 @@ const PopulairImagesStyle = styled.div`
         color: white;
         cursor: pointer;
         padding: .2em .4em;
-        margin: 0 .1em;
+        margin: .2em .2em;
         font-weight: 700;
         }
 `;

@@ -89,6 +89,18 @@ const PaginationStyles = styled.div`
     padding: 3em 0;
     text-align: center;
     justify-content: space-around;
+
+    @media (max-width: 992px) {
+        flex-direction: column-reverse;
+        height: 9em;
+    }
+
+    .left_box_info {
+        @media (min-width: 992px) {
+            padding-left: 2em;
+        }
+    }
+
     .left_box_info {
         .key_span {
         color: var(--green-color);
@@ -99,8 +111,9 @@ const PaginationStyles = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 9em;
+        margin: auto;
         font-weight: 700;
+        width: 14em;
 
         .current_page {
             border: 1px solid #b7b7b7;
