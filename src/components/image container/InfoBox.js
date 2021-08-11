@@ -77,7 +77,7 @@ function InfoBoxContainer({
 const mapDispatchToProps = dispatch => ({
     startSearchingImages: (searchKey, page) => dispatch(loadImages(searchKey, page)),
     startSearchingVideos: (searchKey) => dispatch(loadVideos(searchKey)),
-})
+});
 
 export default connect(null, mapDispatchToProps)(InfoBoxContainer);
 
@@ -96,6 +96,8 @@ const InfoBox = styled.div`
             bottom: 0;
             background: linear-gradient(0deg,rgb(0 0 0 / 90%) 0,transparent);
             width: 100%;
+
+                ${props => props.k !== "videos" ? " @media (max-width: 768px) {opacity: 1;height: 30%;}" : ""}
 
 
             &:hover {
@@ -124,7 +126,6 @@ const InfoBox = styled.div`
                 }
             }
         
-
         .likes_comments, .likes, .comments, .quality_diration {
             display: flex;
             justify-content: space-between;

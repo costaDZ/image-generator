@@ -16,8 +16,8 @@ export default Loader;
 const LoaderStyle = styled.div`
  /*CUSTOM PRELOADER*/
             background: #fff;
-            width: 100%;
-            height: 98%;
+            width: 22em;
+            height: 20em;
             display: flex;
             align-items: center;
             justify-content: center;

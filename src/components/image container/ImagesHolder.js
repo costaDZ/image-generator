@@ -72,6 +72,7 @@ export default connect(mapStateToProps)(ImagesHolder);
 
 
 const ImagesContainerStyles = styled.section`
+//background-color: var(--dark-blue-color);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

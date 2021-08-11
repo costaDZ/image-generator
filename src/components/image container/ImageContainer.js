@@ -18,10 +18,6 @@ function ImageContainer({
     isLoading
 }) {
 
-
-
-
-
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
     const containerRef = useRef(null);
@@ -122,14 +118,23 @@ export default ImageContainer;
 
 const ImageContainerStyles = styled.div`
         position: relative;
-        margin: 1em;
+        margin: .5em;
         height: 20em;
         flex-grow: 1;
-        max-width:  ${props => props.video ? "29em" : "50%"};
+      //  border: 12px solid white;
+
+       // max-width:  ${props => props.video ? "29em" : "50%"};
         overflow: hidden;
 
-        ${props => props.video ? " @media (max-width: 1000px) {min-width: 40em;}" : ""}
-
+        /* ${props => props.video ? " @media (max-width: 1000px) {min-width: 40em;}" : ""} */
+        @media (max-width: 1400px) {
+            max-width: 50%;
+            //border: 2px solid black;
+        }
+        @media (max-width: 800px) {
+            max-width: 100%;
+            //border: 2px solid black;
+        }
 
         img {
             width: 100%;
@@ -139,9 +144,11 @@ const ImageContainerStyles = styled.div`
             min-width: 80%;
 
         } */
-        @media (max-width: 650px) {
+
+       
+        /* @media (max-width: 376px)  {
             min-width: 100%;
-        }
+        } */
 
     .hovering_video {
         position: absolute;

@@ -41,3 +41,7 @@
 
 // handel case when there is no images in all pages [component]
 
+
+
+// change videos resolution for small devices
+// show info box for small devices
