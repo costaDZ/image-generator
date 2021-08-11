@@ -9,6 +9,7 @@ function ImageContainer({
     kind,
     id,
     webformatURL,
+    previewURL,
     tags,
     likes,
     comments,
@@ -16,6 +17,8 @@ function ImageContainer({
     videos,
     isLoading
 }) {
+
+    console.log(previewURL)
 
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
@@ -77,7 +80,7 @@ function ImageContainer({
                     <Loader />
                     :
                     <>
-                        <img src={webformatURL} height="100%" width="100%" alt={tags} />
+                        <img src={previewURL} height="100%" width="100%" alt={tags} />
                         <InfoBox
                             videos={videos}
                             tags={tags}

@@ -41,6 +41,7 @@ function ImagesHolder({ images, kind }) {
                             largeImageURL,
                             tags,
                             webformatURL,
+                            previewURL,
                             webformatWidth,
                             webformatHeight,
                             downloads,
@@ -52,6 +53,7 @@ function ImagesHolder({ images, kind }) {
                                 likes={likes}
                                 tags={tags}
                                 comments={comments}
+                                previewURL={previewURL}
                                 webformatURL={webformatURL}
                                 isLoading={data.isLoading}
                                 kind={images[kind].kind}
