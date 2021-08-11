@@ -78,7 +78,7 @@ function ImageContainer({
                     <Loader />
                     :
                     <>
-                        <img src={webformatURL} height="400" width="400" alt={tags} loading="lazy" />
+                        <img src={webformatURL} height="400" width="400" alt={tags} />
                         <InfoBox
                             videos={videos}
                             tags={tags}
