@@ -5,11 +5,11 @@ import Loader from '../Loader';
 import InfoBox from './InfoBox';
 
 
+
 function ImageContainer({
     kind,
     id,
     webformatURL,
-    previewURL,
     tags,
     likes,
     comments,
@@ -18,7 +18,9 @@ function ImageContainer({
     isLoading
 }) {
 
-    console.log(previewURL)
+
+
+
 
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
@@ -80,7 +82,7 @@ function ImageContainer({
                     <Loader />
                     :
                     <>
-                        <img src={previewURL} height="100%" width="100%" alt={tags} />
+                        <img src={webformatURL} height="400" width="400" alt={tags} loading="lazy" />
                         <InfoBox
                             videos={videos}
                             tags={tags}
@@ -129,7 +131,10 @@ const ImageContainerStyles = styled.div`
         ${props => props.video ? " @media (max-width: 1000px) {min-width: 40em;}" : ""}
 
 
-        
+        img {
+            width: 100%;
+            height: 100%;
+        }
         /* @media (max-width: 992px)  {
             min-width: 80%;
 
