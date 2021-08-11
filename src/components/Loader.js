@@ -21,6 +21,7 @@ const LoaderStyle = styled.div`
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: auto;
         
         .loader-p{
         border: 0 solid transparent;

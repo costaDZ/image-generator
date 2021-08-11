@@ -99,12 +99,13 @@ const SearchHolder = styled.section`
     }
 
     video {
-        left: 50%;
-        min-height: 100%;
-        min-width: 100%;
         position: absolute;
         top: 50%;
-        transform: translate(-50%, -50%);
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        min-height: 100%;
+        min-width: 100%;
+        width: auto;
         z-index: -1;
     }
 `;

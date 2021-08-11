@@ -17,7 +17,6 @@ function ImageContainer({
     videos,
     isLoading
 }) {
-
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
     const containerRef = useRef(null);
@@ -55,6 +54,10 @@ function ImageContainer({
             let source = document.createElement("source");
             source.setAttribute("src", `${videos.tiny.url}`);
             source.setAttribute("type", "video/ogg");
+            if (window.innerWidth <= 600) {
+                video.setAttribute("width", "100");
+                video.setAttribute("height", "100");
+            }
             video.appendChild(source);
             containerRef.current.prepend(video);
         }
@@ -78,7 +81,7 @@ function ImageContainer({
                     <Loader />
                     :
                     <>
-                        <img src={webformatURL} height="400" width="400" alt={tags} />
+                        <img src={webformatURL} height="400" width="400" alt={tags} loading="lazy" />
                         <InfoBox
                             videos={videos}
                             tags={tags}
@@ -101,63 +104,34 @@ export default ImageContainer;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const ImageContainerStyles = styled.div`
         position: relative;
         margin: .5em;
         height: 20em;
         flex-grow: 1;
-      //  border: 12px solid white;
-
-       // max-width:  ${props => props.video ? "29em" : "50%"};
         overflow: hidden;
-
-        /* ${props => props.video ? " @media (max-width: 1000px) {min-width: 40em;}" : ""} */
         @media (max-width: 1400px) {
-            max-width: 50%;
-            //border: 2px solid black;
+            max-width: 45%;
         }
         @media (max-width: 800px) {
             max-width: 100%;
-            //border: 2px solid black;
         }
 
         img {
             width: 100%;
             height: 100%;
         }
-        /* @media (max-width: 992px)  {
-            min-width: 80%;
 
-        } */
-
-       
-        /* @media (max-width: 376px)  {
-            min-width: 100%;
-        } */
-
-    .hovering_video {
+    .hovering_video {   
         position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        min-height: 100%;
+        min-width: 100%;
+        width: auto;
         z-index: 2;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 38em;
-        display: block;
+
         &:hover {
         cursor:pointer;
         }
