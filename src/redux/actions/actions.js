@@ -29,3 +29,10 @@ export const toggelMenu = (action) => ({
     type: TOGGLE_MENU,
     payload: action,
 })
+
+
+export const HANDEL_LIKED_IMAGES = 'HANDEL_LIKED_IMAGES';
+export const handelLikedImages = (item) => ({
+    type: HANDEL_LIKED_IMAGES,
+    payload: { item },
+})

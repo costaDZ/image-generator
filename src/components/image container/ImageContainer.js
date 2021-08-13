@@ -9,6 +9,7 @@ import InfoBox from './InfoBox';
 function ImageContainer({
     kind,
     id,
+    img,
     webformatURL,
     tags,
     likes,
@@ -66,6 +67,7 @@ function ImageContainer({
         }
     }, [play]);
 
+
     return (
         <ImageContainerStyles
             key={id}
@@ -83,6 +85,8 @@ function ImageContainer({
                     <>
                         <img src={webformatURL} height="400" width="400" alt={tags} loading="lazy" />
                         <InfoBox
+                            img={img}
+                            id={id}
                             videos={videos}
                             tags={tags}
                             kind={kind}

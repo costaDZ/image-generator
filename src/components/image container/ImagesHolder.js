@@ -47,6 +47,7 @@ function ImagesHolder({ images, kind }) {
                         } = img;
                         return (
                             <ImageContainer
+                                img={img}
                                 key={id}
                                 id={id}
                                 likes={likes}

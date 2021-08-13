@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { loadImages, loadVideos } from '../../redux/thunk/thunk.js';
 
+import { handelLikedImages } from '../../redux/actions/actions';
+
 function InfoBoxContainer({
+    id,
+    img,
     videos,
     tags,
     kind,
@@ -13,6 +17,8 @@ function InfoBoxContainer({
     currentLocation,
     startSearchingImages,
     startSearchingVideos,
+    toggelLike,
+    likedItems,
 }) {
 
     function startSearch(e) {
@@ -27,6 +33,8 @@ function InfoBoxContainer({
         }
     }
 
+    let checkItems = likedItems.find(item => item.id === id);
+    console.log(checkItems);
     return (
         <InfoBox data-url={videos && videos.medium.url} k={kind}>
             <div className="tags">
@@ -50,22 +58,27 @@ function InfoBoxContainer({
                     :
                     <>
                         <div className="likes">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
-                                <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z" />
-                            </svg>
-                            <p>{likes}</p>
+                            <button onClick={() => toggelLike(img)}>
+                                {
+                                    checkItems
+                                        ? <i className="bi bi-hand-thumbs-up-fill"></i>
+                                        : <i className="bi bi-hand-thumbs-up" ></i>
+                                }
+                            </button>
+
+                            <p>{checkItems ? likes + 1 : likes}</p>
                         </div>
+
                         <div className="comments">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-fill" viewBox="0 0 16 16">
-                                <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
-                            </svg>
+                            <i className="bi bi-chat-dots"></i>
                             <p>{comments}</p>
                         </div>
+
                         <div className="collections">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-bookmark-fill" viewBox="0 0 16 16">
-                                <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
-                            </svg>
+                            <i className="bi bi-plus-square"></i>
+                            {/* <i className="bi bi-plus-square-fill"></i> */}
                         </div>
+
                     </>
                 }
             </div>
@@ -74,12 +87,19 @@ function InfoBoxContainer({
     )
 }
 
+const mapStateToProps = state => ({
+    likedItems: state.likedItem,
+});
+
 const mapDispatchToProps = dispatch => ({
     startSearchingImages: (searchKey, page) => dispatch(loadImages(searchKey, page)),
     startSearchingVideos: (searchKey) => dispatch(loadVideos(searchKey)),
+    toggelLike: item => dispatch(handelLikedImages(item)),
 });
 
-export default connect(null, mapDispatchToProps)(InfoBoxContainer);
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(InfoBoxContainer);
 
 
 
@@ -139,14 +159,36 @@ const InfoBox = styled.div`
             b {
                 margin-left: .7em;
             }
-            svg {
+            /* svg {
 
                 fill: transparent;
                 stroke: white;
             &:hover {
                 transition: var(--transition);
                 color: var(--green-color);
+            } */
+            button {
+                background-color: transparent;
+                outline: none;
+                border: none;
+                color: white;
+                font-size: 1em;
+
+                .bi-hand-thumbs-up-fill{
+                    color: var(--green-color);
+                }
+
             }
+
+            i {
+                font-size: 1.5em;
+
+                &:hover {
+                    color: var(--green-color);
+                    cursor: pointer;
+                } 
+            }
+
             }
         }
 

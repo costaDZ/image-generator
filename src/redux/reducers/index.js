@@ -7,12 +7,16 @@ import {
     menuBtn,
 } from './reducers';
 
+import {
+    likedItem
+} from './collection';
 
 const reducers = {
     nav,
     images,
     videos,
     menuBtn,
+    likedItem,
 };
 
 
