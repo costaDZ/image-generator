@@ -7,12 +7,14 @@ import { connect } from 'react-redux';
 
 function ImagesHolder({ images, kind }) {
 
-    let data = images[kind];
+    let data = (kind === "myCollection") ? images[kind] : images[kind].pic.hits;
+
+    console.log(data);
 
     if (kind === 'videos') {
         return (
             <ImagesContainerStyles>
-                {data.pic?.hits.map((v, i) => {
+                {data.map((v, i) => {
                     const { picture_id, id, duration, tags, videos } = v;
                     let src = `https://i.vimeocdn.com/video/${picture_id}_640x360.jpg`;
                     return (
@@ -33,7 +35,7 @@ function ImagesHolder({ images, kind }) {
         return (
             <ImagesContainerStyles>
                 {
-                    data.pic?.hits.map(img => {
+                    data.map(img => {
                         const {
                             id,
                             likes,

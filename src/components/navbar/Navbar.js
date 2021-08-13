@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import Link from './Link';
 import { WideContainer } from '../../styles';
 
+import { Link as MyLink } from 'react-router-dom';
+
+
 import { connect } from 'react-redux';
 import { toggelMenu } from '../../redux/actions/actions';
 
@@ -39,6 +42,9 @@ const Navbar = ({ menu, toggleMenuBtn }) => {
                         <Link path={"/Vectors"} content={"vector"} />
                         <Link path={"/Illistrations"} content={"illustration"} />
                         <Link path={"/Videos"} content={"videos"} />
+                        <MyLink to={"/collection"}>
+                            <button className="collection_btn">My Collection <i className="bi bi-plus-square"></i></button>
+                        </MyLink>
                     </div>
 
                     <i
@@ -98,6 +104,23 @@ const NavbarStyles = styled.header`
                 line-height: 3;
                 width: 100%;
                 left: 0;
+            }
+
+            .collection_btn {
+                    background-color: var(--green-color);
+                    border-radius: 40px;
+                    outline: none;
+                    border: none;
+                    padding: .5em 1em;
+                    font-weight: 700;
+                    border: 2px solid white;
+
+                    &:hover {
+                        transition: var(--transition);
+                        background-color: white;
+                        border-color:  var(--green-color);
+                        cursor: pointer;
+                    }
             }
         }
 

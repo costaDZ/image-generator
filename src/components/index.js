@@ -4,7 +4,18 @@ import ImageContainer from './image container/ImageContainer';
 import ImagesHolder from './image container/ImagesHolder';
 import Pagination from './Pagination';
 import PushArrow from './PushArrow';
+import StatusCollectionBar from './StatusCollectionBar';
 
 
 
-export { Navbar, Overlay, ImageContainer, ImagesHolder, Pagination, PushArrow };
+
+
+export {
+    Navbar,
+    Overlay,
+    ImageContainer,
+    ImagesHolder,
+    Pagination,
+    PushArrow,
+    StatusCollectionBar,
+};

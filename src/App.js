@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Main, Illistrations, Photos, Vectors, Videos } from './pages';
+import { Main, Illistrations, Photos, Vectors, Videos, Collection } from './pages';
 
 import { Navbar, Overlay, Pagination, PushArrow } from './components';
 
@@ -15,21 +15,28 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Main />
+            <Pagination />
           </Route>
           <Route path="/illistrations">
             <Illistrations />
+            <Pagination />
           </Route>
           <Route path="/photos">
             <Photos />
+            <Pagination />
           </Route>
           <Route path="/vectors">
             <Vectors />
+            <Pagination />
           </Route>
           <Route path="/videos">
             <Videos />
+            <Pagination />
+          </Route>
+          <Route>
+            <Collection path="/collection" />
           </Route>
         </Switch>
-        <Pagination />
         <PushArrow />
       </Router>
     </div>

@@ -91,22 +91,6 @@ const LinkStyles = styled(NavLink)`
                         width: 100%;
                     }
             }
-
-        /* &:not([href="/"])::after {
-            content: "";
-            display: block;
-            height: 2px;
-            background-color: var(--green-color);
-            position: relative;
-            border-radius: 20px;
-            top: 5px;
-            width: 0;
-        } 
-
-        &.active-link::after {
-                transition: ease .3s;
-                width: 100%;
-        }  */
 `;
 
 
