@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { loadImages, loadVideos } from '../../redux/thunk/thunk.js';
 
-import { handelLikedImages } from '../../redux/actions/actions';
+import { handelLikedImages, addToCollection } from '../../redux/actions/actions';
 
 function InfoBoxContainer({
     id,
@@ -19,6 +19,8 @@ function InfoBoxContainer({
     startSearchingVideos,
     toggelLike,
     likedItems,
+    toggleCollection,
+    collectionItems
 }) {
 
     function startSearch(e) {
@@ -34,7 +36,9 @@ function InfoBoxContainer({
     }
 
     let checkItems = likedItems.find(item => item.id === id);
-    console.log(checkItems);
+    let collection = collectionItems.find(item => item.id === id);
+
+
     return (
         <InfoBox data-url={videos && videos.medium.url} k={kind}>
             <div className="tags">
@@ -58,7 +62,9 @@ function InfoBoxContainer({
                     :
                     <>
                         <div className="likes">
-                            <button onClick={() => toggelLike(img)}>
+                            <button
+                                title={checkItems ? "dislike" : "Like"}
+                                onClick={() => toggelLike(img)}>
                                 {
                                     checkItems
                                         ? <i className="bi bi-hand-thumbs-up-fill"></i>
@@ -75,8 +81,15 @@ function InfoBoxContainer({
                         </div>
 
                         <div className="collections">
-                            <i className="bi bi-plus-square"></i>
-                            {/* <i className="bi bi-plus-square-fill"></i> */}
+                            <button
+                                title={checkItems ? "Add to my collection" : "Remove from my collection"}
+                                onClick={() => toggleCollection(img)}>
+                                {
+                                    collection
+                                        ? <i className="bi bi-plus-square-fill"></i>
+                                        : <i className="bi bi-plus-square"></i>
+                                }
+                            </button>
                         </div>
 
                     </>
@@ -89,12 +102,15 @@ function InfoBoxContainer({
 
 const mapStateToProps = state => ({
     likedItems: state.likedItem,
+    collectionItems: state.myCollection,
+
 });
 
 const mapDispatchToProps = dispatch => ({
     startSearchingImages: (searchKey, page) => dispatch(loadImages(searchKey, page)),
     startSearchingVideos: (searchKey) => dispatch(loadVideos(searchKey)),
     toggelLike: item => dispatch(handelLikedImages(item)),
+    toggleCollection: item => dispatch(addToCollection(item)),
 });
 
 
@@ -159,14 +175,6 @@ const InfoBox = styled.div`
             b {
                 margin-left: .7em;
             }
-            /* svg {
-
-                fill: transparent;
-                stroke: white;
-            &:hover {
-                transition: var(--transition);
-                color: var(--green-color);
-            } */
             button {
                 background-color: transparent;
                 outline: none;
@@ -174,10 +182,9 @@ const InfoBox = styled.div`
                 color: white;
                 font-size: 1em;
 
-                .bi-hand-thumbs-up-fill{
+                .bi-hand-thumbs-up-fill , .bi-plus-square-fill{
                     color: var(--green-color);
                 }
-
             }
 
             i {
@@ -189,7 +196,7 @@ const InfoBox = styled.div`
                 } 
             }
 
-            }
+            
         }
 
         &::after {
@@ -209,6 +216,5 @@ const InfoBox = styled.div`
             width: 100%;
         }
     }
-    
 `
 

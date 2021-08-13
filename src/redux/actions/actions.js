@@ -36,3 +36,10 @@ export const handelLikedImages = (item) => ({
     type: HANDEL_LIKED_IMAGES,
     payload: { item },
 })
+
+
+export const HANDEL_COLLECTION = 'ADD_TO_COLLECTION';
+export const addToCollection = (item) => ({
+    type: HANDEL_COLLECTION,
+    payload: { item },
+})

@@ -52,7 +52,6 @@ export const videos = (state = { isLoading: false }, actions) => {
 
 export const menuBtn = (state = false, actions) => {
     const { type, payload } = actions;
-
     switch (type) {
         case TOGGLE_MENU:
             console.log(payload);
@@ -63,9 +62,5 @@ export const menuBtn = (state = false, actions) => {
             }
         default:
             return state;
-            ;
     }
-
-
-
 }

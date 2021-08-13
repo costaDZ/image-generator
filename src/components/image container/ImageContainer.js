@@ -114,6 +114,7 @@ const ImageContainerStyles = styled.div`
         height: 20em;
         flex-grow: 1;
         overflow: hidden;
+        ${props => props.video === "videos" ? "width: 25em;" : null}
         @media (max-width: 1400px) {
             max-width: 45%;
         }

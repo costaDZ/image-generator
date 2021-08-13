@@ -8,7 +8,8 @@ import {
 } from './reducers';
 
 import {
-    likedItem
+    likedItem,
+    myCollection,
 } from './collection';
 
 const reducers = {
@@ -17,6 +18,7 @@ const reducers = {
     videos,
     menuBtn,
     likedItem,
+    myCollection,
 };
 
 
