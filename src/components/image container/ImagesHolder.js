@@ -9,8 +9,6 @@ function ImagesHolder({ images, kind }) {
 
     let data = (kind === "myCollection") ? images[kind] : images[kind].pic.hits;
 
-    console.log(data);
-
     if (kind === 'videos') {
         return (
             <ImagesContainerStyles>

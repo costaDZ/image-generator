@@ -54,7 +54,6 @@ export const menuBtn = (state = false, actions) => {
     const { type, payload } = actions;
     switch (type) {
         case TOGGLE_MENU:
-            console.log(payload);
             if (payload === 'close') {
                 return { ...state, menuBtn: false }
             } else {
