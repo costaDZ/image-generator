@@ -23,7 +23,7 @@ const Overlay = ({
             LoadMainImages("all", "", 1);
         } else if (section.category === "videos") {
             LoadThePage(section.category);
-            startSearchingVideos("");
+            startSearchingVideos("", 1);
         } else {
             LoadThePage(section.category);
             LoadMainImages(section.category, "", 1);
@@ -65,7 +65,7 @@ const mapStateToProps = state => ({
 const MapDispatchToProps = dispatch => ({
     LoadThePage: (page) => dispatch(changePage(page)),
     LoadMainImages: (kind, key, page) => dispatch(loadImages(kind, key, page)),
-    startSearchingVideos: searchKey => dispatch(loadVideos(searchKey)),
+    startSearchingVideos: (searchKey, page) => dispatch(loadVideos(searchKey, page)),
     closeMenu: dir => dispatch(toggelMenu(dir)),
 });
 
