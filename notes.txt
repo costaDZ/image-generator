@@ -6,6 +6,7 @@
     * images tags
     * search bar
     * pagination
+    * overlay
 
 
 /==========features plan==========/
@@ -32,16 +33,24 @@
 
 
 /==========bugs==========/
-// ** loading problem 
-// the images loader should wait intil the images is load
 
-//******* video section : 
+- loading problem 
+- the images loader should wait intil the images is load
 
-// video section : loader dosn't work for videos elements
+===========> video section : 
 
-// handel case when there is no images in all pages [component]
+- video section : loader dosn't work for videos elements
+- handel case when there is no images in all pages [component]
+- change videos resolution for small devices
+
+
+---------------------------------------------------------------------------------|
+
+// like event 
+    - creat a new object fo like images + like videos (to use it latter)
 
 
 
-// change videos resolution for small devices
-// show info box for small devices
+
+
+
