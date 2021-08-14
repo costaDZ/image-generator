@@ -35,9 +35,11 @@ function InfoBoxContainer({
         }
     }
 
-    let checkItems = likedItems.find(item => item.id === id);
-    let collection = collectionItems.find(item => item.id === id);
 
+    let checkItems = likedItems.find(item => item.id === id);
+    let collection = collectionItems.pic.hits.find(item => item.id === id);
+
+    console.log(collection);
 
     return (
         <InfoBox data-url={videos && videos.medium.url} k={kind}>
@@ -86,7 +88,7 @@ function InfoBoxContainer({
                                 onClick={() => toggleCollection(img)}>
                                 {
                                     collection
-                                        ? <i className="bi bi-plus-square-fill"></i>
+                                        ? <i className="bi bi-dash-square-fill"></i>
                                         : <i className="bi bi-plus-square"></i>
                                 }
                             </button>
@@ -103,7 +105,6 @@ function InfoBoxContainer({
 const mapStateToProps = state => ({
     likedItems: state.likedItem,
     collectionItems: state.myCollection,
-
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -182,7 +183,7 @@ const InfoBox = styled.div`
                 color: white;
                 font-size: 1em;
 
-                .bi-hand-thumbs-up-fill , .bi-plus-square-fill{
+                .bi-hand-thumbs-up-fill , .bi-dash-square-fill{
                     color: var(--green-color);
                 }
             }

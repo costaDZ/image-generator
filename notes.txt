@@ -11,20 +11,25 @@
 
 /==========features plan==========/
 
+
+*// add collection page  ///// ================> (currently)
+
 *// add advanced search page
-// add search bar filter appear after the user click search btn
+        -- all the queries available
 
-*// add collection page
-// add liked images
-// added images
-
-*// add download page 
-    // relevant images
-    // image informations
-    // comments 
-    // tags
+*// add download page
+        -- download
+        -- related images
+        -- comment 
+        -- user 
+        -- tags
 
 /==========Tasks==========/
+// deal with collection page design
+// add status bar 
+// add a question when the user want to remove from collection.
+
+
 // add like click event
 // add loader to the hole app
 

@@ -16,16 +16,33 @@ export const likedItem = (state = [], actions) => {
     }
 }
 
-export const myCollection = (state = [], actions) => {
+let initialCollection = {
+    pic: {
+        hits: [],
+    }
+}
+export const myCollection = (state = initialCollection, actions) => {
     const { type, payload } = actions;
+
+    console.log(state.pic.hits);
     switch (type) {
         case HANDEL_COLLECTION:
             const { item } = payload;
-            let checkItem = state.find(i => i.id === item.id);
+            let checkItem = state.pic.hits.find(i => i.id === item.id);
             if (!checkItem) {
-                return [...state, item];
+
+                console.log("==============>", state, item);
+                return {
+                    pic: {
+                        hits: [...state.pic.hits, item]
+                    }
+                };
             } else {
-                return [...state.filter(i => i.id !== item.id)];
+                return {
+                    pic: {
+                        hits: [...state.pic.hits.filter(i => i.id !== item.id)]
+                    }
+                };
             }
         default:
             return state;

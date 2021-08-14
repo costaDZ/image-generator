@@ -11,25 +11,29 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-        <Overlay />
         <Switch>
           <Route exact path="/">
+            <Overlay />
             <Main />
             <Pagination />
           </Route>
           <Route path="/illistrations">
+            <Overlay />
             <Illistrations />
             <Pagination />
           </Route>
           <Route path="/photos">
+            <Overlay />
             <Photos />
             <Pagination />
           </Route>
           <Route path="/vectors">
+            <Overlay />
             <Vectors />
             <Pagination />
           </Route>
           <Route path="/videos">
+            <Overlay />
             <Videos />
             <Pagination />
           </Route>
