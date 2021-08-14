@@ -88,7 +88,7 @@ function InfoBoxContainer({
                                 onClick={() => toggleCollection(img)}>
                                 {
                                     collection
-                                        ? <i className="bi bi-plus-square-fill"></i>
+                                        ? <i className="bi bi-dash-square-fill"></i>
                                         : <i className="bi bi-plus-square"></i>
                                 }
                             </button>
@@ -183,7 +183,7 @@ const InfoBox = styled.div`
                 color: white;
                 font-size: 1em;
 
-                .bi-hand-thumbs-up-fill , .bi-plus-square-fill{
+                .bi-hand-thumbs-up-fill , .bi-dash-square-fill{
                     color: var(--green-color);
                 }
             }

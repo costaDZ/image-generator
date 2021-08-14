@@ -30,12 +30,19 @@ export const myCollection = (state = initialCollection, actions) => {
             const { item } = payload;
             let checkItem = state.pic.hits.find(i => i.id === item.id);
             if (!checkItem) {
-                state.pic.hits.push(item);
+
                 console.log("==============>", state, item);
-                return state;
+                return {
+                    pic: {
+                        hits: [...state.pic.hits, item]
+                    }
+                };
             } else {
-                state.pic.hits.filter(i => i.id !== item.id)
-                return state;
+                return {
+                    pic: {
+                        hits: [...state.pic.hits.filter(i => i.id !== item.id)]
+                    }
+                };
             }
         default:
             return state;
