@@ -35,9 +35,11 @@ function InfoBoxContainer({
         }
     }
 
-    let checkItems = likedItems.find(item => item.id === id);
-    let collection = collectionItems.find(item => item.id === id);
 
+    let checkItems = likedItems.find(item => item.id === id);
+    let collection = collectionItems.pic.hits.find(item => item.id === id);
+
+    console.log(collection);
 
     return (
         <InfoBox data-url={videos && videos.medium.url} k={kind}>
@@ -103,7 +105,6 @@ function InfoBoxContainer({
 const mapStateToProps = state => ({
     likedItems: state.likedItem,
     collectionItems: state.myCollection,
-
 });
 
 const mapDispatchToProps = dispatch => ({
