@@ -16,7 +16,7 @@ function ImageContainer({
     comments,
     duration,
     videos,
-    isLoading
+    isLoading,
 }) {
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
@@ -30,8 +30,9 @@ function ImageContainer({
     }, []);
 
     let timer;
-    function playVideo(v) {
-        if (kind === ("videos")) {
+    function playVideo(v, e) {
+        let itemkind = containerRef.current.dataset.kind;
+        if (itemkind === ("video")) {
             if (v === "set") {
                 clearTimeout(timer);
                 timer = setTimeout(() => {
@@ -71,10 +72,11 @@ function ImageContainer({
     return (
         <ImageContainerStyles
             key={id}
-            onMouseOver={() => playVideo("set")}
-            onMouseLeave={() => playVideo("t")}
-            video={kind}
+            onMouseOver={(e) => playVideo("set", e)}
+            onMouseLeave={(e) => playVideo("t", e)}
+            video={duration ? "video" : "image"}
             ref={containerRef}
+            data-kind={duration ? "video" : "image"}
         >
 
             {
@@ -89,7 +91,7 @@ function ImageContainer({
                             id={id}
                             videos={videos}
                             tags={tags}
-                            kind={kind}
+                            kind={duration ? "video" : "image"}
                             duration={duration}
                             likes={likes}
                             comments={comments}
@@ -114,7 +116,7 @@ const ImageContainerStyles = styled.div`
         height: 20em;
         flex-grow: 1;
         overflow: hidden;
-        ${props => props.video === "videos" ? "width: 25em;" : null}
+        ${props => props.video === "video" ? "width: 23em;" : null}
         @media (max-width: 1400px) {
             max-width: 45%;
         }
@@ -135,7 +137,7 @@ const ImageContainerStyles = styled.div`
         min-height: 100%;
         min-width: 100%;
         width: auto;
-        z-index: 2;
+        z-index: 1;
 
         &:hover {
         cursor:pointer;

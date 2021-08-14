@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { loadImages, loadVideos } from '../../redux/thunk/thunk.js';
 
+import { useHistory } from 'react-router';
+
 import { handelLikedImages, addToCollection } from '../../redux/actions/actions';
 
 function InfoBoxContainer({
@@ -23,6 +25,9 @@ function InfoBoxContainer({
     collectionItems
 }) {
 
+    let history = useHistory().location.pathname;
+    console.log(history);
+
     function startSearch(e) {
         let valueKeySearch = e.target.textContent;
         switch (currentLocation) {
@@ -41,17 +46,27 @@ function InfoBoxContainer({
 
     return (
         <InfoBox data-url={videos && videos.medium.url} k={kind}>
-            <div className="tags">
-                {tags.replace(/\s/g, "").split(',').map((tag, i) => {
-                    return (
-                        <button
-                            key={i}
-                            onClick={(e) => startSearch(e)}
-                        >{tag}</button>
-                    )
-                })
-                }
-            </div>
+
+            {
+                (checkItems || collection)
+                    &&
+                    (history === "/collection")
+
+                    ? null :
+                    <div className="tags">
+                        {tags.replace(/\s/g, "").split(',').map((tag, i) => {
+                            return (
+                                <button
+                                    key={i}
+                                    onClick={(e) => startSearch(e)}
+                                >{tag}</button>
+                            )
+                        })
+                        }
+                    </div>
+            }
+
+
             <div className="likes_comments">
 
                 {kind === 'videos' ?
@@ -133,7 +148,7 @@ const InfoBox = styled.div`
             align-items: flex-end;
             justify-content: space-between;
             position: absolute;
-            opacity: ${props => props.k === "videos" ? 1 : 0};
+            opacity: ${props => props.k === "video" ? 1 : 0};
             color: var(--white-color);
             height: 100%;
 
@@ -141,7 +156,7 @@ const InfoBox = styled.div`
             background: linear-gradient(0deg,rgb(0 0 0 / 90%) 0,transparent);
             width: 100%;
 
-                ${props => props.k !== "videos" ? " @media (max-width: 768px) {opacity: 1;height: 30%;}" : ""}
+                ${props => props.k !== "video" ? " @media (max-width: 768px) {opacity: 1;height: 30%;}" : ""}
 
 
             &:hover {
@@ -210,7 +225,7 @@ const InfoBox = styled.div`
         &::after {
             content :"";
             position: absolute;
-            height: ${props => props.k === "videos" ? ".8em" : 0};
+            height: ${props => props.k === "video" ? ".8em" : 0};
             width: 0;
             top: 0;
             left: 0;
