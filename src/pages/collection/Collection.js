@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import {
     ImagesHolder,
     StatusCollectionBar
@@ -15,3 +17,8 @@ function Collection() {
 }
 
 export default Collection;
+
+const CollectionStyled = styled.section`
+    padding: 2em 0;
+
+`;
