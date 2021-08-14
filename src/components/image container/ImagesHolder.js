@@ -14,7 +14,6 @@ function ImagesHolder({ images, kind }) {
     //     <h1>Hello test</h1>
     // )
 
-    console.log(data);
 
     if (kind === 'videos') {
         return (

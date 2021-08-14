@@ -10,7 +10,7 @@ import {
 import {
     likedItem,
     myCollection,
-} from './collection';
+} from './collectionsReducer';
 
 const reducers = {
     nav,

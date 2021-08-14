@@ -30,8 +30,6 @@ export const myCollection = (state = initialCollection, actions) => {
             const { item } = payload;
             let checkItem = state.pic.hits.find(i => i.id === item.id);
             if (!checkItem) {
-
-                console.log("==============>", state, item);
                 return {
                     pic: {
                         hits: [...state.pic.hits, item]

@@ -39,8 +39,6 @@ function InfoBoxContainer({
     let checkItems = likedItems.find(item => item.id === id);
     let collection = collectionItems.pic.hits.find(item => item.id === id);
 
-    console.log(collection);
-
     return (
         <InfoBox data-url={videos && videos.medium.url} k={kind}>
             <div className="tags">
@@ -60,6 +58,15 @@ function InfoBoxContainer({
                     <div className="quality_diration">
                         <p>0:{duration}</p>
                         <b>4K</b>
+                        <button
+                            title={checkItems ? "Add to my collection" : "Remove from my collection"}
+                            onClick={() => toggleCollection(img)}>
+                            {
+                                collection
+                                    ? <i className="bi bi-dash-square-fill"></i>
+                                    : <i className="bi bi-plus-square"></i>
+                            }
+                        </button>
                     </div>
                     :
                     <>

@@ -9,16 +9,15 @@ import {
 
 function Collection() {
     return (
-        <div>
+        <CollectionStyled>
             <ImagesHolder kind={"myCollection"} />
             <StatusCollectionBar />
-        </div>
+        </CollectionStyled>
     )
 }
 
 export default Collection;
 
 const CollectionStyled = styled.section`
-    padding: 2em 0;
-
+    padding: 6em 0;
 `;
