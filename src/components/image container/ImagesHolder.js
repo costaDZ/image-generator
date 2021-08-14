@@ -10,10 +10,6 @@ function ImagesHolder({ images, kind }) {
 
     let data = images[kind].pic?.hits;
 
-    // return (
-    //     <h1>Hello test</h1>
-    // )
-
     return (
         <ImagesContainerStyles>
             {

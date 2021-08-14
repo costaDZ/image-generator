@@ -98,15 +98,27 @@ const PopulairImagesStyle = styled.div`
     h4 {
         display : inline-block;
         margin: 0;
+        color: black;
+        border: 4px solid var(--green-color);
+        border-radius: 30px;
+        background: var(--green-color);;
+
         }
         button {
         font-size: .8em;
-        background: #02be6e78;
+        background: white;
+        border: 4px solid var(--green-color);
         border-radius: 30px;
-        color: white;
+        color: black;
         cursor: pointer;
         padding: .2em .4em;
         margin: .2em .2em;
         font-weight: 700;
+        transition: var(--transition);
+
+            &:hover {
+                background: var(--green-color);
+                color: black;
+            }
         }
 `;
