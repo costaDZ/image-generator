@@ -10,6 +10,7 @@ import {
 import {
     likedItem,
     myCollection,
+    download,
 } from './collectionsReducer';
 
 const reducers = {
@@ -19,6 +20,7 @@ const reducers = {
     menuBtn,
     likedItem,
     myCollection,
+    download,
 };
 
 

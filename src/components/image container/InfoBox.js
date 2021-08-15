@@ -149,7 +149,7 @@ const InfoBox = styled.div`
             position: absolute;
             opacity: ${props => props.k === "video" ? 1 : 0};
             color: var(--white-color);
-            height: 100%;
+            height: 20%;
 
             bottom: 0;
             background: linear-gradient(0deg,rgb(0 0 0 / 90%) 0,transparent);
@@ -158,11 +158,7 @@ const InfoBox = styled.div`
                 ${props => props.k !== "video" ? " @media (max-width: 768px) {opacity: 1;height: 30%;}" : ""}
 
 
-            &:hover {
-                transition: ease .8s;
-                cursor: pointer;
-                opacity: 1;
-            };
+          
         
             .tags {
                 display: flex;
@@ -220,23 +216,5 @@ const InfoBox = styled.div`
 
             
         }
-
-        &::after {
-            content :"";
-            position: absolute;
-            height: ${props => props.k === "video" ? ".8em" : 0};
-            width: 0;
-            top: 0;
-            left: 0;
-            background-color: var(--green-color);
-            transition: ease 1.5s;
-        }
-
-    &:hover {
-        cursor:pointer;
-        &::after {
-            width: 100%;
-        }
-    }
 `
 

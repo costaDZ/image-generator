@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import Loader from '../Loader';
 import InfoBox from './InfoBox';
+
+import { connect } from 'react-redux';
+import { addToDownload } from '../../redux/actions/actions';
 
 
 
@@ -17,6 +21,7 @@ function ImageContainer({
     duration,
     videos,
     isLoading,
+    goToDownload,
 }) {
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
@@ -85,7 +90,9 @@ function ImageContainer({
                     <Loader />
                     :
                     <>
-                        <img src={webformatURL} height="400" width="400" alt={tags} loading="lazy" />
+                        <Link to={`/download/${id}`} onClick={() => goToDownload(img)}>
+                            <img src={webformatURL} height="400" width="400" alt={tags} loading="lazy" />
+                        </Link>
                         <InfoBox
                             img={img}
                             id={id}
@@ -99,13 +106,16 @@ function ImageContainer({
                         />
                     </>
             }
-
         </ImageContainerStyles >
     )
 }
 
+const mapDispatchToProps = dispatch => ({
+    goToDownload: (item) => dispatch(addToDownload(item)),
+});
 
-export default ImageContainer;
+
+export default connect(null, mapDispatchToProps)(ImageContainer);
 
 
 
@@ -127,6 +137,29 @@ const ImageContainerStyles = styled.div`
         img {
             width: 100%;
             height: 100%;
+        }
+
+        &::after {
+            content :"";
+            position: absolute;
+            height: ${props => props.video === "video" ? ".8em" : 0};
+            width: 0;
+            top: 0;
+            left: 0;
+            background-color: var(--green-color);
+            transition: ease 1.5s;
+        }
+
+        &:hover {
+            cursor: pointer;
+            .sc-pNWdM {
+                transition: ease .8s;
+                opacity: 1;
+            }
+            cursor:pointer;
+            &::after {
+                width: 100%;
+            }
         }
 
     .hovering_video {   

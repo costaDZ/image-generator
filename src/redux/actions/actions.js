@@ -43,3 +43,9 @@ export const addToCollection = (item) => ({
     type: HANDEL_COLLECTION,
     payload: { item },
 })
+
+export const ADD_TO_DOWNLOAD = 'ADD_TO_DOWNLOAD';
+export const addToDownload = item => ({
+    type: ADD_TO_DOWNLOAD,
+    payload: { item },
+})
