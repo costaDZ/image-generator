@@ -26,7 +26,6 @@ function InfoBoxContainer({
 }) {
 
     let history = useHistory().location.pathname;
-    console.log(history);
 
     function startSearch(e) {
         let valueKeySearch = e.target.textContent;

@@ -1,22 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 
-function StatusCollectionBar() {
+function StatusCollectionBar({
+    collectedPhotos,
+    collectedVectors,
+    collectedIllistrations,
+    collectedVideos
+}) {
+    let total = collectedPhotos + collectedVectors + collectedIllistrations + collectedVideos;
+
     return (
         <StatusBarStyled>
             <ul>
-                <h4>Total collection : 25</h4>
-                <li>photos : (23 )</li>
-                <li>vector : (23)</li>
-                <li>illustration: (23)</li>
-                <li>videos: (23)</li>
+                <h4>Total collection : {total}</h4>
+                <li>photos : {collectedPhotos}</li>
+                <li>vector : {collectedVectors}</li>
+                <li>illustration: {collectedIllistrations}</li>
+                <li>videos: {collectedVideos}</li>
             </ul>
         </StatusBarStyled>
     )
 }
 
-export default StatusCollectionBar;
+const mapStateToProps = state => ({
+    collectedPhotos: state.myCollection.photo,
+    collectedVectors: state.myCollection.vector,
+    collectedIllistrations: state.myCollection.illustration,
+    collectedVideos: state.myCollection.video,
+})
+
+
+export default connect(mapStateToProps)(StatusCollectionBar);
 
 
 const StatusBarStyled = styled.div`
@@ -24,6 +40,7 @@ const StatusBarStyled = styled.div`
         position: fixed;
         bottom: 0;
         width: 100%;
+        z-index: 5;
 
         ul {
                 display: flex;
@@ -41,6 +58,10 @@ const StatusBarStyled = styled.div`
 
             li {
                 font-weight: 700;
+                @media (max-width: 768px) {
+                display: none;
             }
+            }
+
         }
 `;
