@@ -1,8 +1,8 @@
 import {
     HANDEL_LIKED_IMAGES,
     HANDEL_COLLECTION,
-    ADD_TO_DOWNLOAD
 } from '../actions/actions';
+
 
 export const likedItem = (state = [], actions) => {
     const { type, payload } = actions;
@@ -67,13 +67,3 @@ export const myCollection = (state = initialCollection, actions) => {
     }
 }
 
-export const download = (state = [], actions) => {
-    const { type, payload } = actions;
-    switch (type) {
-        case ADD_TO_DOWNLOAD:
-            const { item } = payload;
-            return [item];
-        default:
-            return state;
-    }
-}

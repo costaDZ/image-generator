@@ -5,7 +5,15 @@ import ImagesHolder from './image container/ImagesHolder';
 import Pagination from './Pagination';
 import PushArrow from './PushArrow';
 import StatusCollectionBar from './StatusCollectionBar';
-import bigImageView from './BigImage';
+import BigImageView from './download/BigImage';
+import DownloadBtn from './download/DownloadBtn';
+import UserInfo from './download/UserInfo';
+
+
+
+
+
+
 
 
 
@@ -19,5 +27,7 @@ export {
     Pagination,
     PushArrow,
     StatusCollectionBar,
-    bigImageView,
+    BigImageView,
+    DownloadBtn,
+    UserInfo,
 };

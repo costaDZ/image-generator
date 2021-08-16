@@ -6,7 +6,7 @@ import Loader from '../Loader';
 import InfoBox from './InfoBox';
 
 import { connect } from 'react-redux';
-import { addToDownload } from '../../redux/actions/actions';
+import { addToDownload } from '../../redux/actions/downloadActions';
 
 
 

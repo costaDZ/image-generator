@@ -10,6 +10,8 @@ import { Link as MyLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggelMenu } from '../../redux/actions/actions';
 
+import { BigBtn } from '../../styles/components';
+
 
 const Navbar = ({ menu, toggleMenuBtn }) => {
 
@@ -43,7 +45,7 @@ const Navbar = ({ menu, toggleMenuBtn }) => {
                         <Link path={"/Illistrations"} content={"illustration"} />
                         <Link path={"/Videos"} content={"videos"} />
                         <MyLink to={"/collection"}>
-                            <button className="collection_btn">My Collection <i className="bi bi-plus-square"></i></button>
+                            <BigBtn className="collection_btn">My Collection <i className="bi bi-plus-square"></i></BigBtn>
                         </MyLink>
                     </div>
 

@@ -44,8 +44,3 @@ export const addToCollection = (item) => ({
     payload: { item },
 })
 
-export const ADD_TO_DOWNLOAD = 'ADD_TO_DOWNLOAD';
-export const addToDownload = item => ({
-    type: ADD_TO_DOWNLOAD,
-    payload: { item },
-})

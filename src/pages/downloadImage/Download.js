@@ -2,12 +2,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { bigImageView } from '../../components';
+import { BigImageView, DownloadBtn, UserInfo } from '../../components';
 
-function Download({ itemToDownload }) {
+import { toggleDownloadSizes } from '../../redux/actions/downloadActions';
+
+function Download({ itemToDownload, toggleDownloadSizes }) {
+
+    console.log(itemToDownload);
+    const { webformatURL, largeImageURL, tags, type } = itemToDownload;
+
     return (
         <DownloadStyled>
-            {/* <bigImageView /> */}
+            <div className="first_container">
+
+                <BigImageView
+                    large={largeImageURL}
+                    normal={webformatURL}
+                />
+
+                <div className="side_bar">
+                    <UserInfo />
+                    <DownloadBtn toggleDownloadSizes={toggleDownloadSizes} />
+                </div>
+            </div>
+
+
         </DownloadStyled>
     )
 }
@@ -18,12 +37,30 @@ function Download({ itemToDownload }) {
 
 
 const mapStateToProps = state => ({
-    itemToDownload: state.download[0],
+    itemToDownload: state.download.targetImage,
 });
 
-export default connect(mapStateToProps)(Download);
+const mapDispatchToProps = dispatch => ({
+    toggleDownloadSizes: action => dispatch(toggleDownloadSizes(action)),
+});
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Download);
 
 
 const DownloadStyled = styled.section`
-    
+    padding: 5em 5em;
+    .first_container {
+        display: flex;
+        justify-content: space-between;
+
+        .side_bar {
+        //    background: antiquewhite;
+            flex: 1;
+            padding: 0em 1em;
+        }
+    }
+
+
 `;

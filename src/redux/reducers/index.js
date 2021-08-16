@@ -10,8 +10,12 @@ import {
 import {
     likedItem,
     myCollection,
-    download,
 } from './collectionsReducer';
+
+
+import {
+    download,
+} from './downloadReducer.js';
 
 const reducers = {
     nav,
