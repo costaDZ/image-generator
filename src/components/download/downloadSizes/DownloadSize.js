@@ -4,14 +4,25 @@ import { BigBtn } from '../../../styles/components';
 
 
 
-function DownloadSize() {
+function DownloadSize({
+    sizes,
+    smallWidth,
+    smallHeight,
+    largeWidth,
+    largeHeight,
+    extention,
+}) {
+    console.log(smallWidth);
     return (
-        <DownloadSizeStyles>
-            <input type="radio" id="small" name="resolution" value="small" />
-            <label for="small">500 * 400   &emsp;&emsp;&emsp;20KB&emsp;&emsp;JPG</label><br />
+        <DownloadSizeStyles style={{ display: sizes ? "block" : false }}>
 
-            <input type="radio" id="large" name="resolution" value="large" />
-            <label for="large">1000*3000 &emsp;&emsp;60KB &emsp;&emsp; JPG</label><br />
+            <form >
+                <input type="radio" id="small" name="resolution" value="small" />
+                <label htmlFor="small">{`${smallWidth} * ${smallHeight}`}  &emsp;&emsp;&emsp;20KB&emsp;&emsp;{extention && extention.toUpperCase()}</label><br />
+
+                <input type="radio" id="large" name="resolution" value="large" />
+                <label htmlFor="large">{`${largeWidth} * ${largeHeight}`} &emsp;&emsp;60KB &emsp;&emsp; {extention && extention.toUpperCase()}</label><br />
+            </form>
 
             <BigBtn type="submit">Download</BigBtn>
         </DownloadSizeStyles>
@@ -20,16 +31,31 @@ function DownloadSize() {
 
 export default DownloadSize;
 
-const DownloadSizeStyles = styled.form`
-    background-color: black;
-    color: white;
+const DownloadSizeStyles = styled.div`
     position: absolute;
-    top: 9.6em;
-    width: 80%;
-    line-height: 3;
-    padding: .5em;
-    text-align: center;
+    width: 100%;
+    top: 152px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: black;
+  //  height: 100%;
+    display: none;
+    padding: .5em;
+
+
+    form {
+        color: white;
+        position: relative;
+        line-height: 3;
+        padding: .5em;
+        text-align: center;
+    }
+
+    /* .show {
+        display: block;
+    } */
 
     ::before {
             content: "";
@@ -41,6 +67,14 @@ const DownloadSizeStyles = styled.form`
             position: absolute;
             bottom: 160px;
             left: 60px;
+    }
+
+    button {
+        width: 80%;
+        margin: auto;
+        width: 80%;
+        display: block;
+        margin: auto;
     }
     /* label {
         padding: .5em  0;

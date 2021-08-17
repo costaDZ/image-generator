@@ -2,33 +2,105 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { BigImageView, DownloadBtn, UserInfo } from '../../components';
+import {
+    BigImageView,
+    DownloadBtn,
+    UserInfo
+} from '../../components';
 
 import { toggleDownloadSizes } from '../../redux/actions/downloadActions';
 
-function Download({ itemToDownload, toggleDownloadSizes }) {
+function Download({
+    itemToDownload,
+    toggleDownloadSizes,
+    sizes,
+    extention,
+    targetType,
+}) {
 
-    console.log(itemToDownload);
-    const { webformatURL, largeImageURL, tags, type } = itemToDownload;
+    if (targetType === "video") {
+        const { user, userImageURL } = itemToDownload;
+        const { large, medium, small, tiny } = itemToDownload.videos;
+        // const { url, width, height,size } = large;
+        // const { url, width, height,size } = medium;
+        // const { url, width, height, size } = small;
+        // const { url, width, height, size } = tiny;
+        console.log(user);
 
-    return (
-        <DownloadStyled>
-            <div className="first_container">
+        return (
+            <DownloadStyled>
+                <div className="first_container">
 
-                <BigImageView
-                    large={largeImageURL}
-                    normal={webformatURL}
-                />
+                    <BigImageView
+                        targetType={targetType}
+                        large={large}
+                        normal={medium}
+                        small={small}
+                        tiny={tiny}
+                    />
 
-                <div className="side_bar">
-                    <UserInfo />
-                    <DownloadBtn toggleDownloadSizes={toggleDownloadSizes} />
+                    {/* <div className="side_bar">
+                        <UserInfo
+                            userImage={userImageURL}
+                            user={user}
+                        />
+                        <DownloadBtn
+                            toggleDownloadSizes={toggleDownloadSizes}
+                            sizes={sizes}
+                            mediumVideo={medium}
+                            largeVideo={large}
+                            extention={extention}
+                        />
+                    </div> */}
                 </div>
-            </div>
+            </DownloadStyled>
+        )
+
+    } else {
+        const {
+            webformatURL,
+            largeImageURL,
+            tags,
+            type,
+            userImageURL,
+            user,
+            webformatWidth,
+            webformatHeight,
+            imageWidth,
+            imageHeight,
+            imageSize,
+        } = itemToDownload;
 
 
-        </DownloadStyled>
-    )
+        return (
+            <DownloadStyled>
+                <div className="first_container">
+
+                    <BigImageView
+                        large={largeImageURL}
+                        normal={webformatURL}
+                    />
+
+                    <div className="side_bar">
+                        <UserInfo
+                            userImage={userImageURL}
+                            user={user}
+                        />
+                        <DownloadBtn
+                            toggleDownloadSizes={toggleDownloadSizes}
+                            sizes={sizes}
+                            smallWidth={webformatWidth}
+                            smallHeight={webformatHeight}
+                            largeWidth={imageWidth}
+                            largeHeight={imageHeight}
+                            extention={extention}
+                        />
+                    </div>
+                </div>
+            </DownloadStyled>
+        )
+    }
+
 }
 
 
@@ -38,6 +110,9 @@ function Download({ itemToDownload, toggleDownloadSizes }) {
 
 const mapStateToProps = state => ({
     itemToDownload: state.download.targetImage,
+    sizes: state.download.sizes,
+    extention: state.download.extention,
+    targetType: state.download.targetType,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -46,7 +121,8 @@ const mapDispatchToProps = dispatch => ({
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Download);
+export default connect(mapStateToProps,
+    mapDispatchToProps)(Download);
 
 
 const DownloadStyled = styled.section`

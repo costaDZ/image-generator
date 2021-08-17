@@ -7,13 +7,16 @@ import {
 
 const key = process.env.REACT_APP_KEY;
 const url = 'https://pixabay.com/api/?key=' + key;
+const signal = AbortController.signal;
 
 export const loadImages = (kind = "all", searchKey = "", pageNumber = 1, perPage = 50) => async (dispatch, images) => {
     try {
         dispatch(loadImagesInProgress());
-        const response = await fetch(url + `&q=${searchKey}&image_type=${kind}&per_page=${perPage}&order=latest&page=${pageNumber}&category=all&min_width=0&min_height=0&safesearch=true`);
+        const response =
+            await fetch(url + `&q=${searchKey}&image_type=${kind}&per_page=${perPage}&order=latest&page=${pageNumber}&category=all&min_width=0&min_height=0&safesearch=true`, { signal: signal });
         const images = await response.json();
         dispatch(loadImagesSuccess(kind, images, searchKey, pageNumber, perPage));
+        AbortController.abort();
     } catch (error) {
         console.log(error);
     }
@@ -25,9 +28,10 @@ export const loadVideos = (searchKey = "", pageNumber = 1) => async (dispatch, v
     let perPage = 30;
     try {
         dispatch(loadImagesInProgress());
-        const response = await fetch(videosUrl + `&q=${searchKey}&video_type=all&category=all&min_width=0&min_height=0&safesearch=true&order=popular&page=${pageNumber}&per_page=${perPage}`);
+        const response = await fetch(videosUrl + `&q=${searchKey}&video_type=all&category=all&min_width=0&min_height=0&safesearch=true&order=popular&page=${pageNumber}&per_page=${perPage}`, { signal: signal });
         const videos = await response.json();
         dispatch(loadVideosSuccess(videos, searchKey, pageNumber, perPage))
+        AbortController.abort();
     } catch (error) {
         console.log(error);
     }

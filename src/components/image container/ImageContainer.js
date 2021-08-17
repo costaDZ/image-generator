@@ -52,7 +52,7 @@ function ImageContainer({
 
     useEffect(() => {
         let video = document.createElement("video");
-        let firstChild = containerRef.current.firstElementChild;
+        let firstChild = containerRef.current.firstElementChild.firstElementChild;
         if (videos && play) {
             video.classList.add("hovering_video");
             video.setAttribute("autoPlay", true);
@@ -66,10 +66,10 @@ function ImageContainer({
                 video.setAttribute("height", "100");
             }
             video.appendChild(source);
-            containerRef.current.prepend(video);
+            containerRef.current.firstElementChild.prepend(video);
         }
         else if (videos && !play && firstChild.tagName === 'VIDEO') {
-            containerRef.current.removeChild(firstChild);
+            containerRef.current.firstElementChild.removeChild(firstChild);
         }
     }, [play]);
 
@@ -152,7 +152,7 @@ const ImageContainerStyles = styled.div`
 
         &:hover {
             cursor: pointer;
-            .sc-pNWdM {
+            .info_box {
                 transition: ease .8s;
                 opacity: 1;
             }

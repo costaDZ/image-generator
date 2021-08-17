@@ -44,7 +44,11 @@ function InfoBoxContainer({
     let collection = collectionItems.pic.hits.find(item => item.id === id);
 
     return (
-        <InfoBox data-url={videos && videos.medium.url} k={kind}>
+        <InfoBox
+            data-url={videos && videos.medium.url}
+            k={kind}
+            className="info_box"
+        >
 
             {
                 (checkItems || collection)

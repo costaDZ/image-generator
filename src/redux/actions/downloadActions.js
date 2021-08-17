@@ -7,6 +7,6 @@ export const addToDownload = item => ({
 
 export const TOGGLE_DOWNLOAD_SIZES = 'TOGGLE_DOWNLOAD_SIZES';
 export const toggleDownloadSizes = (action) => ({
-    type: ADD_TO_DOWNLOAD,
+    type: TOGGLE_DOWNLOAD_SIZES,
     payload: action,
 })

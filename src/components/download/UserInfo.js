@@ -1,17 +1,12 @@
 import React from 'react'
 import styled from 'styled-components';
 
-import { connect } from 'react-redux';
 
-
-function UserInfo({ image }) {
-
-    const { userImageURL, user } = image;
+function UserInfo({ userImage, user }) {
     return (
         <UserInfoStyles>
-
             <div className="use_info">
-                <img src={userImageURL} alt="photographer" className="user_img" />
+                <img src={userImage} alt="photographer" className="user_img" />
                 <p>Photographer : {user}</p>
             </div>
 
@@ -24,12 +19,8 @@ function UserInfo({ image }) {
     )
 }
 
-const mapStateToProps = state => ({
-    image: state.download.targetImage
 
-});
-
-export default connect(mapStateToProps)(UserInfo);
+export default UserInfo;
 
 
 const UserInfoStyles = styled.div`

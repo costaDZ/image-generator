@@ -5,7 +5,15 @@ import { BigBtn } from '../../styles/components';
 
 import DownloadSize from './downloadSizes/DownloadSize';
 
-function DownloadBtn({ toggleDownloadSizes }) {
+function DownloadBtn({
+    toggleDownloadSizes,
+    sizes,
+    smallWidth,
+    smallHeight,
+    largeWidth,
+    largeHeight,
+    extention,
+}) {
     return (
         <DownloadBtnStyles>
             <BigBtn
@@ -14,7 +22,14 @@ function DownloadBtn({ toggleDownloadSizes }) {
             >
                 <i class="bi bi-download"></i> Free Download
             </BigBtn>
-            <DownloadSize />
+            <DownloadSize
+                sizes={sizes}
+                smallWidth={smallWidth}
+                smallHeight={smallHeight}
+                largeWidth={largeWidth}
+                largeHeight={largeHeight}
+                extention={extention}
+            />
         </DownloadBtnStyles>
     )
 }
@@ -27,6 +42,7 @@ const DownloadBtnStyles = styled.div`
     height: 15em;
    // background: aqua;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
