@@ -19,8 +19,6 @@ function DownloadBtn({ toggleDownloadSizes }) {
     )
 }
 
-// 
-
 
 
 export default DownloadBtn;
