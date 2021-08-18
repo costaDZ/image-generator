@@ -103,6 +103,7 @@ function ImageContainer({
                             likes={likes}
                             comments={comments}
                             currentLocation={kind}
+                            goToDownload={goToDownload}
                         />
                     </>
             }

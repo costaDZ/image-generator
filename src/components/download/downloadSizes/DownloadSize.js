@@ -112,7 +112,7 @@ function DownloadSize({
                 </label>
 
                 <br />
-                <BigBtn type="submit" >Download</BigBtn>
+                <BigBtn className="pre" type="submit" >Download</BigBtn>
             </form>
 
         </DownloadSizeStyles>

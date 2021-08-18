@@ -47,6 +47,7 @@ const BigImageStyles = styled.div`
     width: 70%; 
     height: 38em; 
     overflow: hidden;
+    text-align: center;
 
     picture {
     width: 100%;
@@ -54,7 +55,7 @@ const BigImageStyles = styled.div`
     }
 
     img {
-        width: 100%;
+      //  width: 100%;
         height: 100%;
     }
 

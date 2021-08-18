@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { loadImages, loadVideos } from '../../redux/thunk/thunk.js';
 
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { handelLikedImages, addToCollection } from '../../redux/actions/actions';
 
@@ -22,7 +23,8 @@ function InfoBoxContainer({
     toggelLike,
     likedItems,
     toggleCollection,
-    collectionItems
+    collectionItems,
+    goToDownload,
 }) {
 
     let history = useHistory().location.pathname;
@@ -103,7 +105,9 @@ function InfoBoxContainer({
                         </div>
 
                         <div className="comments">
-                            <i className="bi bi-chat-dots"></i>
+                            <Link to={`/download/${id}`} onClick={() => goToDownload(img)}>
+                                <i className="bi bi-chat-dots"></i>
+                            </Link>
                             <p>{comments}</p>
                         </div>
 
@@ -196,6 +200,9 @@ const InfoBox = styled.div`
             }
             b {
                 margin-left: .7em;
+            }
+            a {
+                color: white;
             }
             button {
                 background-color: transparent;
