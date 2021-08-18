@@ -123,7 +123,7 @@ export default connect(null, mapDispatchToProps)(ImageContainer);
 const ImageContainerStyles = styled.div`
         position: relative;
         margin: .5em;
-        height: 20em;
+        height: 14em;
         flex-grow: 1;
         overflow: hidden;
         ${props => props.video === "video" ? "width: 23em;" : null}

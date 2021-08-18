@@ -8,39 +8,26 @@ import DownloadSize from './downloadSizes/DownloadSize';
 function DownloadBtn({
     toggleDownloadSizes,
     sizes,
-    smallWidth,
-    smallHeight,
-    largeWidth,
-    largeHeight,
     extention,
     mediumVideo,
     largeVideo,
-    imageSize,
     targetType,
     itemToDownload
 }) {
 
-    console.log(mediumVideo, largeVideo)
-
     return (
-        <DownloadBtnStyles>
+        <DownloadBtnStyles >
             <BigBtn
-                className="download_btn"
+                className="download_btn pre"
                 onClick={() => toggleDownloadSizes("toggle")}
             >
                 <i class="bi bi-download"></i> Free Download
             </BigBtn>
             <DownloadSize
+                className="pre"
                 itemToDownload={itemToDownload}
                 targetType={targetType}
                 sizes={sizes}
-                smallWidth={smallWidth}
-                smallHeight={smallHeight}
-                largeWidth={largeWidth}
-                largeHeight={largeHeight}
-                mediumVideo={mediumVideo}
-                largeVideo={largeVideo}
-                imageSize={imageSize}
                 extention={extention}
             />
         </DownloadBtnStyles>
@@ -53,7 +40,6 @@ export default DownloadBtn;
 
 const DownloadBtnStyles = styled.div`
     height: 15em;
-   // background: aqua;
     display: flex;
     flex-direction: column;
     align-items: center;

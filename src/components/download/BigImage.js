@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Vimeo from '@u-wave/react-vimeo';
 import Loader from '../Loader';
 import ReactPlayer from 'react-player'
 
 
-function BigImageView({ targetType, large, normal, small, tiny }) {
+function BigImageView({ targetType, itemToDownload }) {
 
     const [loader, setLoader] = useState(true);
     useEffect(() => {
@@ -15,32 +14,28 @@ function BigImageView({ targetType, large, normal, small, tiny }) {
         return () => clearTimeout(loaderTrigger);
     }, []);
 
-    if (targetType === "video") {
+    return (
+        <BigImageStyles>
+            {targetType === "video" ?
 
-        return (
-            <BigImageStyles>
-                {loader ? <Loader /> :
+                loader ? <Loader /> :
                     <ReactPlayer
                         className="react_player"
                         controls
-                        url={tiny.url}
+                        url={itemToDownload.videos.tiny.url}
                         width='100%'
                         height='100%'
-                    />}
-            </BigImageStyles>
-        )
-    } else {
-        return (
-            <BigImageStyles>
-                {loader ? <Loader /> :
+                    /> :
+
+                loader ? <Loader /> :
                     <picture>
-                        <source media="(min-width:650px)" srcSet={large} />
-                        <img src={normal} alt="Flowers" />
+                        <source media="(min-width:650px)" srcSet={itemToDownload.largeImageURL} />
+                        <img src={itemToDownload.webformatURL} alt="Flowers" />
                     </picture>
-                }
-            </BigImageStyles>
-        )
-    }
+
+            }
+        </BigImageStyles>
+    )
 }
 
 
@@ -50,7 +45,6 @@ const BigImageStyles = styled.div`
     position: relative;
     display: inline-block;
     width: 70%; 
-   // border: 2px solid;
     height: 38em; 
     overflow: hidden;
 
@@ -63,12 +57,10 @@ const BigImageStyles = styled.div`
         width: 100%;
         height: 100%;
     }
-     
+
     .react_player {
         position: absolute;
         top: 0;
         left: 0; 
     }
-
-
 `;

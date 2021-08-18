@@ -3,17 +3,9 @@ import styled from 'styled-components';
 import { BigBtn } from '../../../styles/components';
 
 
-
 function DownloadSize({
     sizes,
-    smallWidth,
-    smallHeight,
-    largeWidth,
-    largeHeight,
     extention,
-    mediumVideo,
-    largeVideo,
-    imageSize,
     itemToDownload,
     targetType
 }) {
@@ -67,7 +59,12 @@ function DownloadSize({
 
 
     return (
-        <DownloadSizeStyles style={{ display: sizes ? "block" : false }}>
+        <DownloadSizeStyles
+            className="pre"
+
+
+            style={{ display: sizes ? "block" : false }}
+        >
 
             <form onSubmit={(e) => {
                 e.preventDefault();
@@ -76,9 +73,20 @@ function DownloadSize({
                 <input type="radio" id="small" name="resolution" value="small" required onClick={() => setdownloadSize("s")} />
 
                 <label htmlFor="small">
-                    {`${smallWidth || mediumVideo.width} * ${smallHeight || mediumVideo.height}`}
+                    {
+                        `${itemToDownload.webformatWidth || itemToDownload.videos.small.width}
+                     * 
+                        ${itemToDownload.webformatHeight || itemToDownload.videos.small.height}`
+                    }
+
                     &emsp;&emsp;&emsp;
-                    {mediumVideo ? transferToMb(mediumVideo.size) : Number(transferToMb(imageSize).slice(0, 3)) / 2 + " MB"}
+                    {
+                        targetType === "video"
+                            ?
+                            transferToMb(itemToDownload.videos.small.size)
+                            :
+                            Number(transferToMb(itemToDownload.imageSize).slice(0, 3)) / 2 + " MB"
+                    }
                     &emsp;&emsp;
                     {extention && extention.toUpperCase()}
                 </label>
@@ -87,9 +95,18 @@ function DownloadSize({
 
                 <input type="radio" id="large" name="resolution" value="large" required onClick={() => setdownloadSize("l")} />
                 <label htmlFor="large" >
-                    {`${largeWidth || largeVideo.width} * ${largeHeight || largeVideo.height}`}
+                    {
+                        `${itemToDownload.imageWidth || itemToDownload.videos.medium.width}
+                     * 
+                        ${itemToDownload.imageHeight || itemToDownload.videos.medium.height}`
+                    }
                     &emsp;&emsp;
-                    {largeVideo ? transferToMb(largeVideo.size) : transferToMb(imageSize)}
+                    {targetType === "video"
+                        ?
+                        transferToMb(itemToDownload.videos.medium.size)
+                        :
+                        transferToMb(itemToDownload.imageSize)
+                    }
                     &emsp;&emsp;
                     {extention && extention.toUpperCase()}
                 </label>
@@ -130,10 +147,6 @@ const DownloadSizeStyles = styled.div`
         }
     }
 
-    /* .show {
-        display: block;
-    } */
-
     ::before {
             content: "";
             border-style: solid;
@@ -153,7 +166,5 @@ const DownloadSizeStyles = styled.div`
         display: block;
         margin: auto;
     }
-    /* label {
-        padding: .5em  0;
-    } */
+
 `;

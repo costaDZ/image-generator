@@ -18,95 +18,47 @@ function Download({
     targetType,
 }) {
 
-    if (targetType === "video") {
-        const { user, userImageURL } = itemToDownload;
-        const { large, medium, small, tiny } = itemToDownload.videos;
+    const { user, userImageURL } = itemToDownload;
 
-        return (
-            <DownloadStyled>
-                <div className="first_container">
+    function closeSizes(e) {
+        // console.log(e.target.classList.contains('pre'));
+        console.log(e.target.tagName);
+        let elm = e.target;
 
-                    <BigImageView
-                        targetType={targetType}
-                        large={large}
-                        normal={medium}
-                        small={small}
-                        tiny={tiny}
-                    />
-
-                    <div className="side_bar">
-                        <UserInfo
-                            userImage={userImageURL}
-                            user={user}
-                        />
-                        <DownloadBtn
-                            itemToDownload={itemToDownload}
-                            targetType={targetType}
-                            toggleDownloadSizes={toggleDownloadSizes}
-                            sizes={sizes}
-                            mediumVideo={medium}
-                            largeVideo={large}
-                            extention={extention}
-                        />
-                    </div>
-                </div>
-            </DownloadStyled>
-        )
-
-    } else {
-        const {
-            webformatURL,
-            largeImageURL,
-            tags,
-            type,
-            userImageURL,
-            user,
-            webformatWidth,
-            webformatHeight,
-            imageWidth,
-            imageHeight,
-            imageSize,
-        } = itemToDownload;
-
-
-        return (
-            <DownloadStyled>
-                <div className="first_container">
-
-                    <BigImageView
-                        large={largeImageURL}
-                        normal={webformatURL}
-                    />
-
-                    <div className="side_bar">
-                        <UserInfo
-                            userImage={userImageURL}
-                            user={user}
-                        />
-                        <DownloadBtn
-                            itemToDownload={itemToDownload}
-                            targetType={targetType}
-                            toggleDownloadSizes={toggleDownloadSizes}
-                            sizes={sizes}
-                            smallWidth={webformatWidth}
-                            smallHeight={webformatHeight}
-                            largeWidth={imageWidth}
-                            largeHeight={imageHeight}
-                            imageSize={imageSize}
-                            extention={extention}
-                        />
-                    </div>
-                </div>
-            </DownloadStyled>
-        )
+        if (!elm.classList.contains('pre')
+            && elm.tagName !== "FORM"
+            && elm.tagName !== "INPUT"
+        ) {
+            toggleDownloadSizes('c');
+        }
     }
 
+    return (
+        <DownloadStyled onClick={(e) => closeSizes(e)}>
+            <div className="first_container">
+
+                <BigImageView
+                    targetType={targetType}
+                    itemToDownload={itemToDownload}
+                />
+
+                <div className="side_bar">
+                    <UserInfo
+                        userImage={userImageURL}
+                        user={user}
+                    />
+                    <DownloadBtn
+                        itemToDownload={itemToDownload}
+                        targetType={targetType}
+                        toggleDownloadSizes={toggleDownloadSizes}
+                        sizes={sizes}
+                        extention={extention}
+                    />
+                </div>
+            </div>
+        </DownloadStyled>
+    )
 }
-
-
-
-
-
 
 const mapStateToProps = state => ({
     itemToDownload: state.download.targetImage,
@@ -119,11 +71,7 @@ const mapDispatchToProps = dispatch => ({
     toggleDownloadSizes: action => dispatch(toggleDownloadSizes(action)),
 });
 
-
-
-export default connect(mapStateToProps,
-    mapDispatchToProps)(Download);
-
+export default connect(mapStateToProps, mapDispatchToProps)(Download);
 
 const DownloadStyled = styled.section`
     padding: 5em 5em;
@@ -132,11 +80,8 @@ const DownloadStyled = styled.section`
         justify-content: space-between;
 
         .side_bar {
-        //    background: antiquewhite;
             flex: 1;
             padding: 0em 1em;
         }
     }
-
-
 `;
