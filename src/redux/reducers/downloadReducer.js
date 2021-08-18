@@ -4,7 +4,7 @@ import { ADD_TO_DOWNLOAD, TOGGLE_DOWNLOAD_SIZES } from '../actions/downloadActio
 const initiaDownload = {
     targetImage: null,
     extention: null,
-    sizes: true,
+    sizes: false,
     targetType: null,
 }
 

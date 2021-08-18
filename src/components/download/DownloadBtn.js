@@ -13,7 +13,15 @@ function DownloadBtn({
     largeWidth,
     largeHeight,
     extention,
+    mediumVideo,
+    largeVideo,
+    imageSize,
+    targetType,
+    itemToDownload
 }) {
+
+    console.log(mediumVideo, largeVideo)
+
     return (
         <DownloadBtnStyles>
             <BigBtn
@@ -23,11 +31,16 @@ function DownloadBtn({
                 <i class="bi bi-download"></i> Free Download
             </BigBtn>
             <DownloadSize
+                itemToDownload={itemToDownload}
+                targetType={targetType}
                 sizes={sizes}
                 smallWidth={smallWidth}
                 smallHeight={smallHeight}
                 largeWidth={largeWidth}
                 largeHeight={largeHeight}
+                mediumVideo={mediumVideo}
+                largeVideo={largeVideo}
+                imageSize={imageSize}
                 extention={extention}
             />
         </DownloadBtnStyles>

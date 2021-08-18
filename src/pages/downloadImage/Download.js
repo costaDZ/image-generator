@@ -21,11 +21,6 @@ function Download({
     if (targetType === "video") {
         const { user, userImageURL } = itemToDownload;
         const { large, medium, small, tiny } = itemToDownload.videos;
-        // const { url, width, height,size } = large;
-        // const { url, width, height,size } = medium;
-        // const { url, width, height, size } = small;
-        // const { url, width, height, size } = tiny;
-        console.log(user);
 
         return (
             <DownloadStyled>
@@ -39,19 +34,21 @@ function Download({
                         tiny={tiny}
                     />
 
-                    {/* <div className="side_bar">
+                    <div className="side_bar">
                         <UserInfo
                             userImage={userImageURL}
                             user={user}
                         />
                         <DownloadBtn
+                            itemToDownload={itemToDownload}
+                            targetType={targetType}
                             toggleDownloadSizes={toggleDownloadSizes}
                             sizes={sizes}
                             mediumVideo={medium}
                             largeVideo={large}
                             extention={extention}
                         />
-                    </div> */}
+                    </div>
                 </div>
             </DownloadStyled>
         )
@@ -87,12 +84,15 @@ function Download({
                             user={user}
                         />
                         <DownloadBtn
+                            itemToDownload={itemToDownload}
+                            targetType={targetType}
                             toggleDownloadSizes={toggleDownloadSizes}
                             sizes={sizes}
                             smallWidth={webformatWidth}
                             smallHeight={webformatHeight}
                             largeWidth={imageWidth}
                             largeHeight={imageHeight}
+                            imageSize={imageSize}
                             extention={extention}
                         />
                     </div>
