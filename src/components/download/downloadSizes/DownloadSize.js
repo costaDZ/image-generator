@@ -1,39 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import { BigBtn } from '../../../styles/components';
 
 
 function DownloadSize({
-    sizes,
-    extention,
-    itemToDownload,
-    targetType
+    targetType,
+    info,
 }) {
 
-    const [downloadSize, setdownloadSize] = useState("");
     const [downloadSrc, setdownloadSrc] = useState("");
-
-    function transferToMb(num) {
-        return (num / 1000000).toFixed(1) + " MB";
-    }
-
-    useEffect(() => {
-        if (targetType === "video") {
-            if (downloadSize === "s") {
-                setdownloadSrc(itemToDownload.videos.medium.url);
-            } else {
-                setdownloadSrc(itemToDownload.videos.large.url);
-            }
-        } else {
-            if (downloadSize === "s") {
-                setdownloadSrc(itemToDownload.webformatURL);
-            } else {
-                setdownloadSrc(itemToDownload.largeImageURL);
-            }
-        }
-        // eslint-disable-next-line
-    }, [downloadSize, downloadSrc])
-
 
 
     async function startDownload(src) {
@@ -57,58 +32,63 @@ function DownloadSize({
         document.body.removeChild(link)
     }
 
+    const { extention, sizes, targetSize, bigResolution, normalResolution } = info;
+
 
     return (
         <DownloadSizeStyles
             className="pre"
-
-
             style={{ display: sizes ? "block" : false }}
         >
-
             <form onSubmit={(e) => {
                 e.preventDefault();
                 (targetType === "video") ? downloadVideo(downloadSrc) : startDownload(downloadSrc);
             }}>
-                <input type="radio" id="small" name="resolution" value="small" required onClick={() => setdownloadSize("s")} />
-
-                <label htmlFor="small">
-                    {
-                        `${itemToDownload.webformatWidth || itemToDownload.videos.small.width}
-                     * 
-                        ${itemToDownload.webformatHeight || itemToDownload.videos.small.height}`
+                <input
+                    type="radio"
+                    id="small"
+                    name="resolution"
+                    value="small"
+                    required
+                    onClick={
+                        () => setdownloadSrc(targetType === "video"
+                            ? info.tinyUrl
+                            : info.mediumUrl)
                     }
-
+                />
+                <label
+                    className="pre"
+                    htmlFor="small">
+                    {normalResolution}
                     &emsp;&emsp;&emsp;
-                    {
-                        targetType === "video"
-                            ?
-                            transferToMb(itemToDownload.videos.small.size)
-                            :
-                            Number(transferToMb(itemToDownload.imageSize).slice(0, 3)) / 2 + " MB"
-                    }
+                    {targetSize.slice(0, 3) / 2 + " MB"}
                     &emsp;&emsp;
-                    {extention && extention.toUpperCase()}
+                    {extention}
                 </label>
-
                 <br />
 
-                <input type="radio" id="large" name="resolution" value="large" required onClick={() => setdownloadSize("l")} />
-                <label htmlFor="large" >
-                    {
-                        `${itemToDownload.imageWidth || itemToDownload.videos.medium.width}
-                     * 
-                        ${itemToDownload.imageHeight || itemToDownload.videos.medium.height}`
+                <input
+                    type="radio"
+                    id="large"
+                    name="resolution"
+                    value="large"
+                    required
+                    onClick={
+                        () => setdownloadSrc(targetType === "video"
+                            ? info.smallUrl
+                            : info.largeUrl)
                     }
+                />
+
+                <label
+                    className="pre"
+                    htmlFor="large"
+                >
+                    {bigResolution}
                     &emsp;&emsp;
-                    {targetType === "video"
-                        ?
-                        transferToMb(itemToDownload.videos.medium.size)
-                        :
-                        transferToMb(itemToDownload.imageSize)
-                    }
+                    {targetSize}
                     &emsp;&emsp;
-                    {extention && extention.toUpperCase()}
+                    {extention}
                 </label>
 
                 <br />
@@ -123,8 +103,9 @@ export default DownloadSize;
 
 const DownloadSizeStyles = styled.div`
     position: absolute;
-    width: 100%;
-    top: 152px;
+   // width: 100%;
+    top: 6.5em;
+    min-width: 18em;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -155,7 +136,7 @@ const DownloadSizeStyles = styled.div`
             height: 0;
             width: 0;
             position: absolute;
-            bottom: 160px;
+            bottom: 10em;
             left: 60px;
     }
 

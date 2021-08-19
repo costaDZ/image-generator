@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
 
+import unknown from '../../images/Unknown-person.gif'
 
-function UserInfo({ userImage, user }) {
+function UserInfo({ info }) {
     return (
         <UserInfoStyles>
             <div className="use_info">
-                <img src={userImage} alt="photographer" className="user_img" />
-                <p>Photographer : {user}</p>
+                <img src={info.userImage || unknown} alt="photographer" className="user_img" />
+                <p>Photographer : {info.user}</p>
             </div>
 
             <div className="user_btn_section">
@@ -26,7 +27,7 @@ export default UserInfo;
 const UserInfoStyles = styled.div`
     .use_info {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         .user_img {
             height: 6em;
             border-radius: 50%;
@@ -53,10 +54,21 @@ const UserInfoStyles = styled.div`
             max-width: 100px;
             background-color: var(--light-green-color);
             border: none;
+            transition: all .3s;
+
+            &:hover {
+                cursor: pointer;
+                background-color:  var(--green-color);;
+            }
         }
 
         button:nth-child(2) {
             background-color: #dddfe2;
+
+            &:hover {
+                cursor: pointer;
+                background-color:  var(--light-green-color);;
+            }
         }
     }
 

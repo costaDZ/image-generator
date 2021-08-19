@@ -7,12 +7,8 @@ import DownloadSize from './downloadSizes/DownloadSize';
 
 function DownloadBtn({
     toggleDownloadSizes,
-    sizes,
-    extention,
-    mediumVideo,
-    largeVideo,
     targetType,
-    itemToDownload
+    info,
 }) {
 
     return (
@@ -25,10 +21,8 @@ function DownloadBtn({
             </BigBtn>
             <DownloadSize
                 className="pre"
-                itemToDownload={itemToDownload}
                 targetType={targetType}
-                sizes={sizes}
-                extention={extention}
+                info={info}
             />
         </DownloadBtnStyles>
     )
@@ -39,7 +33,7 @@ function DownloadBtn({
 export default DownloadBtn;
 
 const DownloadBtnStyles = styled.div`
-    height: 15em;
+    height: 9em;
     display: flex;
     flex-direction: column;
     align-items: center;

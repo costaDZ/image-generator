@@ -11,20 +11,12 @@ import {
 import { toggleDownloadSizes } from '../../redux/actions/downloadActions';
 
 function Download({
-    itemToDownload,
     toggleDownloadSizes,
-    sizes,
-    extention,
     targetType,
+    info,
 }) {
-
-    const { user, userImageURL } = itemToDownload;
-
     function closeSizes(e) {
-        // console.log(e.target.classList.contains('pre'));
-        console.log(e.target.tagName);
         let elm = e.target;
-
         if (!elm.classList.contains('pre')
             && elm.tagName !== "FORM"
             && elm.tagName !== "INPUT"
@@ -36,23 +28,19 @@ function Download({
     return (
         <DownloadStyled onClick={(e) => closeSizes(e)}>
             <div className="first_container">
-
                 <BigImageView
                     targetType={targetType}
-                    itemToDownload={itemToDownload}
+                    info={info}
                 />
 
                 <div className="side_bar">
                     <UserInfo
-                        userImage={userImageURL}
-                        user={user}
+                        info={info}
                     />
                     <DownloadBtn
-                        itemToDownload={itemToDownload}
                         targetType={targetType}
                         toggleDownloadSizes={toggleDownloadSizes}
-                        sizes={sizes}
-                        extention={extention}
+                        info={info}
                     />
                 </div>
             </div>
@@ -61,9 +49,7 @@ function Download({
 }
 
 const mapStateToProps = state => ({
-    itemToDownload: state.download.targetImage,
-    sizes: state.download.sizes,
-    extention: state.download.extention,
+    info: state.download,
     targetType: state.download.targetType,
 });
 
@@ -77,10 +63,10 @@ const DownloadStyled = styled.section`
     padding: 5em 5em;
     .first_container {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
 
         .side_bar {
-            flex: 1;
+            position: relative;
             padding: 0em 1em;
         }
     }

@@ -4,7 +4,7 @@ import Loader from '../Loader';
 import ReactPlayer from 'react-player'
 
 
-function BigImageView({ targetType, itemToDownload }) {
+function BigImageView({ info, targetType }) {
 
     const [loader, setLoader] = useState(true);
     useEffect(() => {
@@ -17,22 +17,20 @@ function BigImageView({ targetType, itemToDownload }) {
     return (
         <BigImageStyles>
             {targetType === "video" ?
-
                 loader ? <Loader /> :
                     <ReactPlayer
                         className="react_player"
                         controls
-                        url={itemToDownload.videos.tiny.url}
+                        url={info.tinyUrl}
                         width='100%'
                         height='100%'
                     /> :
 
                 loader ? <Loader /> :
                     <picture>
-                        <source media="(min-width:650px)" srcSet={itemToDownload.largeImageURL} />
-                        <img src={itemToDownload.webformatURL} alt="Flowers" />
+                        <source media="(min-width:650px)" srcSet={info.largeUrl} />
+                        <img src={info.mediumUrl} alt="Flowers" />
                     </picture>
-
             }
         </BigImageStyles>
     )
