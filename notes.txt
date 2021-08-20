@@ -39,14 +39,16 @@
 
 /==========bugs==========/
 
-- loading problem 
+- hover effect shoudn't work on loader
+- reset download sizes to make a new url
+- loading problem (from local storage)
 - the images loader should wait intil the images is load
 
-===========> video section : 
 
-- video section : loader dosn't work for videos elements
+===========> video section : 
 - handel case when there is no images in all pages [component]
 - change videos resolution for small devices
+
 
 
 ---------------------------------------------------------------------------------|
