@@ -4,8 +4,9 @@ import ImageContainer from './ImageContainer';
 
 import { connect } from 'react-redux';
 
+import { loadImages, loadVideos } from '../../redux/thunk/thunk';
 
-function ImagesHolder({ images, kind }) {
+function ImagesHolder({ images, kind, LoadMainImages, startSearchingVideos }) {
 
 
     let data = images[kind].pic?.hits;
@@ -43,6 +44,8 @@ function ImagesHolder({ images, kind }) {
                             comments={comments}
                             webformatURL={webformatURL || src}
                             isLoading={data.isLoading}
+                            LoadMainImages={LoadMainImages}
+                            startSearchingVideos={startSearchingVideos}
                         />
                     )
                 })}
@@ -55,7 +58,12 @@ const mapStateToProps = state => ({
     images: state,
 });
 
-export default connect(mapStateToProps)(ImagesHolder);
+const MapDispatchToProps = dispatch => ({
+    LoadMainImages: (kind, key, page, perpage) => dispatch(loadImages(kind, key, page, perpage)),
+    startSearchingVideos: (searchKey, page, perpage) => dispatch(loadVideos(searchKey, page, perpage)),
+});
+
+export default connect(mapStateToProps, MapDispatchToProps)(ImagesHolder);
 
 
 const ImagesContainerStyles = styled.section`

@@ -10,6 +10,7 @@ const url = 'https://pixabay.com/api/?key=' + key;
 const signal = AbortController.signal;
 
 export const loadImages = (kind = "all", searchKey = "", pageNumber = 1, perPage = 50) => async (dispatch, images) => {
+    console.log("test");
     try {
         dispatch(loadImagesInProgress());
         const response =
@@ -24,8 +25,8 @@ export const loadImages = (kind = "all", searchKey = "", pageNumber = 1, perPage
 
 
 let videosUrl = 'https://pixabay.com/api/videos/?key=' + key;
-export const loadVideos = (searchKey = "", pageNumber = 1) => async (dispatch, videos) => {
-    let perPage = 30;
+export const loadVideos = (searchKey = "", pageNumber = 1, perPage = 30) => async (dispatch, videos) => {
+    // let perPage = 30;
     try {
         dispatch(loadImagesInProgress());
         const response = await fetch(videosUrl + `&q=${searchKey}&video_type=all&category=all&min_width=0&min_height=0&safesearch=true&order=popular&page=${pageNumber}&per_page=${perPage}`, { signal: signal });

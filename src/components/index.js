@@ -8,10 +8,7 @@ import StatusCollectionBar from './StatusCollectionBar';
 import BigImageView from './download/BigImage';
 import DownloadBtn from './download/DownloadBtn';
 import UserInfo from './download/UserInfo';
-
-
-
-
+import ImageInfo from './download/ImageInfo';
 
 
 
@@ -30,4 +27,5 @@ export {
     BigImageView,
     DownloadBtn,
     UserInfo,
+    ImageInfo,
 };

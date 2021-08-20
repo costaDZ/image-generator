@@ -22,10 +22,14 @@ function ImageContainer({
     videos,
     isLoading,
     goToDownload,
+    LoadMainImages,
+    startSearchingVideos
 }) {
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
     const containerRef = useRef(null);
+
+    //const dispatch = useDispatch(loadImages())
 
     useEffect(() => {
         let loaderTrigger = setTimeout(() => {
@@ -90,7 +94,18 @@ function ImageContainer({
                     <Loader />
                     :
                     <>
-                        <Link to={`/download/${id}`} onClick={() => goToDownload(img)}>
+                        <Link to={`/download/${id}`} onClick={() => {
+                            goToDownload(img)
+                            let target = tags.split(",")[0];
+
+                            if (videos) {
+                                startSearchingVideos(target, 1, 6);
+                            } else {
+                                console.log("2123");
+                                LoadMainImages(kind, target, 1, 6);
+                            }
+
+                        }}>
                             <img src={webformatURL} height="400" width="400" alt={tags} loading="lazy" />
                         </Link>
                         <InfoBox

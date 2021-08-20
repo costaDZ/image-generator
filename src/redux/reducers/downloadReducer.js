@@ -2,7 +2,9 @@ import { ADD_TO_DOWNLOAD, TOGGLE_DOWNLOAD_SIZES } from '../actions/downloadActio
 
 
 const initiaDownload = {
-    targetImage: null,
+    relatedItems: [],
+    id: null,
+    // targetImage: null,
     extention: null,
     sizes: false,
     targetType: "",
@@ -63,7 +65,8 @@ export const download = (state = initiaDownload, actions) => {
             }
             return {
                 ...state,
-                targetImage: item,
+                id: item.id,
+                //  targetImage: item,
                 extention,
                 targetType: type,
                 targetSize,

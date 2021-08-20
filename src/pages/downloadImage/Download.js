@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import {
     BigImageView,
     DownloadBtn,
-    UserInfo
+    UserInfo,
+    ImageInfo,
 } from '../../components';
 
 import { toggleDownloadSizes } from '../../redux/actions/downloadActions';
+import { ImagesHolder } from '../../components';
 
 function Download({
     toggleDownloadSizes,
@@ -24,6 +26,8 @@ function Download({
             toggleDownloadSizes('c');
         }
     }
+
+    console.log(targetType);
 
     return (
         <DownloadStyled onClick={(e) => closeSizes(e)}>
@@ -42,7 +46,19 @@ function Download({
                         toggleDownloadSizes={toggleDownloadSizes}
                         info={info}
                     />
+                    <ImageInfo {...info} />
                 </div>
+
+
+            </div>
+            <div className="related_images">
+                <h3>Related  :</h3>
+                {
+                    targetType === "video" ?
+                        <ImagesHolder className="related" kind="videos" />
+                        :
+                        <ImagesHolder className="related" kind="images" />
+                }
             </div>
         </DownloadStyled>
     )
@@ -68,6 +84,12 @@ const DownloadStyled = styled.section`
         .side_bar {
             position: relative;
             padding: 0em 1em;
+        }
+    }
+
+    .related {
+        img {
+            max-width: 5em;
         }
     }
 `;
