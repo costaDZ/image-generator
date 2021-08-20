@@ -97,12 +97,10 @@ function ImageContainer({
                         <Link to={`/download/${id}`} onClick={() => {
                             goToDownload(img)
                             let target = tags.split(",")[0];
-
                             if (videos) {
-                                startSearchingVideos(target, 1, 6);
+                                startSearchingVideos(target, 1, 8);
                             } else {
-                                console.log("2123");
-                                LoadMainImages(kind, target, 1, 6);
+                                LoadMainImages(kind, target, 1, 8);
                             }
 
                         }}>

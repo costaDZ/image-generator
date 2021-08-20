@@ -52,7 +52,7 @@ function Download({
 
             </div>
             <div className="related_images">
-                <h3>Related  :</h3>
+                <h3>Discover More :</h3>
                 {
                     targetType === "video" ?
                         <ImagesHolder className="related" kind="videos" />
@@ -87,9 +87,17 @@ const DownloadStyled = styled.section`
         }
     }
 
-    .related {
+    .related_images {
+        h3 {
+            color: var(--grey-text);
+        }
+
+    /* .related {
         img {
             max-width: 5em;
         }
+    } */
     }
+
+    
 `;

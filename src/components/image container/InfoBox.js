@@ -28,15 +28,19 @@ function InfoBoxContainer({
 }) {
 
     let history = useHistory().location.pathname;
+    console.log(history.slice(1, 9));
 
     function startSearch(e) {
         let valueKeySearch = e.target.textContent;
+        let searchAmount = history.slice(1, 9) === "download" ? 8 : 50;
+
+        console.log(searchAmount);
         switch (currentLocation) {
             case "videos":
-                startSearchingVideos(valueKeySearch, 1);
+                startSearchingVideos(valueKeySearch, 1, searchAmount);
                 break;
             default:
-                startSearchingImages(currentLocation, valueKeySearch, 1);
+                startSearchingImages(currentLocation, valueKeySearch, 1, searchAmount);
                 break;
         }
     }
@@ -137,8 +141,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    startSearchingImages: (searchKey, page) => dispatch(loadImages(searchKey, page)),
-    startSearchingVideos: (searchKey) => dispatch(loadVideos(searchKey)),
+    startSearchingImages: (location, searchKey, page, amount) => dispatch(loadImages(location, searchKey, page, amount)),
+    startSearchingVideos: (searchKey, page, amount) => dispatch(loadVideos(searchKey, page, amount)),
     toggelLike: item => dispatch(handelLikedImages(item)),
     toggleCollection: item => dispatch(addToCollection(item)),
 });

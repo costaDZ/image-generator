@@ -2,9 +2,7 @@ import { ADD_TO_DOWNLOAD, TOGGLE_DOWNLOAD_SIZES } from '../actions/downloadActio
 
 
 const initiaDownload = {
-    relatedItems: [],
     id: null,
-    // targetImage: null,
     extention: null,
     sizes: false,
     targetType: "",
