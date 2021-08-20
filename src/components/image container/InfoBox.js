@@ -169,9 +169,6 @@ const InfoBox = styled.div`
 
                 ${props => props.k !== "video" ? " @media (max-width: 768px) {opacity: 1;height: 30%;}" : ""}
 
-
-          
-        
             .tags {
                 display: flex;
                 padding: 1em 0;
