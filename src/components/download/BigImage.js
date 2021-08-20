@@ -43,18 +43,31 @@ const BigImageStyles = styled.div`
     position: relative;
     display: inline-block;
     width: 70%; 
-    height: 38em; 
-    overflow: hidden;
+    height: 40vw; 
+   // overflow: hidden;
     text-align: center;
 
+    @media (max-width: 992px) {
+            width: 100%;
+    }
+    @media (max-width: 768px) {
+        height: 55vw;
+    }
+    @media (max-width: 376px) {
+        height: 70vw;
+    }
     picture {
-    width: 100%;
+    //width: 100%;
     height: 100%;
     }
 
     img {
-      //  width: 100%;
+        //width: 100%;
         height: 100%;
+
+        @media (max-width: 1400px) {
+            width: 100%;
+        }
     }
 
     .react_player {

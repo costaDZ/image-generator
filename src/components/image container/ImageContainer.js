@@ -8,8 +8,6 @@ import InfoBox from './InfoBox';
 import { connect } from 'react-redux';
 import { addToDownload } from '../../redux/actions/downloadActions';
 
-
-
 function ImageContainer({
     kind,
     id,
@@ -28,8 +26,6 @@ function ImageContainer({
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
     const containerRef = useRef(null);
-
-    //const dispatch = useDispatch(loadImages())
 
     useEffect(() => {
         let loaderTrigger = setTimeout(() => {

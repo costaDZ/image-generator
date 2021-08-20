@@ -10,6 +10,7 @@ function DownloadSize({
 
     const [downloadSrc, setdownloadSrc] = useState("");
 
+    console.log(downloadSrc);
 
     async function startDownload(src) {
         const target = await fetch(src);
@@ -43,12 +44,13 @@ function DownloadSize({
             <form onSubmit={(e) => {
                 e.preventDefault();
                 (targetType === "video") ? downloadVideo(downloadSrc) : startDownload(downloadSrc);
+                setdownloadSrc("")
             }}>
                 <input
                     type="radio"
                     id="small"
                     name="resolution"
-                    value="small"
+                    //checked={downloadSrc}
                     required
                     onClick={
                         () => setdownloadSrc(targetType === "video"
@@ -71,7 +73,7 @@ function DownloadSize({
                     type="radio"
                     id="large"
                     name="resolution"
-                    value="large"
+                    //   checked={downloadSrc}
                     required
                     onClick={
                         () => setdownloadSrc(targetType === "video"

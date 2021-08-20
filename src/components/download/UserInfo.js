@@ -25,9 +25,20 @@ export default UserInfo;
 
 
 const UserInfoStyles = styled.div`
+
+    @media (max-width: 992px) {
+        width: 80%;
+        margin: auto;
+    }
+    @media (max-width: 376px) {
+            width: 100%;
+    }
+
     .use_info {
         display: flex;
         justify-content: space-between;
+
+
         .user_img {
             height: 6em;
             border-radius: 50%;
@@ -35,6 +46,12 @@ const UserInfoStyles = styled.div`
 
         p {
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @media (max-width: 376px) {
+                    font-size: .8em;
+            }
         }
     }
 
