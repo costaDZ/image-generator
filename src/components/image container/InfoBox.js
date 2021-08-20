@@ -108,12 +108,12 @@ function InfoBoxContainer({
                             <p>{checkItems ? likes + 1 : likes}</p>
                         </div>
 
-                        <div className="comments">
+                        {/* <div className="comments">
                             <Link to={`/download/${id}`} onClick={() => goToDownload(img)}>
                                 <i className="bi bi-chat-dots"></i>
                             </Link>
                             <p>{comments}</p>
-                        </div>
+                        </div> */}
 
                         <div className="collections">
                             <button
