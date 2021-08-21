@@ -1,11 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
 import Loader from '../Loader';
 import InfoBox from './InfoBox';
-
-import { connect } from 'react-redux';
 
 function ImageContainer({
     data,
@@ -18,8 +15,6 @@ function ImageContainer({
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
     const containerRef = useRef(null);
-
-
     const {
         id,
         likes,
@@ -30,8 +25,6 @@ function ImageContainer({
         videos,
         picture_id,
     } = data;
-
-    //console.log(data);
 
     let src = `https://i.vimeocdn.com/video/${picture_id}_640x360.jpg`;
 
@@ -82,7 +75,6 @@ function ImageContainer({
     }, [play]);
 
 
-
     return (
         <ImageContainerStyles
             key={id}
@@ -129,12 +121,7 @@ function ImageContainer({
     )
 }
 
-
-
-
 export default ImageContainer;
-
-
 
 
 const ImageContainerStyles = styled.div`
