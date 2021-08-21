@@ -7,6 +7,7 @@ import ReactPlayer from 'react-player'
 function BigImageView({ info, targetType }) {
 
     const [loader, setLoader] = useState(true);
+
     useEffect(() => {
         let loaderTrigger = setTimeout(() => {
             setLoader(false);
@@ -44,7 +45,6 @@ const BigImageStyles = styled.div`
     display: inline-block;
     width: 70%; 
     height: 40vw; 
-   // overflow: hidden;
     text-align: center;
 
     @media (max-width: 992px) {
@@ -56,15 +56,11 @@ const BigImageStyles = styled.div`
     @media (max-width: 376px) {
         height: 70vw;
     }
-    picture {
-    //width: 100%;
-    height: 100%;
-    }
 
     img {
-        //width: 100%;
         height: 100%;
-
+        width: 100%;
+        object-fit: contain;
         @media (max-width: 1400px) {
             width: 100%;
         }

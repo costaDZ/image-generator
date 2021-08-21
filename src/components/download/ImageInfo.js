@@ -14,8 +14,6 @@ function ImageInfo({
     type,
     likes,
 }) {
-
-    console.log(targetType, extention);
     return (
         <ImageInfoStyled>
             <tbody>
@@ -52,7 +50,6 @@ function ImageInfo({
     )
 }
 
-
 export default ImageInfo;
 
 const ImageInfoStyled = styled.table`
@@ -63,6 +60,4 @@ const ImageInfoStyled = styled.table`
     th {
         text-align: start;
     }
-
-
 `;

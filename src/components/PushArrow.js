@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-
-
 function PushArrow() {
 
     const [show, setShow] = useState(false);
@@ -12,8 +10,6 @@ function PushArrow() {
         let totalHeight = window.innerHeight;
         currentScroll > (totalHeight * 2) ? setShow(true) : setShow(false);
     })
-
-
 
     return (
         <PushArrowStyles
@@ -25,9 +21,7 @@ function PushArrow() {
     )
 }
 
-
 export default PushArrow;
-
 
 const PushArrowStyles = styled.div`
     position: fixed;

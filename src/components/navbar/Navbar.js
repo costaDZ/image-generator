@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
 import Link from './Link';
+
 import { WideContainer } from '../../styles';
-
 import { Link as MyLink } from 'react-router-dom';
-
-
 import { connect } from 'react-redux';
 import { toggelMenu } from '../../redux/actions/actions';
-
 import { BigBtn } from '../../styles/components';
 
 
 const Navbar = ({ menu, toggleMenuBtn }) => {
-
     const [offset, setOffset] = useState(0);
-
 
     useEffect(() => {
         window.onscroll = () => {
@@ -48,7 +42,6 @@ const Navbar = ({ menu, toggleMenuBtn }) => {
                             <BigBtn className="collection_btn">My Collection <i className="bi bi-plus-square"></i></BigBtn>
                         </MyLink>
                     </div>
-
                     <i
                         className="bi bi-list"
                         onClick={() => toggleMenuBtn('toggle')}
@@ -61,16 +54,13 @@ const Navbar = ({ menu, toggleMenuBtn }) => {
 
 const mapStateToProps = state => ({
     menu: state.menuBtn.menuBtn,
-})
+});
 
 const mapDispatchToProps = dispatch => ({
-    toggleMenuBtn: (dir) => dispatch(toggelMenu(dir))
-})
+    toggleMenuBtn: dir => dispatch(toggelMenu(dir))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
-
-
-
 
 const NavbarStyles = styled.header`
     position: fixed;
@@ -148,9 +138,8 @@ const NavbarStyles = styled.header`
                 display: block;
             }
         }
-
     }
-`
+`;
 
 
 

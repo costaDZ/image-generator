@@ -10,12 +10,6 @@ import DownloadBtn from './download/DownloadBtn';
 import UserInfo from './download/UserInfo';
 import ImageInfo from './download/ImageInfo';
 
-
-
-
-
-
-
 export {
     Navbar,
     Overlay,

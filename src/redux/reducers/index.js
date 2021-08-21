@@ -2,8 +2,7 @@ import { combineReducers } from 'redux';
 
 import {
     nav,
-    images,
-    videos,
+    content,
     menuBtn,
 } from './reducers';
 
@@ -12,21 +11,18 @@ import {
     myCollection,
 } from './collectionsReducer';
 
-
 import {
     download,
 } from './downloadReducer.js';
 
 const reducers = {
     nav,
-    images,
-    videos,
+    content,
     menuBtn,
     likedItem,
     myCollection,
     download,
 };
-
 
 export const rootReducer = combineReducers(reducers);
 

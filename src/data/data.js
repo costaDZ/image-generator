@@ -4,7 +4,6 @@ import illistrator from '../images/illistrator.jpg';
 import vector from '../images/vector.png';
 import vedio from '../images/vedios.mp4';
 
-
 const data = {
     all: {
         category: "all",
@@ -41,6 +40,5 @@ const data = {
         video: vedio,
         populair: ["nature", "wallpaper", "rain", "love", "meditation", "money", "forest", "water", "animals", "people", "earth", "beach"]
     },
-
 }
 export default data;

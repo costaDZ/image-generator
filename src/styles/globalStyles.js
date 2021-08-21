@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobaleStyle = createGlobalStyle`
-
     :root {
         --green-color : #02be6e;
         --light-green-color : #00d07769;
@@ -10,13 +9,17 @@ const GlobaleStyle = createGlobalStyle`
         --text-grey-color : #9aa2b0;
         --white-color : #fff;
         --transition : ease .3s;
-
-        --tablet : 93px;
-
     }
 
+    *::before,
+    *::after,
     body {
         overflow-x: hidden;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        scroll-behavior: smooth;
     }
 `;
 

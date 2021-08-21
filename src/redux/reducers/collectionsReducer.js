@@ -3,7 +3,6 @@ import {
     HANDEL_COLLECTION,
 } from '../actions/actions';
 
-
 export const likedItem = (state = [], actions) => {
     const { type, payload } = actions;
     switch (type) {
@@ -21,9 +20,7 @@ export const likedItem = (state = [], actions) => {
 }
 
 let initialCollection = {
-    pic: {
-        hits: [],
-    },
+    hits: [],
     photo: 0,
     vector: 0,
     illustration: 0,
@@ -36,30 +33,20 @@ export const myCollection = (state = initialCollection, actions) => {
     switch (type) {
         case HANDEL_COLLECTION:
             const { item } = payload;
-            let checkItem = state.pic.hits.find(i => i.id === item.id);
-
-            let filterKind = (type) => {
-                if (type === "photo") return "photo";
-                if (type === "illustration") return "illustration";
-                if (type === "film" || type === "animation") return "video";
-                return "vector";
-            }
+            let checkItem = state.hits.find(i => i.id === item.id);
+            let filterKind = (item.type === "film" || type === "animation") ? "video" : type;
 
             if (!checkItem) {
-                state[filterKind(item.type)] += 1;
+                state[filterKind] += 1;
                 return {
                     ...state,
-                    pic: {
-                        hits: [...state.pic.hits, item]
-                    }
+                    hits: [...state.hits, item],
                 };
             } else {
-                state[filterKind(item.type)] -= 1;
+                state[filterKind] -= 1;
                 return {
                     ...state,
-                    pic: {
-                        hits: [...state.pic.hits.filter(i => i.id !== item.id)]
-                    }
+                    hits: [...state.hits.filter(i => i.id !== item.id)],
                 };
             }
         default:

@@ -6,18 +6,10 @@ import Loader from '../Loader';
 import InfoBox from './InfoBox';
 
 import { connect } from 'react-redux';
-import { addToDownload } from '../../redux/actions/downloadActions';
 
 function ImageContainer({
+    data,
     kind,
-    id,
-    img,
-    webformatURL,
-    tags,
-    likes,
-    comments,
-    duration,
-    videos,
     isLoading,
     goToDownload,
     LoadMainImages,
@@ -26,6 +18,22 @@ function ImageContainer({
     const [play, setPlay] = useState(false);
     const [loader, setLoader] = useState(true);
     const containerRef = useRef(null);
+
+
+    const {
+        id,
+        likes,
+        comments,
+        tags,
+        webformatURL,
+        duration,
+        videos,
+        picture_id,
+    } = data;
+
+    //console.log(data);
+
+    let src = `https://i.vimeocdn.com/video/${picture_id}_640x360.jpg`;
 
     useEffect(() => {
         let loaderTrigger = setTimeout(() => {
@@ -74,6 +82,7 @@ function ImageContainer({
     }, [play]);
 
 
+
     return (
         <ImageContainerStyles
             key={id}
@@ -83,7 +92,6 @@ function ImageContainer({
             ref={containerRef}
             data-kind={duration ? "video" : "image"}
         >
-
             {
                 (loader || isLoading)
                     ?
@@ -91,19 +99,18 @@ function ImageContainer({
                     :
                     <>
                         <Link to={`/download/${id}`} onClick={() => {
-                            goToDownload(img)
+                            goToDownload(data)
                             let target = tags.split(",")[0];
                             if (videos) {
-                                startSearchingVideos(target, 1, 8);
+                                startSearchingVideos("all", target, 1, 8);
                             } else {
                                 LoadMainImages(kind, target, 1, 8);
                             }
-
                         }}>
-                            <img src={webformatURL} height="400" width="400" alt={tags} loading="lazy" />
+                            <img src={webformatURL || src} height="400" width="400" alt={tags} loading="lazy" />
                         </Link>
                         <InfoBox
-                            img={img}
+                            data={data}
                             id={id}
                             videos={videos}
                             tags={tags}
@@ -113,6 +120,8 @@ function ImageContainer({
                             comments={comments}
                             currentLocation={kind}
                             goToDownload={goToDownload}
+                            LoadMainImages={LoadMainImages}
+                            startSearchingVideos={startSearchingVideos}
                         />
                     </>
             }
@@ -120,12 +129,10 @@ function ImageContainer({
     )
 }
 
-const mapDispatchToProps = dispatch => ({
-    goToDownload: (item) => dispatch(addToDownload(item)),
-});
 
 
-export default connect(null, mapDispatchToProps)(ImageContainer);
+
+export default ImageContainer;
 
 
 

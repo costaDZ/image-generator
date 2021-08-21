@@ -2,19 +2,19 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import SearchForm from './SearchForm';
-
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { loadImages, loadVideos } from '../../redux/thunk/thunk';
 import { changePage, toggelMenu } from '../../redux/actions/actions';
 
-const Overlay = ({
+function Overlay({
     section,
     LoadThePage,
     LoadMainImages,
     startSearchingVideos,
-    closeMenu
-}) => {
+    closeMenu,
+}) {
+
     let history = useHistory();
     useEffect(() => {
         if (!section.back && !section.video) {
@@ -23,7 +23,7 @@ const Overlay = ({
             LoadMainImages("all", "", 1);
         } else if (section.category === "videos") {
             LoadThePage(section.category);
-            startSearchingVideos("", 1);
+            startSearchingVideos("all", "", 1);
         } else {
             LoadThePage(section.category);
             LoadMainImages(section.category, "", 1);
@@ -65,13 +65,11 @@ const mapStateToProps = state => ({
 const MapDispatchToProps = dispatch => ({
     LoadThePage: (page) => dispatch(changePage(page)),
     LoadMainImages: (kind, key, page) => dispatch(loadImages(kind, key, page)),
-    startSearchingVideos: (searchKey, page) => dispatch(loadVideos(searchKey, page)),
+    startSearchingVideos: (kind, searchKey, page) => dispatch(loadVideos(kind, searchKey, page)),
     closeMenu: dir => dispatch(toggelMenu(dir)),
 });
 
 export default connect(mapStateToProps, MapDispatchToProps)(Overlay);
-
-
 
 const SearchHolder = styled.section`
     position: relative;

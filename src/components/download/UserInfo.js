@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-
 import unknown from '../../images/Unknown-person.gif'
 
 function UserInfo({ info }) {
@@ -19,13 +18,9 @@ function UserInfo({ info }) {
         </UserInfoStyles>
     )
 }
-
-
 export default UserInfo;
 
-
 const UserInfoStyles = styled.div`
-
     @media (max-width: 992px) {
         width: 80%;
         margin: auto;
@@ -37,8 +32,6 @@ const UserInfoStyles = styled.div`
     .use_info {
         display: flex;
         justify-content: space-between;
-
-
         .user_img {
             height: 6em;
             border-radius: 50%;
@@ -81,15 +74,10 @@ const UserInfoStyles = styled.div`
 
         button:nth-child(2) {
             background-color: #dddfe2;
-
             &:hover {
                 cursor: pointer;
                 background-color:  var(--light-green-color);;
             }
         }
     }
-
-
-    
-    
 `;

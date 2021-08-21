@@ -1,10 +1,7 @@
 
 import styled from 'styled-components';
 
-
-
 export const BigBtn = styled.button`
-
         background-color: var(--green-color);
         border-radius: 40px;
         outline: none;

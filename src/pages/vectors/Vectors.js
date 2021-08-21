@@ -1,9 +1,9 @@
 import React from 'react';
 import { ImagesHolder } from '../../components';
 
-function Vectors({ startLoadingVectors, getVectors }) {
+function Vectors() {
     return (
-        <ImagesHolder kind={"images"} />
+        <ImagesHolder />
     )
 }
 

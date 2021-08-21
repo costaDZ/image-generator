@@ -1,9 +1,22 @@
 import React from 'react';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Main, Illistrations, Photos, Vectors, Videos, Collection, Download } from './pages';
+import {
+  Main,
+  Illistrations,
+  Photos,
+  Vectors,
+  Videos,
+  Collection,
+  Download
+} from './pages';
 
-import { Navbar, Overlay, Pagination, PushArrow } from './components';
+import {
+  Navbar,
+  Overlay,
+  Pagination,
+  PushArrow
+} from './components';
 
 
 function App() {
@@ -49,5 +62,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

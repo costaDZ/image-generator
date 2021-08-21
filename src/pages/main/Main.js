@@ -4,7 +4,7 @@ import { ImagesHolder } from '../../components';
 
 function Main() {
     return (
-        <ImagesHolder kind={"images"} />
+        <ImagesHolder />
     )
 }
 

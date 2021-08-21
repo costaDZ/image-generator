@@ -4,21 +4,21 @@ import { connect } from 'react-redux';
 import { loadImages, loadVideos } from '../../redux/thunk/thunk.js';
 
 import { useHistory } from 'react-router';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 import { handelLikedImages, addToCollection } from '../../redux/actions/actions';
 
 function InfoBoxContainer({
     id,
-    img,
+    data,
     videos,
     tags,
     kind,
     duration,
     likes,
-    comments,
+    // comments,
     currentLocation,
-    startSearchingImages,
+    LoadMainImages,
     startSearchingVideos,
     toggelLike,
     likedItems,
@@ -27,27 +27,31 @@ function InfoBoxContainer({
     goToDownload,
 }) {
 
-    let history = useHistory().location.pathname;
-    console.log(history.slice(1, 9));
 
+    let history = useHistory().location.pathname;
+    // console.log(history.slice(1, 9));
+
+    console.log(currentLocation);
     function startSearch(e) {
         let valueKeySearch = e.target.textContent;
         let searchAmount = history.slice(1, 9) === "download" ? 8 : 50;
 
-        console.log(searchAmount);
-        switch (currentLocation) {
-            case "videos":
-                startSearchingVideos(valueKeySearch, 1, searchAmount);
+        console.log(kind, searchAmount);
+        switch (kind) {
+            case "video":
+                //startSearchingVideos("all", valueKeySearch, 1, searchAmount);
+                startSearchingVideos("all", valueKeySearch, 1, 8);
+
                 break;
             default:
-                startSearchingImages(currentLocation, valueKeySearch, 1, searchAmount);
+                LoadMainImages(currentLocation, valueKeySearch, 1, searchAmount);
                 break;
         }
     }
 
 
     let checkItems = likedItems.find(item => item.id === id);
-    let collection = collectionItems.pic.hits.find(item => item.id === id);
+    let collection = collectionItems.hits.find(item => item.id === id);
 
     return (
         <InfoBox
@@ -84,7 +88,7 @@ function InfoBoxContainer({
                         <b>4K</b>
                         <button
                             title={checkItems ? "Add to my collection" : "Remove from my collection"}
-                            onClick={() => toggleCollection(img)}>
+                            onClick={() => toggleCollection(data)}>
                             {
                                 collection
                                     ? <i className="bi bi-dash-square-fill"></i>
@@ -97,7 +101,7 @@ function InfoBoxContainer({
                         <div className="likes">
                             <button
                                 title={checkItems ? "dislike" : "Like"}
-                                onClick={() => toggelLike(img)}>
+                                onClick={() => toggelLike(data)}>
                                 {
                                     checkItems
                                         ? <i className="bi bi-hand-thumbs-up-fill"></i>
@@ -118,7 +122,7 @@ function InfoBoxContainer({
                         <div className="collections">
                             <button
                                 title={checkItems ? "Add to my collection" : "Remove from my collection"}
-                                onClick={() => toggleCollection(img)}>
+                                onClick={() => toggleCollection(data)}>
                                 {
                                     collection
                                         ? <i className="bi bi-dash-square-fill"></i>
@@ -141,8 +145,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    startSearchingImages: (location, searchKey, page, amount) => dispatch(loadImages(location, searchKey, page, amount)),
-    startSearchingVideos: (searchKey, page, amount) => dispatch(loadVideos(searchKey, page, amount)),
+    //  startSearchingImages: (location, searchKey, page, amount) => dispatch(loadImages(location, searchKey, page, amount)),
+    //   startSearchingVideos: (searchKey, page, amount) => dispatch(loadVideos(searchKey, page, amount)),
     toggelLike: item => dispatch(handelLikedImages(item)),
     toggleCollection: item => dispatch(addToCollection(item)),
 });
@@ -161,7 +165,7 @@ const InfoBox = styled.div`
             position: absolute;
             opacity: ${props => props.k === "video" ? 1 : 0};
             color: var(--white-color);
-            height: 20%;
+          //  height: 20%;
 
             bottom: 0;
             background: linear-gradient(0deg,rgb(0 0 0 / 90%) 0,transparent);

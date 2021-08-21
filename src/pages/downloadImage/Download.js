@@ -1,22 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-
+import { toggleDownloadSizes } from '../../redux/actions/downloadActions';
 import {
+    ImagesHolder,
     BigImageView,
     DownloadBtn,
     UserInfo,
     ImageInfo,
 } from '../../components';
 
-import { toggleDownloadSizes } from '../../redux/actions/downloadActions';
-import { ImagesHolder } from '../../components';
 
-function Download({
-    toggleDownloadSizes,
-    targetType,
-    info,
-}) {
+function Download({ toggleDownloadSizes, targetType, info, }) {
+
     function closeSizes(e) {
         let elm = e.target;
         if (!elm.classList.contains('pre')
@@ -34,11 +30,8 @@ function Download({
                     targetType={targetType}
                     info={info}
                 />
-
                 <div className="side_bar">
-                    <UserInfo
-                        info={info}
-                    />
+                    <UserInfo info={info} />
                     <DownloadBtn
                         targetType={targetType}
                         toggleDownloadSizes={toggleDownloadSizes}
@@ -46,17 +39,11 @@ function Download({
                     />
                     <ImageInfo {...info} />
                 </div>
-
-
             </div>
+
             <div className="related_images">
                 <h3>Discover More :</h3>
-                {
-                    targetType === "video" ?
-                        <ImagesHolder className="related" kind="videos" />
-                        :
-                        <ImagesHolder className="related" kind="images" />
-                }
+                <ImagesHolder />
             </div>
         </DownloadStyled>
     )
@@ -74,15 +61,14 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Download);
 
 const DownloadStyled = styled.section`
-    padding: 5em 5em;
+        padding: 5em 5em;
 
-    @media (max-width: 768px) {
-    padding: 5em 2em;
-
-    }
-    @media (max-width: 376px) {
+        @media (max-width: 768px) {
+        padding: 5em 2em;
+        }
+        @media (max-width: 376px) {
         padding: 3em .5em;
-    }
+        }
 
     .first_container {
         display: flex;
@@ -92,31 +78,15 @@ const DownloadStyled = styled.section`
             flex-direction: column;
             height: 60em;
         }
+
         .side_bar {
             position: relative;
             padding: 0em 1em;
         }
     }
-
     .related_images {
         h3 {
             color: var(--grey-text);
         }
-
-    /* .related {
-        img {
-            max-width: 5em;
-        }
-    } */
-
     }
-    /* @media (max-width: 1200px) {}
-
-    @media (max-width: 992px) {}
-
-    @media (max-width: 768px) {}
-
-    @media (max-width: 376px) {} */
-
-    
 `;

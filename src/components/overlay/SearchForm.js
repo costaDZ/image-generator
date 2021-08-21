@@ -2,18 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { Search } from '@styled-icons/bootstrap/Search';
 
-
 function SearchForm({
     startSearchingImages,
     startSearchingVideos,
-    section
+    section,
 }) {
     function startSearch(e, val, check) {
         e.preventDefault();
         if (check === "search") e.target.lastElementChild.value = "";
         switch (section.category) {
             case "videos":
-                startSearchingVideos(val, 1);
+                startSearchingVideos(section.category, val, 1);
                 break;
             default:
                 startSearchingImages(section.category, val, 1);
@@ -37,8 +36,8 @@ function SearchForm({
                     placeholder={`Search ${section.category || ""} ...`}
                     required
                 />
-
             </SearchFormStyles>
+
             <PopulairImagesStyle>
                 <h4>Populair Images : </h4>
                 {(section.populair || section.all.populair).map((item, i) => {
@@ -52,14 +51,13 @@ function SearchForm({
     )
 }
 
-
 export default SearchForm;
+
 
 
 const SerachIcon = styled(Search)`
         height : 2em;
 `
-
 const SearchFormStyles = styled.form`
         display: flex;
         width: 40%;

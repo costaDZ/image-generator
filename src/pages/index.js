@@ -7,7 +7,4 @@ import Collection from './collection/Collection';
 import Download from './downloadImage/Download';
 
 
-
-
-
 export { Main, Photos, Vectors, Illistrations, Videos, Collection, Download };

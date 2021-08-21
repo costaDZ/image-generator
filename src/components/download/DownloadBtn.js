@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
 import { BigBtn } from '../../styles/components';
-
-
 import DownloadSize from './downloadSizes/DownloadSize';
 
 function DownloadBtn({
@@ -10,7 +8,6 @@ function DownloadBtn({
     targetType,
     info,
 }) {
-
     return (
         <DownloadBtnStyles >
             <BigBtn
@@ -28,8 +25,6 @@ function DownloadBtn({
     )
 }
 
-
-
 export default DownloadBtn;
 
 const DownloadBtnStyles = styled.div`
@@ -43,5 +38,4 @@ const DownloadBtnStyles = styled.div`
     .download_btn {
         font-size: 1.5em;
     }
-
 `;

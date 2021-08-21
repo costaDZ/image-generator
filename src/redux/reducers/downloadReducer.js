@@ -1,30 +1,11 @@
 import { ADD_TO_DOWNLOAD, TOGGLE_DOWNLOAD_SIZES } from '../actions/downloadActions';
 
 
-const initiaDownload = {
-    id: null,
-    extention: null,
-    sizes: false,
-    targetType: "",
-    targetSize: "",
-    bigResolution: "",
-    normalResolution: "",
-    views: 0,
-    downloads: 0,
-    tags: null,
-    type: "",
-    tinyUrl: "",
-    smallUrl: "",
-    mediumUrl: "",
-    largeUrl: "",
-    user: "",
-    userImageURL: "",
-}
-
-export const download = (state = initiaDownload, actions) => {
+export const download = (state = {}, actions) => {
     const { type, payload } = actions;
     switch (type) {
         case ADD_TO_DOWNLOAD:
+
             const { item } = payload;
             let extention;
             let type;
@@ -59,12 +40,10 @@ export const download = (state = initiaDownload, actions) => {
                 smallUrl = item.videos.small.url;
                 mediumUrl = item.videos.medium.url;
                 largeUrl = item.videos.large.url;
-
             }
             return {
                 ...state,
                 id: item.id,
-                //  targetImage: item,
                 extention,
                 targetType: type,
                 targetSize,
@@ -84,7 +63,6 @@ export const download = (state = initiaDownload, actions) => {
                 userImageURL: item.userImageURL,
             };
         case TOGGLE_DOWNLOAD_SIZES:
-
             if (payload === "toggle") {
                 return { ...state, sizes: !state.sizes }
             } else {

@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import { ImagesHolder, StatusCollectionBar } from '../../components';
 
-import {
-    ImagesHolder,
-    StatusCollectionBar
-} from '../../components';
 
 function Collection() {
     const products = useSelector((state) => state.myCollection);
@@ -21,12 +18,10 @@ function Collection() {
         </CollectionStyled>
     )
 }
-
 export default Collection;
 
 const CollectionStyled = styled.section`
     padding: 6em 0;
-
     h2 {
         position: absolute;
         top: 50%;
@@ -41,5 +36,4 @@ const CollectionStyled = styled.section`
             font-size: 2em;
         }
     }
-
 `;

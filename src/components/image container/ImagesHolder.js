@@ -5,47 +5,25 @@ import ImageContainer from './ImageContainer';
 import { connect } from 'react-redux';
 
 import { loadImages, loadVideos } from '../../redux/thunk/thunk';
+import { addToDownload } from '../../redux/actions/downloadActions';
 
-function ImagesHolder({ images, kind, LoadMainImages, startSearchingVideos }) {
+function ImagesHolder({ content, kind, collection, LoadMainImages, startSearchingVideos, goToDownload }) {
 
-
-    let data = images[kind].pic?.hits;
-
+    let data = kind === "myCollection" ? collection : content;
+    console.log(data, kind);
     return (
         <ImagesContainerStyles>
             {
-                data?.map(item => {
-                    const {
-                        id,
-                        likes,
-                        comments,
-                        largeImageURL,
-                        tags,
-                        webformatURL,
-                        picture_id,
-                        webformatWidth,
-                        webformatHeight,
-                        downloads,
-                        duration,
-                        videos
-                    } = item;
-                    let src = `https://i.vimeocdn.com/video/${picture_id}_640x360.jpg`;
+                data.hits?.map(item => {
                     return (
                         <ImageContainer
-                            img={item}
-                            kind={images[kind].kind}
-                            duration={duration}
-                            videos={videos}
-                            picture_id={picture_id}
-                            key={id}
-                            id={id}
-                            likes={likes}
-                            tags={tags}
-                            comments={comments}
-                            webformatURL={webformatURL || src}
-                            isLoading={data.isLoading}
+                            kind={content.kind}
+                            key={item.id}
+                            isLoading={content.isLoading}
+                            data={item}
                             LoadMainImages={LoadMainImages}
                             startSearchingVideos={startSearchingVideos}
+                            goToDownload={goToDownload}
                         />
                     )
                 })}
@@ -55,12 +33,14 @@ function ImagesHolder({ images, kind, LoadMainImages, startSearchingVideos }) {
 
 
 const mapStateToProps = state => ({
-    images: state,
+    content: state.content,
+    collection: state.myCollection,
 });
 
 const MapDispatchToProps = dispatch => ({
     LoadMainImages: (kind, key, page, perpage) => dispatch(loadImages(kind, key, page, perpage)),
-    startSearchingVideos: (searchKey, page, perpage) => dispatch(loadVideos(searchKey, page, perpage)),
+    startSearchingVideos: (kind, searchKey, page, perpage) => dispatch(loadVideos(kind, searchKey, page, perpage)),
+    goToDownload: (item) => dispatch(addToDownload(item)),
 });
 
 export default connect(mapStateToProps, MapDispatchToProps)(ImagesHolder);

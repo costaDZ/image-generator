@@ -7,10 +7,8 @@ function DownloadSize({
     targetType,
     info,
 }) {
-
     const [downloadSrc, setdownloadSrc] = useState("");
-
-    console.log(downloadSrc);
+    const { extention, sizes, targetSize, bigResolution, normalResolution } = info;
 
     async function startDownload(src) {
         const target = await fetch(src);
@@ -33,9 +31,6 @@ function DownloadSize({
         document.body.removeChild(link)
     }
 
-    const { extention, sizes, targetSize, bigResolution, normalResolution } = info;
-
-
     return (
         <DownloadSizeStyles
             className="pre"
@@ -44,7 +39,7 @@ function DownloadSize({
             <form onSubmit={(e) => {
                 e.preventDefault();
                 (targetType === "video") ? downloadVideo(downloadSrc) : startDownload(downloadSrc);
-                setdownloadSrc("")
+                setdownloadSrc("");
             }}>
                 <input
                     type="radio"
@@ -96,7 +91,6 @@ function DownloadSize({
                 <br />
                 <BigBtn className="pre" type="submit" >Download</BigBtn>
             </form>
-
         </DownloadSizeStyles>
     )
 }
@@ -105,7 +99,6 @@ export default DownloadSize;
 
 const DownloadSizeStyles = styled.div`
     position: absolute;
-   // width: 100%;
     top: 6.5em;
     min-width: 18em;
     border-radius: 20px;
@@ -113,10 +106,8 @@ const DownloadSizeStyles = styled.div`
     flex-direction: column;
     justify-content: space-around;
     background-color: black;
-  //  height: 100%;
     display: none;
     padding: .5em;
-
 
     form {
         color: white;
@@ -149,5 +140,4 @@ const DownloadSizeStyles = styled.div`
         display: block;
         margin: auto;
     }
-
 `;
