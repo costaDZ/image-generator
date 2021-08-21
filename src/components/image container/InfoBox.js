@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { loadImages, loadVideos } from '../../redux/thunk/thunk.js';
-
 import { useHistory } from 'react-router';
-//import { Link } from 'react-router-dom';
-
 import { handelLikedImages, addToCollection } from '../../redux/actions/actions';
 
 function InfoBoxContainer({
@@ -16,7 +12,6 @@ function InfoBoxContainer({
     kind,
     duration,
     likes,
-    // comments,
     currentLocation,
     LoadMainImages,
     startSearchingVideos,
@@ -29,7 +24,6 @@ function InfoBoxContainer({
 
 
     let history = useHistory().location.pathname;
-    // console.log(history.slice(1, 9));
 
     console.log(currentLocation);
     function startSearch(e) {
@@ -39,9 +33,7 @@ function InfoBoxContainer({
         console.log(kind, searchAmount);
         switch (kind) {
             case "video":
-                //startSearchingVideos("all", valueKeySearch, 1, searchAmount);
-                startSearchingVideos("all", valueKeySearch, 1, 8);
-
+                startSearchingVideos("all", valueKeySearch, 1, searchAmount);
                 break;
             default:
                 LoadMainImages(currentLocation, valueKeySearch, 1, searchAmount);
@@ -64,7 +56,6 @@ function InfoBoxContainer({
                 (checkItems || collection)
                     &&
                     (history === "/collection")
-
                     ? null :
                     <div className="tags">
                         {tags.replace(/\s/g, "").split(',').map((tag, i) => {
@@ -74,14 +65,12 @@ function InfoBoxContainer({
                                     onClick={(e) => startSearch(e)}
                                 >{tag}</button>
                             )
-                        })
-                        }
+                        })}
                     </div>
             }
 
 
             <div className="likes_comments">
-
                 {kind === 'videos' ?
                     <div className="quality_diration">
                         <p>0:{duration}</p>
@@ -134,7 +123,6 @@ function InfoBoxContainer({
                     </>
                 }
             </div>
-
         </InfoBox>
     )
 }
@@ -145,12 +133,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    //  startSearchingImages: (location, searchKey, page, amount) => dispatch(loadImages(location, searchKey, page, amount)),
-    //   startSearchingVideos: (searchKey, page, amount) => dispatch(loadVideos(searchKey, page, amount)),
     toggelLike: item => dispatch(handelLikedImages(item)),
     toggleCollection: item => dispatch(addToCollection(item)),
 });
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(InfoBoxContainer);
@@ -165,14 +150,10 @@ const InfoBox = styled.div`
             position: absolute;
             opacity: ${props => props.k === "video" ? 1 : 0};
             color: var(--white-color);
-          //  height: 20%;
-
             bottom: 0;
             background: linear-gradient(0deg,rgb(0 0 0 / 90%) 0,transparent);
             width: 100%;
-
-                ${props => props.k !== "video" ? " @media (max-width: 768px) {opacity: 1;height: 30%;}" : ""}
-
+                ${props => props.k !== "video" ? " @media (max-width: 768px) {opacity: 1;}" : ""}
             .tags {
                 display: flex;
                 padding: 1em 0;

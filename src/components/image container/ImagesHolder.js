@@ -10,7 +10,6 @@ import { addToDownload } from '../../redux/actions/downloadActions';
 function ImagesHolder({ content, kind, collection, LoadMainImages, startSearchingVideos, goToDownload }) {
 
     let data = kind === "myCollection" ? collection : content;
-    console.log(data, kind);
     return (
         <ImagesContainerStyles>
             {
