@@ -38,7 +38,7 @@ function ImageContainer({
     useEffect(() => {
         let loaderTrigger = setTimeout(() => {
             setLoader(false);
-        }, 2000);
+        }, 1200);
         return () => clearTimeout(loaderTrigger);
     }, []);
 
