@@ -1,28 +1,15 @@
 import React from 'react';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import {
-  Main,
-  Illistrations,
-  Photos,
-  Vectors,
-  Videos,
-  Collection,
-  Download
-} from './pages';
+import { Main, Illistrations, Photos, Vectors, Videos, Collection, Download } from './pages';
+import { Navbar, Overlay, Pagination, PushArrow } from './components';
 
-import {
-  Navbar,
-  Overlay,
-  Pagination,
-  PushArrow
-} from './components';
-
-
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <Router>
+      <Main />
+
+      {/* <Router>
         <Navbar />
         <Switch>
           <Route exact path="/">
@@ -30,12 +17,12 @@ function App() {
             <Main />
             <Pagination />
           </Route>
-          <Route path="/illistrations">
+         <Route path="/illistrations">
             <Overlay />
             <Illistrations />
             <Pagination />
-          </Route>
-          <Route path="/photos">
+          </Route> 
+        <Route path="/photos">
             <Overlay />
             <Photos />
             <Pagination />
@@ -45,21 +32,21 @@ function App() {
             <Vectors />
             <Pagination />
           </Route>
-          <Route path="/videos">
+          <Route  path="/videos">
             <Overlay />
             <Videos />
             <Pagination />
           </Route>
-          <Route path="/collection" >
+          <Route path="/collection">
             <Collection />
           </Route>
           <Route path="/download/:imageId">
             <Download />
-          </Route>
+          </Route> 
         </Switch>
         <PushArrow />
-      </Router>
+      </Router> */}
     </div>
   );
-}
+};
 export default App;

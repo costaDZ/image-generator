@@ -7,15 +7,13 @@ import GlobalStyle from './styles/globalStyles';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 
-
 const store = configureStore();
 const persistor = persistStore(store);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate
-        persistor={persistor}>
+      <PersistGate persistor={persistor}>
         <GlobalStyle />
         <App />
       </PersistGate>
@@ -23,4 +21,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
