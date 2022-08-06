@@ -42,7 +42,7 @@ const InfoBoxContainer: React.FC<InfoBoxContainerProps> = ({
   const history = useHistory().location.pathname;
 
   console.log(currentLocation);
-  function startSearch(e) {
+  function startSearch(e: any) {
     const valueKeySearch = e.target.textContent;
     const searchAmount = history.slice(1, 9) === 'download' ? 8 : 50;
 
@@ -57,8 +57,8 @@ const InfoBoxContainer: React.FC<InfoBoxContainerProps> = ({
     }
   }
 
-  const checkItems = likedItems.find((item) => item.id === id);
-  const collection = collectionItems.hits.find((item) => item.id === id);
+  const checkItems = likedItems.find((item: any) => item.id === id);
+  const collection = collectionItems.hits.find((item: any) => item.id === id);
 
   return (
     <InfoBox data-url={videos && videos.medium.url} k={kind} className="info_box">
@@ -67,7 +67,7 @@ const InfoBoxContainer: React.FC<InfoBoxContainerProps> = ({
           {tags
             .replace(/\s/g, '')
             .split(',')
-            .map((tag, i) => {
+            .map((tag: string, i: string) => {
               return (
                 <button key={i} onClick={(e) => startSearch(e)}>
                   {tag}
@@ -131,19 +131,23 @@ const InfoBoxContainer: React.FC<InfoBoxContainerProps> = ({
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   likedItems: state.likedItem,
   collectionItems: state.myCollection
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  toggelLike: (item) => dispatch(handelLikedImages(item)),
-  toggleCollection: (item) => dispatch(addToCollection(item))
+const mapDispatchToProps = (dispatch: any) => ({
+  toggelLike: (item: any) => dispatch(handelLikedImages(item)),
+  toggleCollection: (item: any) => dispatch(addToCollection(item))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InfoBoxContainer);
 
-const InfoBox = styled.div`
+interface IndoBoxProps {
+  k: string;
+}
+
+const InfoBox = styled.div<IndoBoxProps>`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;

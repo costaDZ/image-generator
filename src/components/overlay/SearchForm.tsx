@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Search } from '@styled-icons/bootstrap/Search';
 
 interface SearchFormProps {
-  startSearchingImages: any;
-  startSearchingVideos: any;
+  startSearchingImages?: any;
+  startSearchingVideos?: any;
   section: any;
 }
 
@@ -13,9 +13,10 @@ const SearchForm: React.FC<SearchFormProps> = ({
   startSearchingVideos,
   section
 }: SearchFormProps) => {
-  function startSearch(e, val, check) {
+  function startSearch(e: React.SyntheticEvent<HTMLFormElement>, val: string, check: string) {
     e.preventDefault();
-    if (check === 'search') e.target.lastElementChild.value = '';
+
+    if (check === 'search') (e.target as Element).lastElementChild.value = '';
     switch (section.category) {
       case 'videos':
         startSearchingVideos(section.category, val, 1);
@@ -28,7 +29,10 @@ const SearchForm: React.FC<SearchFormProps> = ({
 
   return (
     <>
-      <SearchFormStyles onSubmit={(e) => startSearch(e, e.target.lastElementChild.value, 'search')}>
+      <SearchFormStyles
+        onSubmit={(e: React.SyntheticEvent<HTMLFormElement>) =>
+          startSearch(e, (e.target as HTMLFormElement).lastElementChild.value, 'search')
+        }>
         <button className="search-btn" type="submit" aria-label="search">
           <SerachIcon />
         </button>

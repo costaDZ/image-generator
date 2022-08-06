@@ -5,9 +5,10 @@ import { BigBtn } from '../../../styles/components';
 interface DownloadSizeProps {
   targetType: any;
   info: any;
+  className?: any;
 }
 
-const DownloadSize: React.FC = ({ targetType, info }: DownloadSizeProps) => {
+const DownloadSize: React.FC<DownloadSizeProps> = ({ targetType, info }: DownloadSizeProps) => {
   const [downloadSrc, setdownloadSrc] = useState('');
   const { extention, sizes, targetSize, bigResolution, normalResolution } = info;
 

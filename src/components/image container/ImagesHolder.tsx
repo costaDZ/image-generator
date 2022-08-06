@@ -16,7 +16,7 @@ interface ImagesHolderProps {
   goToDownload: any;
 }
 
-const ImagesHolder: React.FC = ({
+const ImagesHolder: React.FC<ImagesHolderProps> = ({
   content,
   kind,
   collection,
@@ -27,7 +27,7 @@ const ImagesHolder: React.FC = ({
   const data = kind === 'myCollection' ? collection : content;
   return (
     <ImagesContainerStyles>
-      {data.hits?.map((item) => {
+      {data.hits?.map((item: any) => {
         return (
           <ImageContainer
             kind={content.kind}
@@ -50,10 +50,11 @@ const mapStateToProps = (state: any) => ({
 });
 
 const MapDispatchToProps = (dispatch: any) => ({
-  LoadMainImages: (kind, key, page, perpage) => dispatch(loadImages(kind, key, page, perpage)),
-  startSearchingVideos: (kind, searchKey, page, perpage) =>
+  LoadMainImages: (kind: any, key: any, page: any, perpage: any) =>
+    dispatch(loadImages(kind, key, page, perpage)),
+  startSearchingVideos: (kind: any, searchKey: any, page: any, perpage: any) =>
     dispatch(loadVideos(kind, searchKey, page, perpage)),
-  goToDownload: (item) => dispatch(addToDownload(item))
+  goToDownload: (item: any) => dispatch(addToDownload(item))
 });
 
 export default connect(mapStateToProps, MapDispatchToProps)(ImagesHolder);

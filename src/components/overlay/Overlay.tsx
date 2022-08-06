@@ -26,13 +26,17 @@ const Overlay: React.FC<OverlayProps> = ({ section }: OverlayProps) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   section: state.nav
 });
 
 export default connect(mapStateToProps)(Overlay);
 
-const SearchHolder = styled.section`
+interface SearchHolderStyleProps {
+  img: string;
+}
+
+const SearchHolder = styled.section<SearchHolderStyleProps>`
   position: relative;
   overflow-y: hidden;
   display: flex;

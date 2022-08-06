@@ -19,11 +19,7 @@ const DownloadBtn: React.FC<DownloadBtnProps> = ({
       <BigBtn className="download_btn pre" onClick={() => toggleDownloadSizes('toggle')}>
         <i className="bi bi-download"></i> Free Download
       </BigBtn>
-      <DownloadSize
-        //className="pre"
-        targetType={targetType}
-        info={info}
-      />
+      <DownloadSize className="pre" targetType={targetType} info={info} />
     </DownloadBtnStyles>
   );
 };

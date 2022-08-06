@@ -47,10 +47,12 @@ const Link: React.FC<ImagesHolderProps> = ({
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  changingPage: (page) => dispatch(changePage(page)),
-  startLoadImages: (currentSec, key, page) => dispatch(loadImages(currentSec, key, page)),
-  startLoadVideos: (currentSec, key, page) => dispatch(loadVideos(currentSec, key, page))
+const mapDispatchToProps = (dispatch: any) => ({
+  changingPage: (page: any) => dispatch(changePage(page)),
+  startLoadImages: (currentSec: any, key: any, page: any) =>
+    dispatch(loadImages(currentSec, key, page)),
+  startLoadVideos: (currentSec: any, key: any, page: any) =>
+    dispatch(loadVideos(currentSec, key, page))
 });
 
 export default connect(null, mapDispatchToProps)(Link);

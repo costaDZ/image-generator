@@ -23,7 +23,7 @@ const ImageContainer: React.FC<ImageContainerProps> = ({
 }: ImageContainerProps) => {
   const [play, setPlay] = useState(false);
   const [loader, setLoader] = useState(true);
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { id, likes, comments, tags, webformatURL, duration, videos, picture_id } = data;
 
   const src = `https://i.vimeocdn.com/video/${picture_id}_640x360.jpg`;
@@ -35,8 +35,8 @@ const ImageContainer: React.FC<ImageContainerProps> = ({
     return () => clearTimeout(loaderTrigger);
   }, []);
 
-  let timer;
-  function playVideo(v, e) {
+  let timer: any;
+  function playVideo(v: any, e: any) {
     const itemkind = containerRef!.current!.dataset!.kind;
     if (itemkind === 'video') {
       if (v === 'set') {
@@ -53,23 +53,24 @@ const ImageContainer: React.FC<ImageContainerProps> = ({
 
   useEffect(() => {
     const video = document.createElement('video');
-    const firstChild = containerRef.current.firstElementChild.firstElementChild;
+    //const firstChild: HTMLElement = containerRef!.current!.firstElementChild!.firstElementChild;
+
     if (videos && play) {
       video.classList.add('hovering_video');
-      video.setAttribute('autoPlay', true);
-      video.setAttribute('muted', true);
-      video.setAttribute('loop', true);
+      video.setAttribute('autoPlay', 'true');
+      video.setAttribute('muted', 'true');
+      video.setAttribute('loop', 'true');
       const source = document.createElement('source');
       source.setAttribute('src', `${videos.tiny.url}`);
       source.setAttribute('type', 'video/ogg');
-      if (window.innerWidth <= 600) {
-        video.setAttribute('width', '100');
-        video.setAttribute('height', '100');
-      }
-      video.appendChild(source);
-      containerRef.current.firstElementChild.prepend(video);
-    } else if (videos && !play && firstChild.tagName === 'VIDEO') {
-      containerRef.current.firstElementChild.removeChild(firstChild);
+      //   if (window.innerWidth <= 600) {
+      //     video.setAttribute('width', '100');
+      //     video.setAttribute('height', '100');
+      //   }
+      //   video.appendChild(source);
+      //   //containerRef!.current!.firstElementChild!.prepend(video);
+      // } else if (videos && !play && firstChild!.tagName === 'VIDEO') {
+      //   //containerRef!.current!.firstElementChild!.removeChild(firstChild);
     }
   }, [play]);
 
@@ -106,7 +107,7 @@ const ImageContainer: React.FC<ImageContainerProps> = ({
             kind={duration ? 'video' : 'image'}
             duration={duration}
             likes={likes}
-            comments={comments}
+            //comments={comments}
             currentLocation={kind}
             goToDownload={goToDownload}
             LoadMainImages={LoadMainImages}
@@ -120,14 +121,18 @@ const ImageContainer: React.FC<ImageContainerProps> = ({
 
 export default ImageContainer;
 
-const ImageContainerStyles = styled.div`
+interface ImageContainerStylesProps {
+  video: string;
+}
+
+const ImageContainerStyles = styled.div<ImageContainerStylesProps>`
   position: relative;
   margin: 0.5em;
   height: 14em;
   flex-grow: 1;
   width: auto;
   overflow: hidden;
-  max-width: 28em;
+  max-width: 28em; // Video  1
   ${(props) => (props.video === 'video' ? 'width: 23em;' : null)}
   @media (max-width: 1400px) {
     max-width: 45%;

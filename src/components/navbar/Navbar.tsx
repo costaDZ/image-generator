@@ -28,7 +28,10 @@ const Navbar: React.FC<ImagesHolderProps> = ({ menu, toggleMenuBtn }: ImagesHold
   return (
     <NavbarStyles
       style={{ opacity: offset > 50 && offset < 700 ? 0 : 1 }}
-      onClick={(e) => !e.target.classList.contains('bi-list') && toggleMenuBtn('close')}>
+      onClick={(e: React.SyntheticEvent<HTMLElement>) => {
+        const target = e.target as Element;
+        target.classList.contains('bi-list') && toggleMenuBtn('close');
+      }}>
       <WideContainer>
         <nav className="nav-section">
           <div aria-label="home">
@@ -52,12 +55,12 @@ const Navbar: React.FC<ImagesHolderProps> = ({ menu, toggleMenuBtn }: ImagesHold
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   menu: state.menuBtn.menuBtn
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleMenuBtn: (dir) => dispatch(toggelMenu(dir))
+const mapDispatchToProps = (dispatch: any) => ({
+  toggleMenuBtn: (dir: any) => dispatch(toggelMenu(dir))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
