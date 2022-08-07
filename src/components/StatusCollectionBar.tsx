@@ -9,7 +9,7 @@ interface StatusCollectionBarProps {
   collectedVideos: any;
 }
 
-const StatusCollectionBar: React.FC = ({
+const StatusCollectionBar: React.FC<StatusCollectionBarProps> = ({
   collectedPhotos,
   collectedVectors,
   collectedIllistrations,

@@ -4,7 +4,7 @@ import { ImagesHolder, StatusCollectionBar } from '../../components';
 import { CollectionStyled } from './collection.style';
 
 function Collection() {
-  const products = useSelector((state) => state!.myCollection);
+  const products = useSelector((state: any) => state!.myCollection);
   const total = products.photo + products.vector + products.illustration + products.video;
   return (
     <CollectionStyled>

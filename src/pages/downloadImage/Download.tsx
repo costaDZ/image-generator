@@ -15,11 +15,11 @@ const Download: React.FC<DownloadProps> = ({
   targetType,
   info
 }: DownloadProps) => {
-  function closeSizes(e) {
-    const elm = e.target;
-    if (!elm.classList.contains('pre') && elm.tagName !== 'FORM' && elm.tagName !== 'INPUT') {
-      toggleDownloadSizes('c');
-    }
+  function closeSizes(e: any) {
+    // const elm = e.target;
+    // if (!elm.classList.contains('pre') && elm.tagName !== 'FORM' && elm.tagName !== 'INPUT') {
+    //   toggleDownloadSizes('c');
+    // }
   }
 
   return (
@@ -45,13 +45,13 @@ const Download: React.FC<DownloadProps> = ({
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   info: state.download,
   targetType: state.download.targetType
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleDownloadSizes: (action) => dispatch(toggleDownloadSizes(action))
+const mapDispatchToProps = (dispatch: any) => ({
+  toggleDownloadSizes: (action: any) => dispatch(toggleDownloadSizes(action))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Download);

@@ -10,7 +10,7 @@ interface PaginationProps {
   startLoadPageVideos: any;
 }
 
-const Pagination: React.FC = ({
+const Pagination: React.FC<PaginationProps> = ({
   currentItems,
   currentLocation,
   startLoadPageImages,
@@ -30,56 +30,57 @@ const Pagination: React.FC = ({
   }
 
   return (
-    !isLoading && (
-      <PaginationStyles>
-        <div className="left_box_info">
-          {searchKey && <b>{total} </b>}
-          Free <span>{currentItems.kind === 'videos' ? 'Videos' : 'Images'}</span>
-          {searchKey && (
-            <span>
-              {' '}
-              of <span className="key_span">${searchKey}</span>{' '}
-            </span>
-          )}
-        </div>
+    <h1>Oagination</h1>
 
-        <div className="right_box_info">
-          <span className="current_page">{pageNumber}</span>
-          <span className="total_passed_pages">
-            {pageNumber === Math.ceil(totalHits / perPage)
-              ? totalHits - (pageNumber - 1) * perPage + (pageNumber - 1) * perPage
-              : pageNumber * perPage}
-          </span>
-          /<span className="total_pages">{pic ? totalHits : 500}</span>
-          <button
-            className={`left-row ${pageNumber === 1 ? 'desactive-btn' : 'active-btn'}`}
-            onClick={() => pageNumber > 1 && changeThePage(pageNumber - 1)}>
-            <i className="bi bi-chevron-left"></i>
-          </button>
-          <button
-            className={`right-row ${
-              pageNumber >= Math.ceil(totalHits / perPage) ? 'desactive-btn' : 'active-btn'
-            }`}
-            onClick={() =>
-              pageNumber < Math.ceil(totalHits / perPage) && changeThePage(pageNumber + 1)
-            }>
-            <i className="bi bi-chevron-right"></i>
-          </button>
-        </div>
-      </PaginationStyles>
-    )
+    //   !isLoading && (
+    // <PaginationStyles>
+    //   <div className="left_box_info">
+    //     {searchKey && <b>{total} </b>}
+    //     Free <span>{currentItems.kind === 'videos' ? 'Videos' : 'Images'}</span>
+    //     {searchKey && (
+    //       <span>
+    //         {' '}
+    //         of <span className="key_span">${searchKey}</span>{' '}
+    //       </span>
+    //     )}
+    //   </div>
+
+    //   <div className="right_box_info">
+    //     <span className="current_page">{pageNumber}</span>
+    //     <span className="total_passed_pages">
+    //       {pageNumber === Math.ceil(totalHits / perPage)
+    //         ? totalHits - (pageNumber - 1) * perPage + (pageNumber - 1) * perPage
+    //         : pageNumber * perPage}
+    //     </span>
+    //     /<span className="total_pages">{pic ? totalHits : 500}</span>
+    //     <button
+    //       className={`left-row ${pageNumber === 1 ? 'desactive-btn' : 'active-btn'}`}
+    //       onClick={() => pageNumber > 1 && changeThePage(pageNumber - 1)}>
+    //       <i className="bi bi-chevron-left"></i>
+    //     </button>
+    //     <button
+    //       className={`right-row ${
+    //         pageNumber >= Math.ceil(totalHits / perPage) ? 'desactive-btn' : 'active-btn'
+    //       }`}
+    //       onClick={() =>
+    //         pageNumber < Math.ceil(totalHits / perPage) && changeThePage(pageNumber + 1)
+    //       }>
+    //       <i className="bi bi-chevron-right"></i>
+    //     </button>
+    //   </div>
+    //     </PaginationStyles>
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   currentItems: state.content,
   currentLocation: state.nav.category
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  startLoadPageImages: (kind, searchkey, pageNumber, perPage) =>
+  startLoadPageImages: (kind: any, searchkey: any, pageNumber: any, perPage: any) =>
     dispatch(loadImages(kind, searchkey, pageNumber, perPage)),
-  startLoadPageVideos: (kind, searchkey, page, perpage) =>
+  startLoadPageVideos: (kind: any, searchkey: any, page: any, perpage: any) =>
     dispatch(loadVideos(kind, searchkey, page, perpage))
 });
 

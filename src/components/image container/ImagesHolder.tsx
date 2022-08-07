@@ -8,12 +8,12 @@ import { loadImages, loadVideos } from '../../redux/thunk/thunk';
 import { addToDownload } from '../../redux/actions/downloadActions';
 
 interface ImagesHolderProps {
-  content: any;
-  kind: any;
-  collection: any;
-  LoadMainImages: any;
-  startSearchingVideos: any;
-  goToDownload: any;
+  content?: any;
+  kind?: any;
+  collection?: any;
+  LoadMainImages?: any;
+  startSearchingVideos?: any;
+  goToDownload?: any;
 }
 
 const ImagesHolder: React.FC<ImagesHolderProps> = ({
