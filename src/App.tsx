@@ -7,9 +7,7 @@ import { Navbar, Overlay, Pagination, PushArrow } from './components';
 const App = () => {
   return (
     <div className="App">
-      <Main />
-
-      {/* <Router>
+      <Router>
         <Navbar />
         <Switch>
           <Route exact path="/">
@@ -17,12 +15,12 @@ const App = () => {
             <Main />
             <Pagination />
           </Route>
-         <Route path="/illistrations">
+          <Route path="/illistrations">
             <Overlay />
             <Illistrations />
             <Pagination />
-          </Route> 
-        <Route path="/photos">
+          </Route>
+          <Route path="/photos">
             <Overlay />
             <Photos />
             <Pagination />
@@ -32,7 +30,7 @@ const App = () => {
             <Vectors />
             <Pagination />
           </Route>
-          <Route  path="/videos">
+          <Route path="/videos">
             <Overlay />
             <Videos />
             <Pagination />
@@ -42,10 +40,10 @@ const App = () => {
           </Route>
           <Route path="/download/:imageId">
             <Download />
-          </Route> 
+          </Route>
         </Switch>
         <PushArrow />
-      </Router> */}
+      </Router>
     </div>
   );
 };

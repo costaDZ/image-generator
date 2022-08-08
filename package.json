@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.1",
     "@types/node": "^16.11.35",
-    "@types/react": "^18.0.9",
+    "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -66,8 +66,5 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "prettier": "^2.7.1"
-  },
-  "resolutions": {
-    "@types/react": "^16 || ^17"
   }
 }

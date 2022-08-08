@@ -41,7 +41,6 @@ const InfoBoxContainer: React.FC<InfoBoxContainerProps> = ({
 }: InfoBoxContainerProps) => {
   const history = useHistory().location.pathname;
 
-  console.log(currentLocation);
   function startSearch(e: any) {
     const valueKeySearch = e.target.textContent;
     const searchAmount = history.slice(1, 9) === 'download' ? 8 : 50;

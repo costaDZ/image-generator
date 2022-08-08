@@ -2,8 +2,8 @@ import React from 'react';
 import { ImagesHolder } from '../../components';
 
 interface PhotosProps {
-  getPhotos: any;
-  startLoadingPhotos: any;
+  getPhotos?: any;
+  startLoadingPhotos?: any;
 }
 
 function Photos({ getPhotos, startLoadingPhotos }: PhotosProps): React.ReactElement {
