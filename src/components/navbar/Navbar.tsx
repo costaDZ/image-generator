@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Link from './Link';
+import { Dispatch } from 'redux';
 
 import { WideContainer } from '../../styles';
 import { Link as MyLink } from 'react-router-dom';
@@ -59,7 +60,7 @@ const mapStateToProps = (state: any) => ({
   menu: state.menuBtn.menuBtn
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   toggleMenuBtn: (dir: any) => dispatch(toggelMenu(dir))
 });
 

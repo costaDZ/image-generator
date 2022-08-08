@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Main, Illistrations, Photos, Vectors, Videos, Collection, Download } from './pages';
 import { Navbar, Overlay, Pagination, PushArrow } from './components';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="App">
       <Router>

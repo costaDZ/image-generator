@@ -1,9 +1,9 @@
-import { ADD_TO_DOWNLOAD, TOGGLE_DOWNLOAD_SIZES } from '../actions/downloadActions';
+import { ActionType } from '../actions/actions-types';
 
 export const download = (state = {}, actions) => {
   const { type, payload } = actions;
   switch (type) {
-    case ADD_TO_DOWNLOAD: {
+    case ActionType.ADD_TO_DOWNLOAD: {
       const { item } = payload;
       let extention;
       let type;
@@ -60,7 +60,7 @@ export const download = (state = {}, actions) => {
         userImageURL: item.userImageURL
       };
     }
-    case TOGGLE_DOWNLOAD_SIZES:
+    case ActionType.TOGGLE_DOWNLOAD_SIZES:
       if (payload === 'toggle') {
         return { ...state, sizes: !state.sizes };
       } else {
