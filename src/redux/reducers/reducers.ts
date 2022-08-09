@@ -40,14 +40,14 @@ export const content = (
   }
 };
 
-export const menuBtn = (state: any, actions: ToggelMenuAction) => {
+export const menuBtn = (state = false, actions: ToggelMenuAction) => {
   const { type, payload } = actions;
   switch (type) {
     case ActionType.TOGGLE_MENU:
       if (payload === 'close') {
-        return { ...state, menuBtn: false };
+        return { menuBtn: false };
       } else {
-        return { ...state, menuBtn: !state.menuBtn };
+        return { menuBtn: !state };
       }
     default:
       return state;
