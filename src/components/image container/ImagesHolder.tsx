@@ -27,7 +27,7 @@ const ImagesHolder: React.FC<ImagesHolderProps> = ({
   const data = kind === 'myCollection' ? collection : content;
   return (
     <ImagesContainerStyles>
-      {data.hits?.map((item: any) => {
+      {data.hits?.map((item: Hit) => {
         return (
           <ImageContainer
             kind={content.kind}

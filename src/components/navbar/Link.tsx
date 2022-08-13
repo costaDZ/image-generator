@@ -1,29 +1,33 @@
-import React from 'react';
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-import logo from '../../images/logo.png';
+import React, { MouseEvent } from 'react';
 
-import { connect } from 'react-redux';
+import logo from '../../images/logo.png';
+import { LinkStyles } from './link.styles';
+import { connect, ConnectedProps } from 'react-redux';
 import { changePage } from '../../redux/actions/actions';
 import { loadImages, loadVideos } from '../../redux/thunk/thunk';
 
-interface ImagesHolderProps {
-  path: any;
-  content: any;
-  changingPage: any;
-  startLoadImages: any;
-  startLoadVideos: any;
+import { AppDispatch } from '../../redux/store';
+import { ThunkDispatch } from 'redux-thunk';
+
+interface LinkProps extends LinkPropsFromRedux {
+  path: string;
+  content: Page;
 }
 
-const Link: React.FC<ImagesHolderProps> = ({
+const Link: React.FC<LinkProps> = ({
   path,
   content,
   changingPage,
   startLoadImages,
   startLoadVideos
-}: ImagesHolderProps) => {
-  function changeTargetPage(e: any) {
-    const currentSec = e.target.dataset.section;
+}: LinkProps) => {
+  function changeTargetPage(e: MouseEvent<HTMLAnchorElement>) {
+    if (!(e.target instanceof HTMLAnchorElement)) {
+      return;
+    }
+
+    const currentSec = e.target.dataset.section as Page;
+
     changingPage(currentSec);
     if (currentSec === 'videos') {
       startLoadVideos(currentSec, '', 1);
@@ -37,7 +41,7 @@ const Link: React.FC<ImagesHolderProps> = ({
       to={path}
       activeClassName="active-link"
       data-section={content}
-      onClick={(e) => changeTargetPage(e)}>
+      onClick={changeTargetPage}>
       {content === 'all' ? (
         <img src={logo} data-section={content} alt="logo" width="90px" />
       ) : (
@@ -47,52 +51,16 @@ const Link: React.FC<ImagesHolderProps> = ({
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
-  changingPage: (page: any) => dispatch(changePage(page)),
-  startLoadImages: (currentSec: any, key: any, page: any) =>
+const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
+  changingPage: (page: Page) => dispatch(changePage(page)),
+  startLoadImages: (currentSec: string, key: string, page: number) =>
     dispatch(loadImages(currentSec, key, page)),
-  startLoadVideos: (currentSec: any, key: any, page: any) =>
+  startLoadVideos: (currentSec: string, key: string, page: number) =>
     dispatch(loadVideos(currentSec, key, page))
 });
 
-export default connect(null, mapDispatchToProps)(Link);
+const connector = connect(null, mapDispatchToProps);
 
-const LinkStyles = styled(NavLink)`
-  color: black;
-  text-decoration: none;
-  transition: 0.2s;
-  margin: 0 1em;
+type LinkPropsFromRedux = ConnectedProps<typeof connector>;
 
-  &:not([href='/']) {
-    @media (max-width: 768px) {
-      margin: 0;
-      color: var(--text-grey-color);
-      -webkit-transition: var(--transition);
-      transition: var(--transition);
-      padding: 0.5em 1em;
-      margin: auto;
-      width: 25%;
-      display: block;
-      &:hover {
-        background-color: var(--green-color);
-        color: black;
-      }
-    }
-
-    &::after {
-      content: '';
-      display: block;
-      height: 2px;
-      background-color: var(--green-color);
-      position: relative;
-      border-radius: 20px;
-      top: 5px;
-      width: 0;
-    }
-
-    &.active-link::after {
-      transition: ease 0.3s;
-      width: 100%;
-    }
-  }
-`;
+export default connector(Link);

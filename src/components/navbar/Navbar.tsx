@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Link from './Link';
-import { Dispatch } from 'redux';
 
+import Link from './Link';
 import { NavbarStyles } from './Navbar.styles';
 import { WideContainer } from '../../styles';
-import { Link as MyLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { toggelMenu } from '../../redux/actions/actions';
+import { Link as RouterLink } from 'react-router-dom';
 import { BigBtn } from '../../styles/components';
+import { connector, NavbarPropsFromRedux } from './Navbar-connector';
 
-interface ImagesHolderProps {
-  menu: boolean;
-  toggleMenuBtn: (item: 'close' | 'toggle') => void;
-}
-
-const Navbar = ({ menu, toggleMenuBtn }: ImagesHolderProps) => {
-  const [offset, setOffset] = useState(0);
+const Navbar = ({ menu, toggleMenuBtn }: NavbarPropsFromRedux) => {
+  const [offset, setOffset] = useState<number>(0);
 
   useEffect(() => {
     window.onscroll = () => {
@@ -43,11 +36,11 @@ const Navbar = ({ menu, toggleMenuBtn }: ImagesHolderProps) => {
             <Link path={'/Vectors'} content={'vector'} />
             <Link path={'/Illistrations'} content={'illustration'} />
             <Link path={'/Videos'} content={'videos'} />
-            <MyLink to={'/collection'}>
+            <RouterLink to={'/collection'}>
               <BigBtn className="collection_btn">
                 My Collection <i className="bi bi-plus-square"></i>
               </BigBtn>
-            </MyLink>
+            </RouterLink>
           </div>
           <i className="bi bi-list" onClick={() => toggleMenuBtn('toggle')}></i>
         </nav>
@@ -56,12 +49,4 @@ const Navbar = ({ menu, toggleMenuBtn }: ImagesHolderProps) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  menu: state.menuBtn.menuBtn
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  toggleMenuBtn: (dir: 'close' | 'toggle') => dispatch(toggelMenu(dir))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default connector(Navbar);

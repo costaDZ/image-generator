@@ -6,11 +6,25 @@ interface Nav {
   populair: string[];
 }
 
+interface VideoSize {
+  url: string;
+  width: number;
+  height: number;
+  size: number;
+}
+
+type Videos = {
+  large: VideoSize;
+  medium: VideoSize;
+  small: VideoSize;
+  tiny: VideoSize;
+};
+
 interface Hit {
   id: number;
   pageURL: string;
   type: string;
-  tags: string | string[];
+  tags: string;
   previewURL: string;
   previewWidth: number;
   previewHeight: number;
@@ -29,6 +43,9 @@ interface Hit {
   user_id: number;
   user: string;
   userImageURL: string;
+  duration?: number;
+  videos?: Videos;
+  picture_id?: number;
 }
 
 interface MyCollection {
@@ -49,6 +66,8 @@ interface Content {
   total: number;
   totalHits: number;
 }
+
+type Page = 'all' | 'photo' | 'illustration' | 'vector' | 'videos';
 
 type LikedItems = Hit[];
 

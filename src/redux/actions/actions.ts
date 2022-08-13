@@ -1,6 +1,6 @@
-import { ActionType, Page } from './actions-types';
+import { ActionType } from './actions-types';
 
-export const changePage = (page: string) => ({
+export const changePage = (page: Page) => ({
   type: ActionType.CHANGE_PAGE,
   payload: page
 });

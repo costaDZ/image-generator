@@ -10,7 +10,6 @@ export enum ActionType {
   TOGGLE_DOWNLOAD_SIZES = 'TOGGLE_DOWNLOAD_SIZES'
 }
 
-export type Page = 'all' | 'photo' | 'illustration' | 'vector' | 'videos';
 
 export interface ChangePageAction {
   type: typeof ActionType.CHANGE_PAGE;

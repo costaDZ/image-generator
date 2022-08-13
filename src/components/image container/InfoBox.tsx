@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import { handelLikedImages, addToCollection } from '../../redux/actions/actions';
+import { Link } from 'react-router-dom';
 
 interface InfoBoxContainerProps {
   id: any;
@@ -20,6 +21,7 @@ interface InfoBoxContainerProps {
   toggleCollection: any;
   collectionItems: any;
   goToDownload: any;
+  comments: number;
 }
 
 const InfoBoxContainer: React.FC<InfoBoxContainerProps> = ({
@@ -105,12 +107,12 @@ const InfoBoxContainer: React.FC<InfoBoxContainerProps> = ({
               <p>{checkItems ? likes + 1 : likes}</p>
             </div>
 
-            {/* <div className="comments">
-                            <Link to={`/download/${id}`} onClick={() => goToDownload(img)}>
-                                <i className="bi bi-chat-dots"></i>
-                            </Link>
-                            <p>{comments}</p>
-                        </div> */}
+            <div className="comments">
+              <Link to={`/download/${id}`} onClick={() => goToDownload(img)}>
+                <i className="bi bi-chat-dots"></i>
+              </Link>
+              <p>{comments}</p>
+            </div>
 
             <div className="collections">
               <button

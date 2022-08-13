@@ -7,7 +7,7 @@ import {
   ToggelMenuAction
 } from './../actions/actions-types';
 
-import data from '../../data/data.js';
+import data from '../../data/data';
 
 const initialState = data;
 
