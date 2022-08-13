@@ -2,19 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import ImageContainer from './ImageContainer';
 
-import { connect } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+
+import { ThunkDispatch } from 'redux-thunk';
+
+import { connect, ConnectedProps } from 'react-redux';
 
 import { loadImages, loadVideos } from '../../redux/thunk/thunk';
 import { addToDownload } from '../../redux/actions/downloadActions';
 
-interface ImagesHolderProps {
+interface ImagesHolderProps extends PropsFromRedux {
   content?: any;
   kind?: any;
-  collection?: any;
-  LoadMainImages?: any;
-  startSearchingVideos?: any;
-  goToDownload?: any;
+  collection?: string;
 }
+
+type PassedData = {
+  hits: Hit[];
+};
 
 const ImagesHolder: React.FC<ImagesHolderProps> = ({
   content,
@@ -24,7 +29,7 @@ const ImagesHolder: React.FC<ImagesHolderProps> = ({
   startSearchingVideos,
   goToDownload
 }: ImagesHolderProps) => {
-  const data = kind === 'myCollection' ? collection : content;
+  const data: PassedData = kind === 'myCollection' ? collection : content;
   return (
     <ImagesContainerStyles>
       {data.hits?.map((item: Hit) => {
@@ -44,20 +49,24 @@ const ImagesHolder: React.FC<ImagesHolderProps> = ({
   );
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootState) => ({
   content: state.content,
   collection: state.myCollection
 });
 
-const MapDispatchToProps = (dispatch: any) => ({
-  LoadMainImages: (kind: any, key: any, page: any, perpage: any) =>
+const MapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
+  LoadMainImages: (kind: string, key: string, page: number, perpage: number) =>
     dispatch(loadImages(kind, key, page, perpage)),
-  startSearchingVideos: (kind: any, searchKey: any, page: any, perpage: any) =>
+  startSearchingVideos: (kind: string, searchKey: string, page: number, perpage: number) =>
     dispatch(loadVideos(kind, searchKey, page, perpage)),
-  goToDownload: (item: any) => dispatch(addToDownload(item))
+  goToDownload: (item: Hit) => dispatch(addToDownload(item))
 });
 
-export default connect(mapStateToProps, MapDispatchToProps)(ImagesHolder);
+const connector = connect(mapStateToProps, MapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+export default connector(ImagesHolder);
 
 const ImagesContainerStyles = styled.section`
   display: flex;

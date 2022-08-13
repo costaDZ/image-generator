@@ -1,3 +1,4 @@
+import { AppThunk } from '../store';
 import { loadImagesSuccess, loadImagesInProgress, loadVideosSuccess } from '../actions/actions';
 
 import { AppDispatch } from '../store';
@@ -7,7 +8,7 @@ const url = 'https://pixabay.com/api/?key=' + key;
 const controller = new AbortController();
 
 export const loadImages =
-  (kind = 'all', searchKey = '', pageNumber = 1, perPage = 50) =>
+  (kind = 'all', searchKey = '', pageNumber = 1, perPage = 50): AppThunk =>
   async (dispatch: AppDispatch) => {
     try {
       dispatch(loadImagesInProgress());
@@ -28,7 +29,7 @@ export const loadImages =
 const videosUrl = 'https://pixabay.com/api/videos/?key=' + key;
 
 export const loadVideos =
-  (kind = 'all', searchKey = '', pageNumber = 1, perPage = 30) =>
+  (kind = 'all', searchKey = '', pageNumber = 1, perPage = 30): AppThunk =>
   async (dispatch: AppDispatch) => {
     try {
       dispatch(loadImagesInProgress());

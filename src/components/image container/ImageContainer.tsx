@@ -7,8 +7,8 @@ import { ImageContainerStyles } from './imageContainer-styles';
 
 interface ImageContainerProps {
   data: Hit;
-  kind: any;
-  isLoading: any;
+  kind: string;
+  isLoading: boolean;
   goToDownload: any;
   LoadMainImages: any;
   startSearchingVideos: any;

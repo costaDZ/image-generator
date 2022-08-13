@@ -10,7 +10,6 @@ export enum ActionType {
   TOGGLE_DOWNLOAD_SIZES = 'TOGGLE_DOWNLOAD_SIZES'
 }
 
-
 export interface ChangePageAction {
   type: typeof ActionType.CHANGE_PAGE;
   payload: Page;
@@ -44,4 +43,16 @@ export interface HandelLikedImagesAction {
 export interface AddToCollectionAction {
   type: typeof ActionType.HANDEL_COLLECTION;
   payload: Hit;
+}
+
+export interface AddToDownloadAction {
+  type: typeof ActionType.ADD_TO_DOWNLOAD;
+  payload: {
+    item: Hit;
+  };
+}
+
+export interface ToggelDownloadSizeAction {
+  type: typeof ActionType.TOGGLE_DOWNLOAD_SIZES;
+  payload: string;
 }
