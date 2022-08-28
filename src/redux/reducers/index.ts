@@ -1,12 +1,10 @@
-import { combineReducers } from 'redux';
-
 import { nav, content, menuBtn } from './reducers';
 
 import { likedItem, myCollection } from './collectionsReducer';
 
 import { download } from './downloadReducer';
 
-const reducers = {
+export const reducers = {
   nav,
   content,
   menuBtn,
@@ -14,5 +12,3 @@ const reducers = {
   myCollection,
   download
 };
-
-export const rootReducer = combineReducers(reducers);

@@ -2,7 +2,11 @@ import main from '../images/back.jpg';
 import photos from '../images/photos.jpg';
 import illistrator from '../images/illistrator.jpg';
 import vector from '../images/vector.png';
-//import { vedio } from '../images/vedios';
+
+import video from '../images/vedios.mp4';
+
+///console.log(myVedio, '1');
+console.log(video, '1111111111111111111111111111111111111111111');
 
 const data = {
   all: {
@@ -95,7 +99,7 @@ const data = {
     category: 'videos',
     title: 'Stunning free stock video footage & clips',
     dec: 'Thousands of free stock video clips & footage shared by our talented community.',
-    video: vector,
+    video: video,
     populair: [
       'nature',
       'wallpaper',
@@ -112,4 +116,17 @@ const data = {
     ]
   }
 };
+
+export const initialContent: Content = {
+  kind: '',
+  searchKey: '',
+  pageNumber: 0,
+  perPage: 0,
+  isLoading: false,
+  hits: [],
+  total: 0,
+  totalHits: 0,
+  pic: ''
+};
+
 export default data;

@@ -5,6 +5,8 @@ import { Main, Illistrations, Photos, Vectors, Videos, Collection, Download } fr
 import { Navbar, Overlay, Pagination, PushArrow } from './components';
 
 const App: React.FC = () => {
+  console.log('APP RELOAD');
+
   return (
     <div className="App">
       <Router>

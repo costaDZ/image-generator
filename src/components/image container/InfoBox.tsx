@@ -1,25 +1,25 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import { AppDispatch, RootState } from '../../redux/store';
 import { handelLikedImages, addToCollection } from '../../redux/actions/actions';
-import { InfoBox as InfoBoxContainer } from './infoBox-styles';
+import { InfoBox as InfoBoxContainer } from './infoBox.styles';
 
 interface InfoBoxContainerProps extends PropsFromRedux {
   id: number;
   data: Hit;
   videos: Videos;
-  tags: any;
-  kind: any;
-  duration: any;
-  likes: any;
-  currentLocation: any;
-  LoadMainImages: any;
-  startSearchingVideos: any;
-  goToDownload: any;
+  tags: string;
+  kind: 'video' | 'image';
+  duration: number | undefined;
+  likes: number;
+  currentLocation: string;
+  LoadMainImages: (kind: string, key: string, page: number, perpage: number) => void;
+  startSearchingVideos: (kind: string, searchKey: string, page: number, perpage: number) => void;
   comments: number;
+  goToDownload: (item: Hit) => void;
 }
 
 const InfoBox: React.FC<InfoBoxContainerProps> = ({
@@ -36,13 +36,15 @@ const InfoBox: React.FC<InfoBoxContainerProps> = ({
   toggelLike,
   likedItems,
   toggleCollection,
+  goToDownload,
   collectionItems,
-  goToDownload
+  comments
 }: InfoBoxContainerProps) => {
   const history = useHistory().location.pathname;
 
-  function startSearch(e: any) {
-    const valueKeySearch = e.target.textContent;
+  function startSearch(e: MouseEvent<HTMLButtonElement>) {
+    const target = e.target as HTMLButtonElement;
+    const valueKeySearch = target.textContent || '';
     const searchAmount = history.slice(1, 9) === 'download' ? 8 : 50;
 
     switch (kind) {
@@ -55,8 +57,8 @@ const InfoBox: React.FC<InfoBoxContainerProps> = ({
     }
   }
 
-  const checkItems = likedItems.find((item: any) => item.id === id);
-  const collection = collectionItems.hits.find((item: any) => item.id === id);
+  const checkItems = likedItems.find((item: Hit) => item.id === id);
+  const collection = collectionItems.hits.find((item: Hit) => item.id === id);
 
   return (
     <InfoBoxContainer data-url={videos && videos.medium.url} k={kind} className="info_box">
@@ -65,7 +67,7 @@ const InfoBox: React.FC<InfoBoxContainerProps> = ({
           {tags
             .replace(/\s/g, '')
             .split(',')
-            .map((tag: string, i: string) => {
+            .map((tag: string, i: number) => {
               return (
                 <button key={i} onClick={(e) => startSearch(e)}>
                   {tag}
@@ -76,7 +78,7 @@ const InfoBox: React.FC<InfoBoxContainerProps> = ({
       )}
 
       <div className="likes_comments">
-        {kind === 'videos' ? (
+        {kind === 'video' ? (
           <div className="quality_diration">
             <p>0:{duration}</p>
             <b>4K</b>
@@ -105,7 +107,7 @@ const InfoBox: React.FC<InfoBoxContainerProps> = ({
             </div>
 
             <div className="comments">
-              <Link to={`/download/${id}`} onClick={() => goToDownload(img)}>
+              <Link to={`/download/${id}`} onClick={() => goToDownload(data)}>
                 <i className="bi bi-chat-dots"></i>
               </Link>
               <p>{comments}</p>
@@ -135,8 +137,8 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  toggelLike: (item: any) => dispatch(handelLikedImages(item)),
-  toggleCollection: (item: any) => dispatch(addToCollection(item))
+  toggelLike: (item: Hit) => dispatch(handelLikedImages(item)),
+  toggleCollection: (item: Hit) => dispatch(addToCollection(item))
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

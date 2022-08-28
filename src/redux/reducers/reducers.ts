@@ -7,15 +7,15 @@ import {
   ToggelMenuAction
 } from './../actions/actions-types';
 
-import data from '../../data/data';
+import data, { initialContent } from '../../data/data';
 
 const initialState = data;
 
-export const nav = (state = initialState, actions: ChangePageAction) => {
+export const nav = (state: Section = initialState.all, actions: ChangePageAction) => {
   const { type, payload } = actions;
   switch (type) {
     case ActionType.CHANGE_PAGE: {
-      return initialState[payload];
+      return { ...initialState[payload] };
     }
     default:
       return state;
@@ -23,24 +23,38 @@ export const nav = (state = initialState, actions: ChangePageAction) => {
 };
 
 export const content = (
-  state = { isLoading: true },
+  state = initialContent,
   actions: LoadImageInProgressAction | LoadImagesSuccessAction | LoadVideosSuccessAction
-) => {
+): Content => {
   const { type, payload } = actions;
   switch (type) {
     case ActionType.LOAD_IMAGES_IN_PROGRESS:
       return { ...state, isLoading: true };
     case ActionType.LOAD_IMAGES_SUCCESS:
     case ActionType.LOAD_VIDEOS_SUCCESS: {
-      const { kind, searchKey, pageNumber, perPage, hits, total, totalHits } = payload;
-      return { kind, searchKey, pageNumber, perPage, isLoading: false, hits, total, totalHits };
+      const { kind, searchKey, pageNumber, perPage, hits, total, totalHits, pic } = payload;
+      return {
+        kind,
+        searchKey,
+        pageNumber,
+        perPage,
+        isLoading: false,
+        hits,
+        total,
+        totalHits,
+        pic
+      };
     }
     default:
       return state;
   }
 };
 
-export const menuBtn = (state = false, actions: ToggelMenuAction) => {
+const menuBtnInitialState = {
+  menuBtn: false
+};
+
+export const menuBtn = (state = menuBtnInitialState, actions: ToggelMenuAction) => {
   const { type, payload } = actions;
   switch (type) {
     case ActionType.TOGGLE_MENU:

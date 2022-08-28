@@ -5,9 +5,7 @@ import { LinkStyles } from './link.styles';
 import { connect, ConnectedProps } from 'react-redux';
 import { changePage } from '../../redux/actions/actions';
 import { loadImages, loadVideos } from '../../redux/thunk/thunk';
-
-import { AppDispatch } from '../../redux/store';
-import { ThunkDispatch } from 'redux-thunk';
+import { ThunkDispatchType } from '../../redux/store';
 
 interface LinkProps extends LinkPropsFromRedux {
   path: string;
@@ -22,12 +20,8 @@ const Link: React.FC<LinkProps> = ({
   startLoadVideos
 }: LinkProps) => {
   function changeTargetPage(e: MouseEvent<HTMLAnchorElement>) {
-    if (!(e.target instanceof HTMLAnchorElement)) {
-      return;
-    }
-
-    const currentSec = e.target.dataset.section as Page;
-
+    const target = e.target as HTMLElement;
+    const currentSec = target.dataset.section as Page;
     changingPage(currentSec);
     if (currentSec === 'videos') {
       startLoadVideos(currentSec, '', 1);
@@ -51,7 +45,7 @@ const Link: React.FC<LinkProps> = ({
   );
 };
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatchType) => ({
   changingPage: (page: Page) => dispatch(changePage(page)),
   startLoadImages: (currentSec: string, key: string, page: number) =>
     dispatch(loadImages(currentSec, key, page)),

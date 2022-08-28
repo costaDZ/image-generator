@@ -1,21 +1,55 @@
-import React from 'react';
-import styled from 'styled-components';
-import SearchForm from './SearchForm';
-import { connect } from 'react-redux';
+// Lib
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { connect, ConnectedProps } from 'react-redux';
 
-interface OverlayProps {
-  section: any;
+// Local
+import { RootState, ThunkDispatchType } from '../../redux/store';
+import SearchForm from './SearchForm';
+import { MEDIA } from '../../images';
+import { loadImages, loadVideos } from '../../redux/thunk/thunk';
+import { changePage, toggelMenu } from '../../redux/actions/actions';
+import { SearchHolder } from './overlay.styles';
+
+interface OverlayProps extends PropsFromRedux {
+  section: Section;
 }
 
-const Overlay: React.FC<OverlayProps> = ({ section }: OverlayProps) => {
+const Overlay = ({
+  section,
+  LoadThePage,
+  LoadMainImages,
+  startSearchingVideos,
+  closeMenu
+}: OverlayProps) => {
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!section.back && !section.video) {
+      history.push('/');
+      LoadThePage('all');
+      LoadMainImages('all', '', 1);
+    } else if (section.category === 'videos') {
+      LoadThePage(section.category);
+      startSearchingVideos('all', '', 1);
+    } else {
+      LoadThePage(section.category);
+      LoadMainImages(section.category, '', 1);
+    }
+  }, []);
+
   return (
-    <SearchHolder img={section.back}>
+    <SearchHolder img={section.back as string} onClick={() => closeMenu('close')}>
       <h1 className="main-title">{section.title}</h1>
       <p className="desc">{section.dec}</p>
 
-      <SearchForm section={section} />
+      <SearchForm
+        section={section}
+        startSearchingImages={LoadMainImages}
+        startSearchingVideos={startSearchingVideos}
+      />
 
-      {section.video && (
+      {section.category === 'videos' && (
         <video className="video" autoPlay muted loop>
           <source src={section.video} type="video/mp4" />
           <source src={section.video} type="video/ogg" />
@@ -26,38 +60,23 @@ const Overlay: React.FC<OverlayProps> = ({ section }: OverlayProps) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  section: state.nav
+const mapStateToProps = (state: RootState) => {
+  return {
+    section: state.nav
+  };
+};
+
+const MapDispatchToProps = (dispatch: ThunkDispatchType) => ({
+  LoadThePage: (page: string) => dispatch(changePage(page)),
+  LoadMainImages: (kind: string, key: string, page: number) =>
+    dispatch(loadImages(kind, key, page)),
+  startSearchingVideos: (kind: string, key: string, page: number) =>
+    dispatch(loadVideos(kind, key, page)),
+  closeMenu: (dir: 'close' | 'toggle') => dispatch(toggelMenu(dir))
 });
 
-export default connect(mapStateToProps)(Overlay);
+const connector = connect(mapStateToProps, MapDispatchToProps);
 
-interface SearchHolderStyleProps {
-  img: string;
-}
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const SearchHolder = styled.section<SearchHolderStyleProps>`
-  position: relative;
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  min-height: 70vh;
-  color: white;
-  background: url(${(props) => props.img}) center/cover no-repeat;
-
-  .main-title {
-    font-size: 2.5em;
-  }
-
-  video {
-    left: 50%;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-  }
-`;
+export default connector(Overlay);

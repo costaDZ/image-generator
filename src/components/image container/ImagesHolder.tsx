@@ -1,43 +1,36 @@
 import React from 'react';
 import styled from 'styled-components';
-import ImageContainer from './ImageContainer';
-
-import { AppDispatch, RootState } from '../../redux/store';
-
-import { ThunkDispatch } from 'redux-thunk';
-
 import { connect, ConnectedProps } from 'react-redux';
 
+import ImageContainer from './ImageContainer';
+import { RootState, ThunkDispatchType } from '../../redux/store';
 import { loadImages, loadVideos } from '../../redux/thunk/thunk';
 import { addToDownload } from '../../redux/actions/downloadActions';
 
-interface ImagesHolderProps extends PropsFromRedux {
-  content?: any;
-  kind?: any;
-  collection?: string;
+interface ImagesHolderProps {
+  kind?: string;
+  content: Content;
+  collection: MyCollection;
 }
 
-type PassedData = {
-  hits: Hit[];
-};
-
-const ImagesHolder: React.FC<ImagesHolderProps> = ({
+const ImagesHolder: React.FC<ImagesHolderProps & PropsFromRedux> = ({
   content,
   kind,
   collection,
   LoadMainImages,
   startSearchingVideos,
   goToDownload
-}: ImagesHolderProps) => {
-  const data: PassedData = kind === 'myCollection' ? collection : content;
+}: ImagesHolderProps & PropsFromRedux) => {
+  const data: MyCollection | Content = kind === 'myCollection' ? collection : content;
+
   return (
     <ImagesContainerStyles>
       {data.hits?.map((item: Hit) => {
         return (
           <ImageContainer
-            kind={content.kind}
+            kind={kind ? content.kind : ''}
             key={item.id}
-            isLoading={content.isLoading}
+            isLoading={false}
             data={item}
             LoadMainImages={LoadMainImages}
             startSearchingVideos={startSearchingVideos}
@@ -54,7 +47,7 @@ const mapStateToProps = (state: RootState) => ({
   collection: state.myCollection
 });
 
-const MapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
+const MapDispatchToProps = (dispatch: ThunkDispatchType) => ({
   LoadMainImages: (kind: string, key: string, page: number, perpage: number) =>
     dispatch(loadImages(kind, key, page, perpage)),
   startSearchingVideos: (kind: string, searchKey: string, page: number, perpage: number) =>

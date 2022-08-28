@@ -20,7 +20,7 @@ export const loadImages =
       const images = await response.json();
       const { hits, total, totalHits } = images;
       dispatch(loadImagesSuccess(kind, searchKey, pageNumber, perPage, hits, total, totalHits));
-      controller.abort();
+      // controller.abort();
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +41,7 @@ export const loadVideos =
       const videos = await response.json();
       const { hits, total, totalHits } = videos;
       dispatch(loadVideosSuccess(kind, searchKey, pageNumber, perPage, hits, total, totalHits));
-      controller.abort();
+      // controller.abort();
     } catch (error) {
       console.log(error);
     }

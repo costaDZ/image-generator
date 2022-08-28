@@ -7,7 +7,7 @@ const mapStateToProps = (state: RootState) => ({
   menu: state.menuBtn.menuBtn
 });
 
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
+const mapDispatchToProps = (dispatch: any) => ({
   toggleMenuBtn: (dir: 'close' | 'toggle') => dispatch(toggelMenu(dir))
 });
 

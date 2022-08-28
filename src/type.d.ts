@@ -1,3 +1,8 @@
+declare module '*.mp4' {
+  const src: string;
+  export default src;
+}
+
 interface Nav {
   category: string;
   title: string;
@@ -19,6 +24,15 @@ type Videos = {
   small: VideoSize;
   tiny: VideoSize;
 };
+
+interface Section {
+  category: string;
+  title: string;
+  dec: string;
+  back?: string;
+  video?: string;
+  populair: string[];
+}
 
 interface Hit {
   id: number;
@@ -44,7 +58,7 @@ interface Hit {
   user: string;
   userImageURL: string;
   duration?: number;
-  videos?: Videos;
+  videos: Videos;
   picture_id?: number;
 }
 
@@ -65,6 +79,7 @@ interface Content {
   hits: Hit[];
   total: number;
   totalHits: number;
+  pic: string | number;
 }
 
 type Page = 'all' | 'photo' | 'illustration' | 'vector' | 'videos';

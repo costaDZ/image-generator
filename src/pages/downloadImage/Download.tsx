@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { toggleDownloadSizes } from '../../redux/actions/downloadActions';
@@ -15,11 +15,11 @@ const Download: React.FC<DownloadProps> = ({
   targetType,
   info
 }: DownloadProps) => {
-  function closeSizes(e: any) {
-    // const elm = e.target;
-    // if (!elm.classList.contains('pre') && elm.tagName !== 'FORM' && elm.tagName !== 'INPUT') {
-    //   toggleDownloadSizes('c');
-    // }
+  function closeSizes(e: MouseEvent<HTMLElement>) {
+    const elm = e.target as HTMLElement;
+    if (!elm.classList.contains('pre') && elm.tagName !== 'FORM' && elm.tagName !== 'INPUT') {
+      toggleDownloadSizes('c');
+    }
   }
 
   return (

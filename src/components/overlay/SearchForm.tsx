@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 
 import { SerachIcon, SearchFormStyles, PopulairImagesStyle } from './searchForm-styles';
 interface SearchFormProps {
   startSearchingImages?: any;
   startSearchingVideos?: any;
-  section: any;
+  section: Section;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({
@@ -12,9 +12,11 @@ const SearchForm: React.FC<SearchFormProps> = ({
   startSearchingVideos,
   section
 }: SearchFormProps) => {
-  function startSearch(e: React.SyntheticEvent<HTMLFormElement>, val: string, check: string) {
+  function startSearch(e: React.MouseEvent | React.FormEvent, val: string, check: string) {
     e.preventDefault();
-    if (check === 'search') (e.target as Element).lastElementChild.value = '';
+    const target = e.target as HTMLFormElement;
+
+    if (check === 'search') (target.lastElementChild as HTMLInputElement).value = '';
     switch (section.category) {
       case 'videos':
         startSearchingVideos(section.category, val, 1);
@@ -28,8 +30,12 @@ const SearchForm: React.FC<SearchFormProps> = ({
   return (
     <>
       <SearchFormStyles
-        onSubmit={(e: React.SyntheticEvent<HTMLFormElement>) =>
-          startSearch(e, (e.target as HTMLFormElement).lastElementChild.value, 'search')
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+          startSearch(
+            e,
+            ((e.target as HTMLFormElement).lastElementChild as HTMLInputElement).value,
+            'search'
+          )
         }>
         <button className="search-btn" type="submit" aria-label="search">
           <SerachIcon />
@@ -43,9 +49,13 @@ const SearchForm: React.FC<SearchFormProps> = ({
 
       <PopulairImagesStyle>
         <h4>Populair Images : </h4>
-        {(section.populair || section.all.populair).map((item: any, i: any) => {
+        {(section.populair || section.populair).map((item: string, i: number) => {
           return (
-            <button key={i} onClick={(e) => startSearch(e, e.target.textContent, 'btn')}>
+            <button
+              key={i}
+              onClick={(e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) =>
+                startSearch(e, (e.target as HTMLButtonElement).textContent as string, 'btn')
+              }>
               {item}
             </button>
           );

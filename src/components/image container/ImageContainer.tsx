@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 
 import Loader from '../Loader';
 import InfoBox from './InfoBox';
-import { ImageContainerStyles } from './imageContainer-styles';
+import { ImageContainerStyles } from './imageContainer.styles';
 
 interface ImageContainerProps {
   data: Hit;
   kind: string;
   isLoading: boolean;
-  goToDownload: any;
-  LoadMainImages: any;
-  startSearchingVideos: any;
+  goToDownload: (item: Hit) => void;
+  LoadMainImages: (kind: string, key: string, page: number, perpage: number) => void;
+  startSearchingVideos: (kind: string, key: string, page: number, perpage: number) => void;
 }
 
 const ImageContainer: React.FC<ImageContainerProps> = ({
