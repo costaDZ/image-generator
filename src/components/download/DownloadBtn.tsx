@@ -5,8 +5,8 @@ import DownloadSize from './downloadSizes/DownloadSize';
 
 interface DownloadBtnProps {
   toggleDownloadSizes: (event: string) => void;
-  targetType?: any;
-  info?: any;
+  targetType: string;
+  info: Download;
 }
 
 const DownloadBtn: React.FC<DownloadBtnProps> = ({

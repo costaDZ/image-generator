@@ -1,29 +1,18 @@
 import React, { MouseEvent } from 'react';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
+import { connect, ConnectedProps } from 'react-redux';
+
+import { DownloadStyled } from './Downloads.styles';
 import { toggleDownloadSizes } from '../../redux/actions/downloadActions';
 import { ImagesHolder, BigImageView, DownloadBtn, UserInfo, ImageInfo } from '../../components';
+import { RootState, AppDispatch } from '../../redux/store';
 
-interface DownloadProps {
-  toggleDownloadSizes: any;
-  targetType: any;
-  info: any;
-}
-
-const Download: React.FC<DownloadProps> = ({
+const Download: React.FC<PropsFromRedux> = ({
   toggleDownloadSizes,
   targetType,
   info
-}: DownloadProps) => {
-  function closeSizes(e: MouseEvent<HTMLElement>) {
-    const elm = e.target as HTMLElement;
-    if (!elm.classList.contains('pre') && elm.tagName !== 'FORM' && elm.tagName !== 'INPUT') {
-      toggleDownloadSizes('c');
-    }
-  }
-
+}: PropsFromRedux) => {
   return (
-    <DownloadStyled onClick={(e) => closeSizes(e)}>
+    <DownloadStyled onClick={closeSizes}>
       <div className="first_container">
         <BigImageView targetType={targetType} info={info} />
         <div className="side_bar">
@@ -45,44 +34,23 @@ const Download: React.FC<DownloadProps> = ({
   );
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootState) => ({
   info: state.download,
-  targetType: state.download.targetType
+  targetType: state.download.type
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
-  toggleDownloadSizes: (action: any) => dispatch(toggleDownloadSizes(action))
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+  toggleDownloadSizes: (action: string) => dispatch(toggleDownloadSizes(action))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Download);
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
-const DownloadStyled = styled.section`
-  padding: 5em 5em;
+export default connector(Download);
 
-  @media (max-width: 768px) {
-    padding: 5em 2em;
+const closeSizes = (e: MouseEvent<HTMLElement>) => {
+  const elm = e.target as HTMLElement;
+  if (!elm.classList.contains('pre') && elm.tagName !== 'FORM' && elm.tagName !== 'INPUT') {
+    toggleDownloadSizes('c');
   }
-  @media (max-width: 376px) {
-    padding: 3em 0.5em;
-  }
-
-  .first_container {
-    display: flex;
-    justify-content: space-evenly;
-
-    @media (max-width: 992px) {
-      flex-direction: column;
-      height: 60em;
-    }
-
-    .side_bar {
-      position: relative;
-      padding: 0em 1em;
-    }
-  }
-  .related_images {
-    h3 {
-      color: var(--grey-text);
-    }
-  }
-`;
+};

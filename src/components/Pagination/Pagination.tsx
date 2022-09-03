@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
-import { loadImages, loadVideos } from '../redux/thunk/thunk';
+import { ThunkDispatchType } from '../../redux/store';
 
-import { RootState } from '../redux/store';
-
-import { ThunkDispatch } from 'redux-thunk';
-
+import { RootState } from '../../redux/store';
+import { loadImages, loadVideos } from '../../redux/thunk/thunk';
 import { PaginationStyles } from './pagination-styles';
 
 const Pagination = ({
@@ -16,7 +14,7 @@ const Pagination = ({
 }: PropsFromRedux) => {
   const { kind, searchKey, pic, pageNumber, perPage, isLoading, total, totalHits } = currentItems;
 
-  function changeThePage(val: number) {
+  const changeThePage = (val: number) => {
     switch (currentLocation) {
       case 'videos':
         startLoadPageVideos(kind, searchKey, val, perPage);
@@ -25,7 +23,7 @@ const Pagination = ({
         startLoadPageImages(kind, searchKey, val, perPage);
         break;
     }
-  }
+  };
 
   return (
     !isLoading && (
@@ -74,7 +72,7 @@ const mapStateToProps = (state: RootState) => ({
   currentLocation: state.nav.category
 });
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatchType) => ({
   startLoadPageImages: (kind: string, searchkey: string, pageNumber: number, perPage: number) =>
     dispatch(loadImages(kind, searchkey, pageNumber, perPage)),
   startLoadPageVideos: (kind: string, searchkey: string, page: number, perpage: number) =>

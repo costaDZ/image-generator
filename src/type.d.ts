@@ -62,6 +62,28 @@ interface Hit {
   picture_id?: number;
 }
 
+interface Download {
+  id: number;
+  extention: string;
+  type: string;
+  targetType: 'video' | 'image';
+  targetSize: string;
+  bigResolution: string;
+  normalResolution: string;
+  smallResolution: string;
+  views: number;
+  downloads: number;
+  tags: string[];
+  tinyUrl: string;
+  smallUrl: string;
+  mediumUrl: string;
+  largeUrl: string;
+  likes: number;
+  user: string;
+  userImageURL: string;
+  sizes: boolean;
+}
+
 interface MyCollection {
   hits: Hit[];
   photo: number;
