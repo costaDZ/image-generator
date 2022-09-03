@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 function PushArrow() {
   const [show, setShow] = useState(false);
 
-  window.addEventListener('scroll', (e) => {
-    const currentScroll = window.scrollY;
-    const totalHeight = window.innerHeight;
-    currentScroll > totalHeight * 2 ? setShow(true) : setShow(false);
-  });
+  useEffect(() => {
+    const handelScrollEvent = () => {
+      const currentScroll = window.scrollY;
+      const totalHeight = window.innerHeight;
+      currentScroll > totalHeight * 2 ? setShow(true) : setShow(false);
+    };
+    window.addEventListener('scroll', handelScrollEvent);
+
+    return () => window.removeEventListener('scroll', handelScrollEvent);
+  }, []);
 
   return (
     <PushArrowStyles

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Loader from '../Loader';
+import Loader from '../Loader/Loader';
 import ReactPlayer from 'react-player';
 
 interface BigImageViewProps {

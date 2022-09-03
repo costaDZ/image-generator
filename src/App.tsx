@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import { Main, Illistrations, Photos, Vectors, Videos, Collection, Download } from './pages';
 import { Navbar, Overlay, Pagination, PushArrow } from './components';
 

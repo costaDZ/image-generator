@@ -1,16 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-function Loader() {
-  return (
-    <LoaderStyle>
-      <div className="loader-p"></div>
-    </LoaderStyle>
-  );
-}
-export default Loader;
-
-const LoaderStyle = styled.div`
+export const LoaderStyle = styled.div`
   background: #fff;
   width: 22em;
   height: 20em;
