@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { DownloadSizeStyles } from './DownloadSize.styles';
 import { BigBtn } from '../../../styles/components';
+import { downloadVideo, startDownload } from '../../../utils/helpers';
+import { RadioInput } from './RadioInput';
+import { InputLabel } from './InputLabel';
 
 interface DownloadSizeProps {
   targetType: string;
@@ -22,66 +25,36 @@ const DownloadSize: React.FC<DownloadSizeProps> = ({ targetType, info }: Downloa
   return (
     <DownloadSizeStyles className="pre" style={{ display: sizes ? 'block' : undefined }}>
       <form onSubmit={handelDownload}>
-        <input
-          type="radio"
+        <RadioInput
           id="small"
-          name="resolution"
-          required
-          onClick={() => setdownloadSrc(targetType === 'video' ? info.tinyUrl : info.mediumUrl)}
+          action={() => setdownloadSrc(targetType === 'video' ? info.tinyUrl : info.mediumUrl)}
         />
-        <label className="pre" htmlFor="small">
-          {normalResolution}
-          &emsp;&emsp;&emsp;
-          {+targetSize.slice(0, 3) / 2 + ' MB'}
-          &emsp;&emsp;
-          {extention}
-        </label>
-        <br />
 
-        <input
-          type="radio"
+        <InputLabel
+          htmlFor="small"
+          resolution={normalResolution}
+          size={+targetSize.slice(0, 3) / 2 + ' MB'}
+          extention={extention}
+        />
+
+        <RadioInput
           id="large"
-          name="resolution"
-          required
-          onClick={() => setdownloadSrc(targetType === 'video' ? info.smallUrl : info.largeUrl)}
+          action={() => setdownloadSrc(targetType === 'video' ? info.smallUrl : info.largeUrl)}
         />
 
-        <label className="pre" htmlFor="large">
-          {bigResolution}
-          &emsp;&emsp;
-          {targetSize}
-          &emsp;&emsp;
-          {extention}
-        </label>
+        <InputLabel
+          htmlFor="large"
+          resolution={bigResolution}
+          size={targetSize}
+          extention={extention}
+        />
 
-        <br />
         <BigBtn className="pre" type="submit">
           Download
         </BigBtn>
       </form>
     </DownloadSizeStyles>
   );
-};
-
-const startDownload = async (src: string) => {
-  const target = await fetch(src);
-  const imageBlog = await target.blob();
-  const imageURL = URL.createObjectURL(imageBlog);
-  const link = document.createElement('a');
-  link.href = imageURL;
-  link.download = imageBlog.type;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
-
-const downloadVideo = (src: string): void => {
-  const link = document.createElement('a');
-  link.href = src;
-  link.download = 'video';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
 };
 
 export default DownloadSize;
