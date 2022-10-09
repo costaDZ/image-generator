@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-import Loader from '../Loader/Loader';
-import InfoBox from './InfoBox';
+import { Loader, InfoBox } from '..';
 import { ImageContainerStyles } from './imageContainer.styles';
 
 interface ImageContainerProps {

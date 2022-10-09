@@ -1,64 +1,58 @@
-import React from 'react';
 import styled from 'styled-components';
 
-interface ImageInfoProps {
-  targetType: any;
-  extention: any;
-  targetSize: any;
-  bigResolution: any;
-  normalResolution: any;
-  smallResolution: any;
-  tags: any;
-  views: any;
-  downloads: any;
-  type: any;
-  likes: any;
-}
+type tableHeadType = {
+  name: string;
+  propValue:
+    | 'targetType'
+    | 'extention'
+    | 'bigResolution'
+    | 'targetSize'
+    | 'likes'
+    | 'downloads'
+    | 'views';
+};
 
-const ImageInfo = ({
-  targetType,
-  extention,
-  targetSize,
-  bigResolution,
-  normalResolution,
-  smallResolution,
-  tags,
-  views,
-  downloads,
-  type,
-  likes
-}: ImageInfoProps) => {
+const tableHead: tableHeadType[] = [
+  {
+    name: 'file',
+    propValue: 'targetType'
+  },
+  {
+    name: 'type',
+    propValue: 'extention'
+  },
+  {
+    name: 'resolution',
+    propValue: 'bigResolution'
+  },
+  {
+    name: 'size',
+    propValue: 'targetSize'
+  },
+  {
+    name: 'likes',
+    propValue: 'likes'
+  },
+  {
+    name: 'downloads',
+    propValue: 'downloads'
+  },
+  {
+    name: 'views',
+    propValue: 'views'
+  }
+];
+
+const ImageInfo = (props: Download) => {
   return (
     <ImageInfoStyled>
       <tbody>
-        <tr>
-          <th>file :</th>
-          <td>{targetType}</td>
-        </tr>
-        <tr>
-          <th>type : </th>
-          <td>{extention}</td>
-        </tr>
-        <tr>
-          <th>resolution : </th>
-          <td>{bigResolution}</td>
-        </tr>
-        <tr>
-          <th>size : </th>
-          <td>{targetSize}</td>
-        </tr>
-        <tr>
-          <th>likes : </th>
-          <td>{likes}</td>
-        </tr>
-        <tr>
-          <th>downloads : </th>
-          <td>{downloads}</td>
-        </tr>
-        <tr>
-          <th>views : </th>
-          <td>{views}</td>
-        </tr>
+        {tableHead.map((value, idx) => (
+          <tr key={idx}>
+            <th>{value.name} :</th>
+            <td>{props[value.propValue]}</td>
+          </tr>
+        ))}
       </tbody>
     </ImageInfoStyled>
   );

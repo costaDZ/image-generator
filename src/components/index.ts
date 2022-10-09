@@ -1,15 +1,16 @@
 import Navbar from './navbar/Navbar';
 import Overlay from './overlay/Overlay';
-import ImageContainer from './image container/ImageContainer';
-import ImagesHolder from './image container/ImagesHolder';
+import ImageContainer from './ImageContainer/ImageContainer';
+import ImagesHolder from './ImageContainer/ImagesHolder';
 import Pagination from './Pagination/Pagination';
 import PushArrow from './PushArrow/PushArrow';
 import StatusCollectionBar from './StatusCollectionBar/StatusCollectionBar';
-import BigImageView from './download/BigImage';
+import BigImageView from './BigImageHolder/BigImage';
 import DownloadBtn from './download/DownloadBtn';
-import UserInfo from './download/UserInfo';
+import UserInfo from './UserInfo/UserInfo';
 import ImageInfo from './download/ImageInfo';
 import Loader from './Loader/Loader';
+import InfoBox from './InfoBox/InfoBox';
 
 export {
   Navbar,
@@ -23,5 +24,6 @@ export {
   DownloadBtn,
   UserInfo,
   ImageInfo,
-  Loader
+  Loader,
+  InfoBox
 };
